@@ -24,6 +24,11 @@
     ↓ PNG
   </button>
 
+  <!-- 🔥 Botão para abrir o modal do prompt -->
+  <button class="fc-open-modal" type="button">
+    📄 Gerar Prompt
+  </button>
+
   <main class="fc-main fc-main--carrossel">
     <section class="fc-hero">
       <div class="fc-hero__tag">Pipeline MD → Página → Arte</div>
@@ -85,7 +90,56 @@
     <p>Fábrica de Conteúdo · Carrossel educacional pronto pra exportar.</p>
   </footer>
 
-  <!-- Scripts para captura em PNG -->
+  <!-- 🔥 MODAL DO PROMPT -->
+  <div id="fc-modal" class="fc-modal">
+    <div class="fc-modal-content">
+      <h2>Prompt Oficial – Fábrica de Conteúdo</h2>
+
+      <textarea id="fc-modal-text" readonly>
+Você é meu assistente de copywriting para carrosséis MD Personal.
+Use o seguinte padrão técnico SEM ALTERAR A ESTRUTURA:
+
+- slides: sempre em lista
+- cada slide contém:
+  - tipo:
+  - hook: (frase principal)
+  - texto: (explicação curta de até 5 linhas)
+  - cta: (apenas no último slide)
+
+Escolha o modelo:
+
+MODELO 1 — Impacto MD
+1. HOOK gigante
+2. Conteúdo
+3. Conteúdo
+4. Conteúdo
+5. CTA
+
+MODELO 2 — Lista de erros
+1. HOOK
+2. Erro 1
+3. Erro 2
+4. Erro 3
+5. CTA
+
+MODELO 3 — Funil de venda
+1. Problema
+2. Consequência
+3. Virada
+4. Benefícios
+5. CTA
+
+Sempre responda SOMENTE com o arquivo .md.
+      </textarea>
+
+      <div class="fc-modal-actions">
+        <button id="fc-copy" class="fc-btn">Copiar</button>
+        <button id="fc-close" class="fc-btn">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 
