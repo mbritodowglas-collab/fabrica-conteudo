@@ -37,82 +37,51 @@ layout: none
           prontas para exportar como PNG ou PDF e postar no Instagram.
         </p>
         <div class="fc-banner__tags">
-          <span class="fc-tag">Carrosséis</span>
-          <span class="fc-tag">Posts estáticos</span>
-          <span class="fc-tag">Layout padronizado</span>
+          <span class="fc-tag">Automação leve</span>
+          <span class="fc-tag">Feed organizado</span>
+          <span class="fc-tag">Conteúdo em série</span>
         </div>
       </div>
     </section>
 
-    <!-- CARROSSEIS -->
+    <!-- ESCOLHA DO MODO -->
     <section class="fc-section">
-      <h2>Carrosséis</h2>
+      <h2>Escolha o modo de produção</h2>
       <p class="fc-section__subtitle">
-        Arquivos em <code>content/carrossel/</code> com front matter mínimo. Cada arquivo vira uma
-        página com slides formatados.
+        Selecione o tipo de post que você quer gerar a partir dos seus arquivos <code>.md</code>.
       </p>
 
-      {% assign carrossel_pages = site.pages | where:"type","carrossel" %}
-      <ul class="fc-list">
-        {% if carrossel_pages.size > 0 %}
-          {% for p in carrossel_pages %}
-            <li>
-              <a class="fc-list__link" href="{{ p.url | relative_url }}">
-                <div class="fc-list__left">
-                  <div class="fc-list__thumb fc-list__thumb--carrossel">
-                    <span>CR</span>
-                  </div>
-                  <div class="fc-list__text">
-                    <div class="fc-list__title">
-                      {{ p.title | default: p.name | replace: '.md','' }}
-                    </div>
-                    <div class="fc-list__meta">
-                      Carrossel • {{ p.name | replace: '.md','' }}
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        {% else %}
-          <li class="fc-list__empty">Nenhum carrossel ainda. Suba um .md em <code>content/carrossel/</code>.</li>
-        {% endif %}
-      </ul>
-    </section>
+      <div class="fc-choice-grid">
+        <!-- CARD CARROSSEL -->
+        <a class="fc-choice-card" href="{{ '/carrosseis.html' | relative_url }}">
+          <div class="fc-choice-card__icon fc-choice-card__icon--carrossel">
+            <span>CR</span>
+          </div>
+          <div class="fc-choice-card__body">
+            <h3>Carrosséis</h3>
+            <p>
+              Sequência de slides com HOOK · TEXTO · CTA. Ideal para posts educacionais e narrativas
+              mais longas.
+            </p>
+            <span class="fc-choice-card__cta">Abrir painel de carrosséis ↗</span>
+          </div>
+        </a>
 
-    <!-- POSTS ESTÁTICOS -->
-    <section class="fc-section">
-      <h2>Posts estáticos</h2>
-      <p class="fc-section__subtitle">
-        Arquivos em <code>content/static/</code> viram cards de post único, estilo tweet premium.
-      </p>
-
-      {% assign static_pages = site.pages | where:"type","static" %}
-      <ul class="fc-list">
-        {% if static_pages.size > 0 %}
-          {% for p in static_pages %}
-            <li>
-              <a class="fc-list__link" href="{{ p.url | relative_url }}">
-                <div class="fc-list__left">
-                  <div class="fc-list__thumb fc-list__thumb--static">
-                    <span>ST</span>
-                  </div>
-                  <div class="fc-list__text">
-                    <div class="fc-list__title">
-                      {{ p.title | default: p.name | replace: '.md','' }}
-                    </div>
-                    <div class="fc-list__meta">
-                      Post estático • {{ p.name | replace: '.md','' }}
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        {% else %}
-          <li class="fc-list__empty">Nenhum post estático ainda. Suba um .md em <code>content/static/</code>.</li>
-        {% endif %}
-      </ul>
+        <!-- CARD STATIC -->
+        <a class="fc-choice-card" href="{{ '/posts-staticos.html' | relative_url }}">
+          <div class="fc-choice-card__icon fc-choice-card__icon--static">
+            <span>ST</span>
+          </div>
+          <div class="fc-choice-card__body">
+            <h3>Posts estáticos</h3>
+            <p>
+              Card único, estilo tweet premium. Frases fortes, insights curtos e posts rápidos
+              de autoridade.
+            </p>
+            <span class="fc-choice-card__cta">Abrir painel de estáticos ↗</span>
+          </div>
+        </a>
+      </div>
     </section>
 
   </main>
