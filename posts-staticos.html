@@ -1,0 +1,75 @@
+---
+layout: none
+title: "Posts estáticos"
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Posts estáticos · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="fc-body">
+
+  <header class="fc-header">
+    <div class="fc-header__brand">
+      <div class="fc-badge">FC</div>
+      <div>
+        <h1>Posts estáticos</h1>
+        <p>Painel de cards únicos gerados a partir de arquivos .md em <code>content/static/</code>.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="fc-main">
+
+    <p style="margin: 0 0 10px;">
+      <a href="{{ '/' | relative_url }}" class="fc-link-back">← Voltar para a Fábrica</a>
+    </p>
+
+    <section class="fc-section">
+      <h2>Cards estáticos disponíveis</h2>
+      <p class="fc-section__subtitle">
+        Cada arquivo <code>.md</code> abaixo vira um card único, estilo tweet, pronto para exportar.
+      </p>
+
+      {% assign static_pages = site.pages | where:"type","static" %}
+      <ul class="fc-list">
+        {% if static_pages.size > 0 %}
+          {% for p in static_pages %}
+            <li>
+              <a class="fc-list__link" href="{{ p.url | relative_url }}">
+                <div class="fc-list__left">
+                  <div class="fc-list__thumb fc-list__thumb--static">
+                    <span>ST</span>
+                  </div>
+                  <div class="fc-list__text">
+                    <div class="fc-list__title">
+                      {{ p.title | default: p.name | replace: '.md','' }}
+                    </div>
+                    <div class="fc-list__meta">
+                      Post estático • {{ p.name | replace: '.md','' }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="fc-list__empty">
+            Nenhum post estático ainda. Suba um .md em <code>content/static/</code>.
+          </li>
+        {% endif %}
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="fc-footer">
+    Fábrica de Conteúdo · Posts estáticos.
+  </footer>
+
+</body>
+</html>
