@@ -66,7 +66,7 @@ title: "Carrosséis"
       </ul>
     </section>
 
-    <!-- BLOCO: MODELOS DE PROMPT -->
+    <!-- BLOCO: MODELOS DE PROMPT (CARROSSEL TEXTO) -->
     <section class="fc-section">
       <h2>Modelos de Prompt</h2>
       <p class="fc-section__subtitle">
@@ -78,13 +78,25 @@ title: "Carrosséis"
       </button>
     </section>
 
+    <!-- BLOCO: CARROSSEL COM MÍDIA -->
+    <section class="fc-section">
+      <h2>Carrossel com Mídia (imagem/vídeo)</h2>
+      <p class="fc-section__subtitle">
+        Use este modelo quando quiser um carrossel com área reservada para imagens ou vídeos, e o texto organizado para entrar no Canva/CapCut.
+      </p>
+
+      <button type="button" class="fc-open-modal-media fc-btn fc-btn--primary">
+        Modelo de carrossel com mídia
+      </button>
+    </section>
+
   </main>
 
   <footer class="fc-footer">
     Fábrica de Conteúdo · Carrosséis.
   </footer>
 
-  <!-- MODAL COM OS 3 MODELOS SEPARADOS -->
+  <!-- MODAL COM OS 3 MODELOS SEPARADOS (CARROSSEL TEXTO) -->
   <div id="fc-modal" class="fc-modal" aria-hidden="true">
     <div class="fc-modal__backdrop"></div>
 
@@ -246,6 +258,68 @@ Tema do carrossel: [DESCREVA O TEMA AQUI].
     </div>
   </div>
 
+  <!-- MODAL: CARROSSEL COM MÍDIA -->
+  <div id="fc-modal-media" class="fc-modal" aria-hidden="true">
+    <div class="fc-modal__backdrop"></div>
+
+    <div class="fc-modal__dialog" role="dialog" aria-modal="true">
+      <div class="fc-modal__header">
+        <h2>Modelo de Prompt · Carrossel com Mídia</h2>
+      </div>
+
+      <div class="fc-modal__body">
+        <div class="fc-prompt-card">
+          <h3 class="fc-prompt-card__title">Carrossel + Imagem/Vídeo</h3>
+          <textarea class="fc-modal__textarea" readonly>
+Você é meu roteirista de carrosséis para Instagram com foco em mídia.
+
+Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo
+(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo
+com o tema que eu informar:
+
+---
+layout: carrossel_media
+type: carrossel_media
+title: "TÍTULO DO CARROSSEL"
+autor: "Márcio Dowglas – Personal Trainer"
+slides:
+  - img: "/assets/img/exemplo-1.jpg"
+    hook: "Frase principal do slide 1"
+    texto: |
+      Texto curto do slide 1 (até 4–5 linhas),
+      pensado para complementar a imagem ou vídeo.
+  - img: "/assets/img/exemplo-2.jpg"
+    hook: "Frase principal do slide 2"
+    texto: |
+      Texto curto do slide 2, aprofundando a ideia.
+  - img: "/assets/img/exemplo-3.jpg"
+    hook: "Frase principal do slide 3"
+    texto: |
+      Texto curto do slide 3, conduzindo para a ação.
+---
+
+Regras:
+- "img" é o caminho da imagem que vou colocar depois no Canva/CapCut.
+- "hook" é a frase forte do slide.
+- "texto" é a explicação complementar, sempre curta e direta.
+- Linguagem feminina, empática, voltada para mulheres acima dos 30.
+- Estrutura: problema → contexto/consciência → solução/ação.
+          </textarea>
+          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">
+            Copiar modelo mídia
+          </button>
+        </div>
+      </div>
+
+      <div class="fc-modal__footer">
+        <button type="button" id="fc-close-media" class="fc-btn fc-btn--ghost">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 </body>
 </html>
+```0
