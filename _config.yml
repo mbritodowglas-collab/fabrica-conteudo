@@ -5,7 +5,6 @@ timezone: America/Manaus
 markdown: kramdown
 highlighter: rouge
 
-# Define os layouts automáticos para cada pasta de conteúdo
 defaults:
   - scope:
       path: "content/carrossel"
