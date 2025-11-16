@@ -1499,3 +1499,75 @@ main {
     min-height: 140px;
   }
 }
+
+/* ============================================
+   AJUSTES PARA POST ESTÁTICO (4:5 + AVATAR)
+   ============================================ */
+
+/* Card estático com proporção 4:5 (mesmo padrão do carrossel) */
+.fc-static-card {
+  width: 900px;            /* base desktop */
+  max-width: 92vw;         /* não estoura no mobile */
+  aspect-ratio: 4 / 5;     /* formato feed Instagram */
+  border-radius: 28px;
+  border: 1px solid var(--fc-border);
+  background: radial-gradient(circle at top left, #222234 0%, #050509 60%);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.95);
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Texto principal do estático */
+.fc-static-body {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--fc-text);
+}
+
+.fc-static-body p {
+  margin: 0 0 8px;
+}
+
+/* Avatar com foto (estilo Twitter) */
+.fc-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #f5c451, #f29a3c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;  /* deixa a foto circular */
+}
+
+.fc-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* corta direitinho */
+  display: block;
+}
+
+/* Nome + handle */
+.fc-static-user__name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.fc-static-user__handle {
+  font-size: 0.82rem;
+  color: var(--fc-soft);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .fc-static-card {
+    padding: 24px 18px 20px;
+  }
+
+  .fc-static-body {
+    font-size: 0.96rem;
+  }
+}
