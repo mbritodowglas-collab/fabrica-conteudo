@@ -66,15 +66,15 @@ layout: none
         </div>
       </a>
 
-      <!-- CARD 3: CARROSSEL COM MÍDIA (abre modal de modelo) -->
-      <button type="button" class="fc-card-button fc-open-modal-media">
+      <!-- CARD 3: CARROSSEL COM MÍDIA (AGORA LINK PARA PAINEL) -->
+      <a href="{{ '/carrossel-media.html' | relative_url }}" class="fc-card-button">
         <div class="fc-card-icon fc-card-icon--media">CM</div>
         <div class="fc-card-content">
           <h3>Carrossel com mídia</h3>
-          <p>Modelo de front matter para slides com imagem/vídeo + texto complementar.</p>
-          <span class="fc-card-cta">Ver modelo de prompt ↗</span>
+          <p>Slides com espaço reservado para imagem/vídeo + texto complementar.</p>
+          <span class="fc-card-cta">Abrir painel de mídia ↗</span>
         </div>
-      </button>
+      </a>
 
     </div>
   </section>
@@ -154,109 +154,8 @@ Depois do front matter, NÃO escreva mais nada. Apenas retorne o YAML acima já 
   </div>
 </div>
 
-<!-- MODAL · CARROSSEL COM MÍDIA -->
-<div id="fc-modal-media" class="fc-modal" aria-hidden="true">
-  <div class="fc-modal__backdrop"></div>
-
-  <div class="fc-modal__dialog" role="dialog" aria-modal="true">
-    <header class="fc-modal__header">
-      <h2>Prompt – Carrossel com mídia</h2>
-      <button id="fc-close-media" class="fc-modal__close" type="button">&times;</button>
-    </header>
-
-    <div class="fc-modal__body">
-      <article class="fc-modal-card">
-        <h3>Modelo de front matter · carrossel_media</h3>
-        <p>Use este modelo quando cada slide tiver imagem/vídeo e o texto complementar entrar embaixo.</p>
-
-        <textarea id="fc-textarea-media" class="fc-modal-text" readonly>
-Você é meu roteirista de carrosséis para Instagram com foco em uso de imagem ou vídeo em cada slide.
-
-Gere um arquivo em **Markdown** com front matter Jekyll exatamente neste padrão:
-
----
-layout: carrossel_media
-type: carrossel_media
-title: "TÍTULO DO CARROSSEL"
-tagline: "Descrição curta da ideia central"
-autor: "Márcio Dowglas – Personal Trainer"
-slides:
-  - img: "/caminho/da-imagem-1.jpg"
-    hook: "Frase forte do slide 1"
-    texto: |
-      Texto curto complementar (3–5 linhas),
-      explicando a ideia principal do slide.
-  - img: "/caminho/da-imagem-2.jpg"
-    hook: "Frase do slide 2"
-    texto: |
-      Continuação da explicação, conectando com a imagem.
-  - img: "/caminho/da-imagem-3.jpg"
-    hook: "Frase do slide 3"
-    texto: |
-      Encerramento + chamada para ação sutil.
----
-
-Regras:
-- Campo "img" é só referência; depois vou trocar pela mídia real no Canva/CapCut.
-- Linguagem feminina, empática, focada em mulheres acima de 30.
-- Estrutura narrativa: problema → consciência → caminho → ação.
-- Não use listas longas; pense em texto curto de legenda que conversa com a imagem/vídeo.
-        </textarea>
-
-        <button type="button" id="fc-copy-media" class="fc-copy-btn">
-          Copiar modelo
-        </button>
-      </article>
-    </div>
-  </div>
-</div>
-
-<!-- Scripts (modal antigo + futuros usos) -->
+<!-- Scripts (modal padrão) -->
 <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
-
-<!-- Script inline só para o modal de mídia -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('fc-modal-media');
-  const openBtn = document.querySelector('.fc-open-modal-media');
-  const closeBtn = document.getElementById('fc-close-media');
-  const copyBtn = document.getElementById('fc-copy-media');
-  const textarea = document.getElementById('fc-textarea-media');
-  const backdrop = modal ? modal.querySelector('.fc-modal__backdrop') : null;
-
-  if (openBtn && modal) {
-    openBtn.addEventListener('click', () => {
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden', 'false');
-    });
-  }
-
-  function closeMediaModal() {
-    if (!modal) return;
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeMediaModal);
-  }
-
-  if (backdrop) {
-    backdrop.addEventListener('click', closeMediaModal);
-  }
-
-  if (copyBtn && textarea) {
-    copyBtn.addEventListener('click', () => {
-      textarea.select();
-      document.execCommand('copy');
-      copyBtn.textContent = 'Copiado!';
-      setTimeout(() => {
-        copyBtn.textContent = 'Copiar modelo';
-      }, 1500);
-    });
-  }
-});
-</script>
 
 </body>
 </html>
