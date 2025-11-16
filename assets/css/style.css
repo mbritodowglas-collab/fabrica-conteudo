@@ -25,8 +25,6 @@ body.fc-body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Links gerais */
-
 a {
   color: #f5f5f7;
   text-decoration: none;
@@ -92,6 +90,87 @@ a:hover {
   padding: 0 16px 24px;
 }
 
+/* ===========================
+   BANNER PRINCIPAL
+   =========================== */
+
+.fc-banner {
+  position: relative;
+  margin-bottom: 22px;
+  padding: 16px 16px 14px;
+  border-radius: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.35), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(83, 135, 255, 0.35), transparent 55%),
+    linear-gradient(135deg, #11111b, #05050a);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  box-shadow:
+    0 22px 44px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.fc-banner__icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 20% 0%, #ffffff, #f5e6a2);
+  box-shadow:
+    0 0 0 1px rgba(15, 15, 20, 0.95),
+    0 16px 32px rgba(0, 0, 0, 0.85);
+  color: #141318;
+  font-size: 1.6rem;
+}
+
+.fc-banner__text h2 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.fc-banner__text p {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: rgba(235, 235, 245, 0.82);
+}
+
+.fc-banner__text code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(10, 10, 16, 0.9);
+  border: 1px solid rgba(120, 120, 150, 0.5);
+}
+
+.fc-banner__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fc-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  background: rgba(10, 10, 16, 0.9);
+  color: rgba(245, 245, 247, 0.9);
+}
+
+/* ===========================
+   SEÇÕES
+   =========================== */
+
 .fc-section {
   position: relative;
   margin-bottom: 18px;
@@ -148,10 +227,7 @@ a:hover {
 }
 
 .fc-list__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  display: block;
   padding: 9px 12px;
   border-radius: 12px;
   font-size: 0.86rem;
@@ -171,12 +247,6 @@ a:hover {
     background 0.18s ease;
 }
 
-.fc-list__link::after {
-  content: "↗";
-  font-size: 0.75rem;
-  opacity: 0.6;
-}
-
 .fc-list__link:hover {
   text-decoration: none;
   border-color: rgba(212, 175, 55, 0.7);
@@ -189,6 +259,70 @@ a:hover {
     rgba(12, 12, 20, 0.98)
   );
   transform: translateY(-1px);
+}
+
+.fc-list__link::after {
+  content: "↗";
+  font-size: 0.75rem;
+  opacity: 0.6;
+  float: right;
+}
+
+/* Conteúdo interno do card */
+
+.fc-list__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fc-list__thumb {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #050509;
+  box-shadow:
+    0 0 0 1px rgba(8, 8, 12, 0.9),
+    0 10px 22px rgba(0, 0, 0, 0.85);
+}
+
+.fc-list__thumb span {
+  position: relative;
+  z-index: 1;
+}
+
+/* “Imagem”/cor diferente por tipo */
+.fc-list__thumb--carrossel {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #f9e6b3);
+}
+
+.fc-list__thumb--static {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #c5e3ff);
+}
+
+.fc-list__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fc-list__title {
+  font-weight: 500;
+}
+
+.fc-list__meta {
+  font-size: 0.75rem;
+  color: rgba(200, 200, 220, 0.7);
 }
 
 .fc-list__empty {
@@ -221,6 +355,14 @@ a:hover {
     font-size: 1.5rem;
   }
 
+  .fc-main {
+    padding-bottom: 32px;
+  }
+
+  .fc-banner {
+    padding: 18px 20px 16px;
+  }
+
   .fc-section {
     padding: 18px 20px 16px;
   }
@@ -232,12 +374,9 @@ a:hover {
 }
 
 /* ===========================
-   (Opcional) ESTILOS GENÉRICOS
-   Se você adicionar outras páginas depois,
-   já tem um baseline visual.
+   BASE GENÉRICA
    =========================== */
 
 main {
-  /* garante que outras páginas simples não fiquem “cruas” */
   color: #f5f5f7;
 }
