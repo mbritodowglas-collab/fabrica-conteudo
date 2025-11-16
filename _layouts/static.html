@@ -29,17 +29,14 @@
   <main class="fc-main fc-main--static">
 
     {%- if has_cards and page.cards.size > 0 -%}
-      <!-- MODO MULTI: 3–5 cards estilo carrossel Twitter -->
+      <!-- MODE MULTI-CARD -->
       <section class="fc-static-wrapper fc-static-wrapper--multi">
         {%- for c in page.cards -%}
           <article class="fc-static-card">
             <header class="fc-static-header">
               <div class="fc-avatar">
                 {% if page.avatar %}
-                  <img
-                    src="{{ page.avatar | relative_url }}"
-                    alt="{{ nome }}"
-                    class="fc-avatar__img">
+                  <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
                 {% else %}
                   <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
                 {% endif %}
@@ -56,26 +53,18 @@
             <div class="fc-static-body">
               {{ c.texto | markdownify }}
             </div>
-
-            {% if c.contexto %}
-              <footer class="fc-static-footer">
-                <span class="fc-static-footer__tag">{{ c.contexto }}</span>
-              </footer>
-            {% endif %}
           </article>
         {%- endfor -%}
       </section>
+
     {%- else -%}
-      <!-- MODO SINGLE: 1 tweetão único -->
+      <!-- MODE SINGLE (1 CARD) -->
       <section class="fc-static-wrapper">
         <article class="fc-static-card">
           <header class="fc-static-header">
             <div class="fc-avatar">
               {% if page.avatar %}
-                <img
-                  src="{{ page.avatar | relative_url }}"
-                  alt="{{ nome }}"
-                  class="fc-avatar__img">
+                <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
               {% else %}
                 <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
               {% endif %}
@@ -92,12 +81,6 @@
           <div class="fc-static-body">
             {{ content | markdownify }}
           </div>
-
-          {% if page.contexto %}
-            <footer class="fc-static-footer">
-              <span class="fc-static-footer__tag">{{ page.contexto }}</span>
-            </footer>
-          {% endif %}
         </article>
       </section>
     {%- endif -%}
