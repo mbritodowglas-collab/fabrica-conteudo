@@ -1756,3 +1756,15 @@ main {
   color: #9ca3af;
   margin-top: 10px;
 }
+
+/* Modo multi-card (carrossel Twitter) */
+.fc-static-wrapper--multi {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.fc-static-wrapper--multi .fc-static-card {
+  max-width: 540px;      /* mantém o formato 4:5 visual */
+}
