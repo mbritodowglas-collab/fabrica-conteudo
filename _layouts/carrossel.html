@@ -2,68 +2,42 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Carrossel · Fábrica de Conteúdo</title>
+  <title>{{ page.title }} · Carrossel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- html2canvas para exportar PNG -->
+  <link rel="stylesheet" href="/assets/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-  <script src="../assets/js/carrossel.js" defer></script>
+  <script src="/assets/js/fc-carousel.js" defer></script>
 </head>
 <body class="fc-body">
   <header class="fc-header">
     <div class="fc-container fc-header-inner">
-      <a href="../index.html" class="fc-back">← Voltar</a>
       <div>
-        <h1 class="fc-logo">Carrossel</h1>
-        <p class="fc-subtitle">Arquivo .md em /content → slides formatados → PNG</p>
+        <h1 class="fc-logo"><span>FC</span> Carrossel</h1>
+        <p class="fc-subtitle">
+          Arquivo: <code>{{ page.path }}</code>
+        </p>
       </div>
     </div>
   </header>
 
-  <main class="fc-container fc-main fc-main-split">
+  <main class="fc-container fc-main fc-grid-2">
     <section class="fc-panel">
-      <h2>Carregar arquivo .md</h2>
+      <h2>Roteiro (.md)</h2>
       <p class="fc-help">
-        Salve seu roteiro de carrossel em <code>/content</code> e informe abaixo o nome do arquivo.<br>
-        Exemplo: <code>carrossel-musculacao-01.md</code>
+        Conteúdo original deste carrossel, vindo do arquivo Markdown.
       </p>
-
-      <label class="fc-help" for="carousel-filename">Nome do arquivo (.md):</label>
-      <input id="carousel-filename" class="fc-textinput" type="text"
-             placeholder="carrossel-musculacao-01.md">
-
-      <div style="margin-top:10px;">
-        <button id="carousel-load" class="fc-btn">Carregar arquivo</button>
-        <button id="carousel-download-all" class="fc-btn fc-btn-secondary" disabled>Baixar todos os slides</button>
-      </div>
-
-      <details style="margin-top:14px;">
-        <summary class="fc-help">Modelo de .md sugerido</summary>
-        <pre class="fc-code">
-# Título geral
-Como treinar depois dos 30 sem se destruir
-
-## Slide 1
-HOOK:
-Você não está cansada porque é fraca.
-TEXTO:
-Seu corpo só nunca foi treinado pra rotina que você vive hoje.
-
-## Slide 2
-TEXTO:
-Aqui entra o conteúdo principal...
-
-## Slide 5
-CTA:
-Quer uma avaliação gratuita? Me chama na DM.
-        </pre>
-      </details>
+      <pre class="fc-code" style="white-space:pre-wrap; font-size:0.8rem;">
+{{ page.content | escape }}
+      </pre>
     </section>
 
     <section class="fc-panel">
       <h2>Slides gerados</h2>
-      <div id="carousel-slides" class="fc-slides-grid">
-        <!-- slides criados via JS -->
+      <p class="fc-help">
+        Prévia visual dos slides. No próximo passo vamos liberar os botões de download (PNG/PDF).
+      </p>
+      <div id="fc-slides" class="fc-slides-grid">
+        <!-- preenchido via JS -->
       </div>
     </section>
   </main>
@@ -73,5 +47,8 @@ Quer uma avaliação gratuita? Me chama na DM.
       <small>Fábrica de Conteúdo · Carrossel</small>
     </div>
   </footer>
+
+  <!-- Conteúdo bruto para o JS processar -->
+  <script type="text/plain" id="raw-md">{{ page.content | strip }}</script>
 </body>
 </html>
