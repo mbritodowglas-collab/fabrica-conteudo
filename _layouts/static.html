@@ -1,40 +1,65 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>{{ page.title }} · Post estático</title>
+  <title>{{ page.title }} · Estático · Fábrica de Conteúdo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-  <script src="{{ '/assets/js/static.js' | relative_url }}" defer></script>
 </head>
-<body class="fc-body" data-slug="{{ page.slug | default: page.name | replace: '.md','' }}">
-  <header class="fc-header fc-header--inner">
-    <a href="{{ '/' | relative_url }}" class="fc-back">← Fábrica de Conteúdo</a>
-    <h1>{{ page.title }}</h1>
-    <p class="fc-header__meta">Post estático · fonte: {{ page.path }}</p>
+<body class="fc-body fc-body--static">
+
+  <header class="fc-topbar">
+    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica</a>
+    <span class="fc-topbar__badge">ST · Post estático</span>
   </header>
 
-  <main class="fc-main">
-    <section class="fc-static-wrapper">
-      <div class="fc-toolbar">
-        <span class="fc-toolbar__info">
-          Card único no formato 4:5, pronto pra feed/post.
-        </span>
-        <button id="fc-download-static" class="fc-btn">
-          Baixar card em PNG
-        </button>
-      </div>
+  {% assign nome = page.autor_nome | default: 'MD Personal' %}
+  {% assign partes = nome | split: ' ' %}
+  {% assign primeira = partes[0] | slice: 0,1 %}
+  {% assign segunda = '' %}
+  {% if partes.size > 1 %}
+    {% assign segunda = partes[1] | slice: 0,1 %}
+  {% endif %}
+  {% assign iniciais = primeira | append: segunda %}
 
-      <div id="fc-static-card" class="fc-card">
-        {{ content }}
-      </div>
+  <main class="fc-main fc-main--static">
+    <section class="fc-static-wrapper">
+      <article class="fc-static-card">
+        <header class="fc-static-header">
+          <div class="fc-avatar">
+            <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+          </div>
+          <div class="fc-static-user">
+            <div class="fc-static-user__name">{{ nome }}</div>
+            {% if page.autor_handle %}
+              <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+            {% endif %}
+          </div>
+        </header>
+
+        <div class="fc-static-body">
+          {{ content | markdownify }}
+        </div>
+
+        {% if page.contexto %}
+          <footer class="fc-static-footer">
+            <span class="fc-static-footer__tag">{{ page.contexto }}</span>
+          </footer>
+        {% endif %}
+      </article>
+    </section>
+
+    <section class="fc-static-hint">
+      <p>Este layout foi pensado para ser um “tweet premium” estático. Exporte em PNG e publique direto no feed.</p>
     </section>
   </main>
 
   <footer class="fc-footer">
-    Fábrica de Conteúdo · Post estático
+    <p>Fábrica de Conteúdo · tweetão de autoridade pronto pra uso.</p>
   </footer>
+
 </body>
 </html>
