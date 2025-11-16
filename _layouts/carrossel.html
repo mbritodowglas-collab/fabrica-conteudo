@@ -16,6 +16,14 @@
     <span class="fc-topbar__badge">CR · Carrossel educacional</span>
   </header>
 
+  <!-- Botão fixo de download no topo direito -->
+  <button
+    id="fc-download-carrossel"
+    class="fc-download-fixed"
+    type="button">
+    ↓ PNG
+  </button>
+
   <main class="fc-main fc-main--carrossel">
     <section class="fc-hero">
       <div class="fc-hero__tag">Pipeline MD → Página → Arte</div>
@@ -77,5 +85,10 @@
     <p>Fábrica de Conteúdo · Carrossel educacional pronto pra exportar.</p>
   </footer>
 
+  <!-- Scripts para captura em PNG -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+
 </body>
 </html>
+```0
