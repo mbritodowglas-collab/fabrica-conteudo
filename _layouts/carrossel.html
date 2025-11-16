@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>{{ page.title }} · Carrossel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- html2canvas para exportar PNG -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-  <script src="/assets/js/fc-carousel.js" defer></script>
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}" defer></script>
 </head>
-<body class="fc-body">
-  <header class="fc-header">
-    <div class="fc-container fc-header-inner">
-      <div>
-        <h1 class="fc-logo"><span>FC</span> Carrossel</h1>
-        <p class="fc-subtitle">
-          Arquivo: <code>{{ page.path }}</code>
-        </p>
-      </div>
-    </div>
+<body class="fc-body" data-slug="{{ page.slug | default: page.name | replace: '.md','' }}">
+  <header class="fc-header fc-header--inner">
+    <a href="{{ '/' | relative_url }}" class="fc-back">← Fábrica de Conteúdo</a>
+    <h1>{{ page.title }}</h1>
+    <p class="fc-header__meta">Modo Carrossel · fonte: {{ page.path }}</p>
   </header>
 
-  <main class="fc-container fc-main fc-grid-2">
-    <section class="fc-panel">
-      <h2>Roteiro (.md)</h2>
-      <p class="fc-help">
-        Conteúdo original deste carrossel, vindo do arquivo Markdown.
-      </p>
-      <pre class="fc-code" style="white-space:pre-wrap; font-size:0.8rem;">
-{{ page.content | escape }}
-      </pre>
-    </section>
+  <main class="fc-main">
+    <!-- Conteúdo bruto (HTML gerado do markdown) -->
+    <article id="fc-raw" class="fc-raw">
+      {{ content }}
+    </article>
 
-    <section class="fc-panel">
-      <h2>Slides gerados</h2>
-      <p class="fc-help">
-        Prévia visual dos slides. No próximo passo vamos liberar os botões de download (PNG/PDF).
-      </p>
-      <div id="fc-slides" class="fc-slides-grid">
-        <!-- preenchido via JS -->
+    <!-- Slides finais -->
+    <section class="fc-slides-wrapper">
+      <div class="fc-toolbar">
+        <span class="fc-toolbar__info">
+          Cada bloco abaixo é um slide no formato 4:5 (Instagram carrossel).
+        </span>
+        <button id="fc-download-slides" class="fc-btn">
+          Baixar slides em PNG
+        </button>
+      </div>
+
+      <div id="fc-slides" class="fc-slides">
+        <!-- JS monta os slides aqui -->
       </div>
     </section>
   </main>
 
   <footer class="fc-footer">
-    <div class="fc-container">
-      <small>Fábrica de Conteúdo · Carrossel</small>
-    </div>
+    Fábrica de Conteúdo · Carrossel
   </footer>
-
-  <!-- Conteúdo bruto para o JS processar -->
-  <script type="text/plain" id="raw-md">{{ page.content | strip }}</script>
 </body>
 </html>
