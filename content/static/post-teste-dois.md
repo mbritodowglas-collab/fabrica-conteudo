@@ -4,7 +4,7 @@ type: static
 title: "Sequência de tweetões"
 autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
-avatar: "/assets/img/avatar-md.png"
+avatar: "/assets/img/avatar-md.jpg"
 cards:
   - texto: |
       Ninguém desiste de si de uma vez.
