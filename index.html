@@ -75,5 +75,145 @@ layout: none
   Fábrica de Conteúdo · pipeline MD → página → arte.
 </footer>
 
+<!-- ============================
+     MODAL DE MODELOS DE PROMPT
+     ============================ -->
+<div id="fc-modal-modelos" class="fc-modal" hidden>
+  <div class="fc-modal__overlay"></div>
+
+  <div class="fc-modal__content">
+    <header class="fc-modal__header">
+      <h2>Modelos de Prompt · MD</h2>
+      <button id="fc-modal-close" class="fc-modal__close">×</button>
+    </header>
+
+    <div class="fc-modal__body">
+
+      <!-- CARD 1 – MODEL CARROSSEL -->
+      <div class="fc-card-model">
+        <h3>MODEL – Carrossel (MD Personal)</h3>
+        <pre id="fc-model-carrossel" class="fc-model-text">
+---
+layout: carrossel
+title: "{{TÍTULO DO CARROSSEL}}"
+tagline: "{{LINHA GUIA DO CARROSSEL}}"
+autor: "Márcio Dowglas – Personal Trainer"
+
+slides:
+  - tipo: "HOOK"
+    hook: "{{FRASE DE IMPACTO}}"
+    texto: "{{COMPLEMENTO BREVE}}"
+    cta: ""
+
+  - tipo: "CONTEÚDO"
+    hook: "{{PONTO PRINCIPAL}}"
+    texto: "{{DESENVOLVIMENTO}}"
+    cta: ""
+
+  - tipo: "CONTEÚDO"
+    hook: "{{PONTO PRINCIPAL}}"
+    texto: "{{DESENVOLVIMENTO}}"
+    cta: ""
+
+  - tipo: "CONTEÚDO"
+    hook: "{{PONTO PRINCIPAL}}"
+    texto: "{{DESENVOLVIMENTO}}"
+    cta: ""
+
+  - tipo: "CTA"
+    hook: "{{CHAMADA FINAL}}"
+    texto: "{{FECHO}}"
+    cta: "{{CHAMADA PARA AÇÃO DIRETA}}"
+---
+        </pre>
+        <button class="fc-copy" data-target="fc-model-carrossel">Copiar modelo</button>
+      </div>
+
+      <!-- CARD 2 – MODEL STATIC -->
+      <div class="fc-card-model">
+        <h3>MODEL – Post Estático Premium</h3>
+        <pre id="fc-model-static" class="fc-model-text">
+---
+layout: static
+title: "{{TÍTULO}}"
+autor: "Márcio Dowglas – Personal Trainer"
+texto: |
+  {{TEXTO DO POST EM FORMATO TWEET PREMIUM}}
+tag: "{{TEMA}}"
+---
+        </pre>
+        <button class="fc-copy" data-target="fc-model-static">Copiar modelo</button>
+      </div>
+
+      <!-- CARD 3 – MODEL REELS -->
+      <div class="fc-card-model">
+        <h3>MODEL – Reels (Fluxo MD Feminino)</h3>
+        <pre id="fc-model-reels" class="fc-model-text">
+Problema → Descrição emocional (1 frase)
+Conceito → Explicação simples e humana
+Solução → Orientação prática
+CTA → Chamada para avaliação gratuita e seguir o perfil
+Tom → Conversa direta, feminina e empática
+        </pre>
+        <button class="fc-copy" data-target="fc-model-reels">Copiar modelo</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BOTÃO FIXO PARA ABRIR MODAL -->
+<button id="fc-open-models" class="fc-open-models">Modelos</button>
+
+<script>
+  // ==========================
+  // MODAL MODEL
+  // ==========================
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("fc-modal-modelos");
+    const openBtn = document.getElementById("fc-open-models");
+    const closeBtn = document.getElementById("fc-modal-close");
+    const overlay = modal ? modal.querySelector(".fc-modal__overlay") : null;
+
+    const copyButtons = document.querySelectorAll(".fc-copy");
+
+    if (openBtn && modal) {
+      openBtn.addEventListener("click", () => {
+        modal.removeAttribute("hidden");
+      });
+    }
+
+    if (closeBtn && modal) {
+      closeBtn.addEventListener("click", () => {
+        modal.setAttribute("hidden", true);
+      });
+    }
+
+    if (overlay && modal) {
+      overlay.addEventListener("click", () => {
+        modal.setAttribute("hidden", true);
+      });
+    }
+
+    // copiar texto
+    copyButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+        const pre = document.getElementById(target);
+
+        if (!pre) return;
+
+        const text = pre.innerText;
+
+        navigator.clipboard.writeText(text).then(() => {
+          btn.innerText = "Copiado!";
+          setTimeout(() => (btn.innerText = "Copiar modelo"), 1400);
+        });
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
+```0
