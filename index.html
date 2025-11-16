@@ -1,70 +1,125 @@
 ---
+layout: none
 ---
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
   <title>Fábrica de Conteúdo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body class="fc-body">
+
+  <!-- HEADER -->
   <header class="fc-header">
     <div class="fc-header__brand">
-      <span class="fc-badge">FC</span>
+      <div class="fc-badge">FC</div>
       <div>
         <h1>Fábrica de Conteúdo</h1>
-        <p>Transforma arquivos .md em carrosséis e posts estáticos prontos pra download.</p>
+        <p>Transforma arquivos .md em carrosséis e posts estáticos prontos para download.</p>
       </div>
     </div>
   </header>
 
   <main class="fc-main">
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="fc-banner">
+      <div class="fc-banner__icon">
+        <span>⚙️</span>
+      </div>
+      <div class="fc-banner__text">
+        <h2>Pipeline MD → Página → Arte</h2>
+        <p>
+          Joga o texto em <code>.md</code>, commita no repositório e a Fábrica entrega as páginas
+          prontas para exportar como PNG ou PDF e postar no Instagram.
+        </p>
+        <div class="fc-banner__tags">
+          <span class="fc-tag">Carrosséis</span>
+          <span class="fc-tag">Posts estáticos</span>
+          <span class="fc-tag">Layout padronizado</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARROSSEIS -->
     <section class="fc-section">
       <h2>Carrosséis</h2>
       <p class="fc-section__subtitle">
-        Coloque seus arquivos em <code>content/carrossel/</code> com front matter mínimo
-        e eles aparecem aqui automaticamente.
+        Arquivos em <code>content/carrossel/</code> com front matter mínimo. Cada arquivo vira uma
+        página com slides formatados.
       </p>
 
+      {% assign carrossel_pages = site.pages | where:"type","carrossel" %}
       <ul class="fc-list">
-        {% assign carrossel_pages = site.pages | where:"type","carrossel" %}
-        {% for p in carrossel_pages %}
-          <li>
-            <a href="{{ p.url | relative_url }}" class="fc-list__link">
-              {{ p.title | default: p.name | replace: '.md','' }}
-            </a>
-          </li>
+        {% if carrossel_pages.size > 0 %}
+          {% for p in carrossel_pages %}
+            <li>
+              <a class="fc-list__link" href="{{ p.url | relative_url }}">
+                <div class="fc-list__left">
+                  <div class="fc-list__thumb fc-list__thumb--carrossel">
+                    <span>CR</span>
+                  </div>
+                  <div class="fc-list__text">
+                    <div class="fc-list__title">
+                      {{ p.title | default: p.name | replace: '.md','' }}
+                    </div>
+                    <div class="fc-list__meta">
+                      Carrossel • {{ p.name | replace: '.md','' }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
         {% else %}
-          <li class="fc-list__empty">Nenhum carrossel ainda.</li>
-        {% endfor %}
+          <li class="fc-list__empty">Nenhum carrossel ainda. Suba um .md em <code>content/carrossel/</code>.</li>
+        {% endif %}
       </ul>
     </section>
 
+    <!-- POSTS ESTÁTICOS -->
     <section class="fc-section">
       <h2>Posts estáticos</h2>
       <p class="fc-section__subtitle">
-        Arquivos em <code>content/static/</code> viram cards de post único.
+        Arquivos em <code>content/static/</code> viram cards de post único, estilo tweet premium.
       </p>
 
+      {% assign static_pages = site.pages | where:"type","static" %}
       <ul class="fc-list">
-        {% assign static_pages = site.pages | where:"type","static" %}
-        {% for p in static_pages %}
-          <li>
-            <a href="{{ p.url | relative_url }}" class="fc-list__link">
-              {{ p.title | default: p.name | replace: '.md','' }}
-            </a>
-          </li>
+        {% if static_pages.size > 0 %}
+          {% for p in static_pages %}
+            <li>
+              <a class="fc-list__link" href="{{ p.url | relative_url }}">
+                <div class="fc-list__left">
+                  <div class="fc-list__thumb fc-list__thumb--static">
+                    <span>ST</span>
+                  </div>
+                  <div class="fc-list__text">
+                    <div class="fc-list__title">
+                      {{ p.title | default: p.name | replace: '.md','' }}
+                    </div>
+                    <div class="fc-list__meta">
+                      Post estático • {{ p.name | replace: '.md','' }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
         {% else %}
-          <li class="fc-list__empty">Nenhum post estático ainda.</li>
-        {% endfor %}
+          <li class="fc-list__empty">Nenhum post estático ainda. Suba um .md em <code>content/static/</code>.</li>
+        {% endif %}
       </ul>
     </section>
+
   </main>
 
   <footer class="fc-footer">
-    Fábrica de Conteúdo · pipeline MD → página → arte
+    Fábrica de Conteúdo · pipeline MD → página → arte pronta pra social.
   </footer>
+
 </body>
 </html>
