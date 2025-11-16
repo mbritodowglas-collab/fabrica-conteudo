@@ -69,151 +69,112 @@ layout: none
     </div>
   </section>
 
+  <!-- BOTÃO PARA ABRIR O MODAL DE PROMPTS -->
+  <section class="fc-section">
+    <h2>Modelos de prompt</h2>
+    <p class="fc-section__subtitle">
+      Copie o modelo pronto, cole no ChatGPT e peça o roteiro em .md com front matter.
+    </p>
+
+    <button type="button" class="fc-open-modal">
+      Modelos de prompt
+    </button>
+  </section>
+
 </main>
 
 <footer class="fc-footer">
   Fábrica de Conteúdo · pipeline MD → página → arte.
 </footer>
 
-<!-- ============================
-     MODAL DE MODELOS DE PROMPT
-     ============================ -->
-<div id="fc-modal-modelos" class="fc-modal" hidden>
-  <div class="fc-modal__overlay"></div>
+<!-- MODAL DE PROMPTS -->
+<div id="fc-modal" class="fc-modal" aria-hidden="true">
+  <div class="fc-modal__backdrop"></div>
 
-  <div class="fc-modal__content">
+  <div class="fc-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fc-modal-title">
     <header class="fc-modal__header">
-      <h2>Modelos de Prompt · MD</h2>
-      <button id="fc-modal-close" class="fc-modal__close">×</button>
+      <h2 id="fc-modal-title">Modelos de prompt</h2>
+      <button type="button" id="fc-close" class="fc-modal__close" aria-label="Fechar">×</button>
     </header>
 
     <div class="fc-modal__body">
 
-      <!-- CARD 1 – MODEL CARROSSEL -->
-      <div class="fc-card-model">
-        <h3>MODEL – Carrossel (MD Personal)</h3>
-        <pre id="fc-model-carrossel" class="fc-model-text">
----
-layout: carrossel
-title: "{{TÍTULO DO CARROSSEL}}"
-tagline: "{{LINHA GUIA DO CARROSSEL}}"
-autor: "Márcio Dowglas – Personal Trainer"
+      <!-- CARD 1 – CARROSSEL EDUCACIONAL MD -->
+      <section class="fc-modal-card">
+        <h3>Carrossel educacional MD</h3>
+        <p>Prompt para gerar roteiro + front matter no formato do carrossel educacional.</p>
 
+        <textarea class="fc-modal-text" rows="12">
+Você é roteirista de carrosséis para Instagram voltados para mulheres acima dos 30 anos que querem emagrecer sem dietas malucas.
+
+Gere um arquivo em Markdown com FRONT MATTER YAML no começo, seguindo EXATAMENTE esta estrutura:
+
+---
+layout: carrossel-md
+title: "TÍTULO DO CARROSSEL (promessa clara)"
+tagline: "Descrição curta do carrossel"
+autor: "Márcio Dowglas – Personal Trainer"
 slides:
   - tipo: "HOOK"
-    hook: "{{FRASE DE IMPACTO}}"
-    texto: "{{COMPLEMENTO BREVE}}"
-    cta: ""
-
+    hook: "Frase de impacto do slide 1"
+    texto: "Texto curto reforçando o gancho do problema."
   - tipo: "CONTEÚDO"
-    hook: "{{PONTO PRINCIPAL}}"
-    texto: "{{DESENVOLVIMENTO}}"
-    cta: ""
-
+    hook: "Frase forte do slide 2"
+    texto: "Explicação simples e direta para leigas."
   - tipo: "CONTEÚDO"
-    hook: "{{PONTO PRINCIPAL}}"
-    texto: "{{DESENVOLVIMENTO}}"
-    cta: ""
-
+    hook: "Frase forte do slide 3"
+    texto: "Desenvolva a ideia, com foco em clareza."
   - tipo: "CONTEÚDO"
-    hook: "{{PONTO PRINCIPAL}}"
-    texto: "{{DESENVOLVIMENTO}}"
-    cta: ""
-
+    hook: "Frase forte do slide 4"
+    texto: "Traga exemplos do dia a dia da aluna."
   - tipo: "CTA"
-    hook: "{{CHAMADA FINAL}}"
-    texto: "{{FECHO}}"
-    cta: "{{CHAMADA PARA AÇÃO DIRETA}}"
+    hook: "Chamada principal do slide final"
+    texto: "Contextualização rápida da solução (treino/mentoria)."
+    cta: "Chamada para ação final."
 ---
-        </pre>
-        <button class="fc-copy" data-target="fc-model-carrossel">Copiar modelo</button>
-      </div>
 
-      <!-- CARD 2 – MODEL STATIC -->
-      <div class="fc-card-model">
-        <h3>MODEL – Post Estático Premium</h3>
-        <pre id="fc-model-static" class="fc-model-text">
+Tema do carrossel: [descreva aqui o tema exato].
+        </textarea>
+
+        <button type="button" class="fc-copy-btn">Copiar prompt</button>
+      </section>
+
+      <!-- CARD 2 – POST ESTÁTICO TWEETÃO -->
+      <section class="fc-modal-card">
+        <h3>Post estático · Tweetão MD</h3>
+        <p>Prompt para gerar um único card em formato tweet, com front matter de post estático.</p>
+
+        <textarea class="fc-modal-text" rows="12">
+Você é roteirista de posts curtos para Instagram no estilo "tweetão premium", voltados para mulheres acima dos 30 anos que querem emagrecer com treino de força.
+
+Gere um arquivo em Markdown com FRONT MATTER YAML no começo, seguindo EXATAMENTE esta estrutura:
+
 ---
-layout: static
-title: "{{TÍTULO}}"
+layout: estatico-md
+title: "Título interno do arquivo (não precisa ser igual ao card)"
+tagline: "Descrição curta opcional"
 autor: "Márcio Dowglas – Personal Trainer"
-texto: |
-  {{TEXTO DO POST EM FORMATO TWEET PREMIUM}}
-tag: "{{TEMA}}"
+tipo: "tweetao"
+tweet:
+  nome: "Márcio Dowglas"
+  handle: "@marciodowglasfitness"
+  texto: |
+    Texto do card no estilo tweet, com quebras de linha estratégicas
+    para leitura em 3–5 linhas principais.
 ---
-        </pre>
-        <button class="fc-copy" data-target="fc-model-static">Copiar modelo</button>
-      </div>
 
-      <!-- CARD 3 – MODEL REELS -->
-      <div class="fc-card-model">
-        <h3>MODEL – Reels (Fluxo MD Feminino)</h3>
-        <pre id="fc-model-reels" class="fc-model-text">
-Problema → Descrição emocional (1 frase)
-Conceito → Explicação simples e humana
-Solução → Orientação prática
-CTA → Chamada para avaliação gratuita e seguir o perfil
-Tom → Conversa direta, feminina e empática
-        </pre>
-        <button class="fc-copy" data-target="fc-model-reels">Copiar modelo</button>
-      </div>
+Tema do post estático: [descreva aqui o tema exato].
+        </textarea>
+
+        <button type="button" class="fc-copy-btn">Copiar prompt</button>
+      </section>
 
     </div>
   </div>
 </div>
 
-<!-- BOTÃO FIXO PARA ABRIR MODAL -->
-<button id="fc-open-models" class="fc-open-models">Modelos</button>
-
-<script>
-  // ==========================
-  // MODAL MODEL
-  // ==========================
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("fc-modal-modelos");
-    const openBtn = document.getElementById("fc-open-models");
-    const closeBtn = document.getElementById("fc-modal-close");
-    const overlay = modal ? modal.querySelector(".fc-modal__overlay") : null;
-
-    const copyButtons = document.querySelectorAll(".fc-copy");
-
-    if (openBtn && modal) {
-      openBtn.addEventListener("click", () => {
-        modal.removeAttribute("hidden");
-      });
-    }
-
-    if (closeBtn && modal) {
-      closeBtn.addEventListener("click", () => {
-        modal.setAttribute("hidden", true);
-      });
-    }
-
-    if (overlay && modal) {
-      overlay.addEventListener("click", () => {
-        modal.setAttribute("hidden", true);
-      });
-    }
-
-    // copiar texto
-    copyButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.target;
-        const pre = document.getElementById(target);
-
-        if (!pre) return;
-
-        const text = pre.innerText;
-
-        navigator.clipboard.writeText(text).then(() => {
-          btn.innerText = "Copiado!";
-          setTimeout(() => (btn.innerText = "Copiar modelo"), 1400);
-        });
-      });
-    });
-  });
-</script>
+<!-- JS DA HOME (MODAL/CLIPBOARD) -->
+<script src="{{ '/assets/js/home.js' | relative_url }}"></script>
 
 </body>
 </html>
-```0
