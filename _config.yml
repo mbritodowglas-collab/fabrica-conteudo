@@ -5,13 +5,16 @@ timezone: America/Manaus
 markdown: kramdown
 highlighter: rouge
 
+# Diz pro Jekyll quais layouts usar pros .md
 defaults:
+  # Carrosséis
   - scope:
       path: "content/carrossel"
     values:
       layout: carrossel
       type: carrossel
 
+  # Posts estáticos
   - scope:
       path: "content/static"
     values:
