@@ -45,11 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
      MODAL DO PROMPT
      =========================== */
 
-  const modal = document.getElementById("fc-modal");
-  const openModal = document.querySelector(".fc-open-modal");
+  const modal      = document.getElementById("fc-modal");
+  const openModal  = document.querySelector(".fc-open-modal");
   const closeModal = document.getElementById("fc-close");
-  const copyBtn = document.getElementById("fc-copy");
-  const textArea = document.getElementById("fc-modal-text");
+  const copyBtns   = document.querySelectorAll(".fc-copy-btn");
 
   // abrir modal
   if (openModal && modal) {
@@ -65,13 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // copiar prompt
-  if (copyBtn && textArea) {
-    copyBtn.addEventListener("click", () => {
-      textArea.select();
-      document.execCommand("copy");
-      copyBtn.textContent = "Copiado!";
-      setTimeout(() => copyBtn.textContent = "Copiar", 1500);
+  // copiar prompt (um botão por modelo)
+  if (copyBtns && copyBtns.length) {
+    copyBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".fc-prompt-card");
+        if (!card) return;
+
+        const textArea = card.querySelector("textarea");
+        if (!textArea) return;
+
+        textArea.select();
+        document.execCommand("copy");
+
+        const original = btn.textContent;
+        btn.textContent = "Copiado!";
+        setTimeout(() => {
+          btn.textContent = original || "Copiar";
+        }, 1500);
+      });
     });
   }
 
