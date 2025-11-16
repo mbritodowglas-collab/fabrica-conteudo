@@ -1768,3 +1768,27 @@ main {
 .fc-static-wrapper--multi .fc-static-card {
   max-width: 540px;      /* mantém o formato 4:5 visual */
 }
+
+/* ===========================
+   AJUSTE DE TEXTO · POSTS ESTÁTICOS
+   =========================== */
+
+/* Garante fluxo em coluna: header em cima, texto logo abaixo */
+.fc-static-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Espaço controlado entre avatar/nome e o texto */
+.fc-static-header {
+  margin-bottom: 1.4rem;
+}
+
+/* Remove aquele "afundado" do primeiro parágrafo */
+.fc-static-body p {
+  margin: 0 0 0.9rem;
+}
+
+.fc-static-body p:first-child {
+  margin-top: 0;
+}
