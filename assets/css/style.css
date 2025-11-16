@@ -714,3 +714,29 @@ main {
   font-size: 0.78rem;
   color: var(--fc-soft);
 }
+
+/* Botão fixo de download – topo direito */
+.fc-download-fixed {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 999;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle at 0 0, #ffe08222, #000000ee);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.fc-download-fixed:hover {
+  border-color: rgba(255, 215, 128, 0.7);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.75);
+  transform: translateY(-1px);
+}
