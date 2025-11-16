@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap');
+
 /* ===========================
    BASE GLOBAL
    =========================== */
@@ -864,6 +866,7 @@ main {
 
 /* =========================================
    CARROSSEL · PADRÃO MD PERSONAL (4:5)
+   (override com alinhamento à esquerda)
    ========================================= */
 
 .fc-main--carrossel {
@@ -986,3 +989,45 @@ main {
   }
 }
 
+/* =========================================
+   AJUSTES TIPOGRAFIA · BEBAS NEUE + CTA
+   ========================================= */
+
+/* HOOK – fonte Bebas Neue + efeito premium */
+.fc-slide__hook {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.2rem;               /* grande, impacto */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.05;
+  text-align: left;
+  color: #eaca6a;                  /* dourado MD */
+
+  text-shadow:
+    0 0 6px rgba(234, 202, 106, 0.35),
+    0 0 18px rgba(255, 150, 50, 0.18);
+}
+
+/* Corpo de texto harmonizado */
+.fc-slide__text {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #f2f2f2;
+  text-align: left;
+  letter-spacing: 0.1px;
+}
+
+/* CTA com destaque e brilho leve */
+.fc-slide__cta {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffd15a;
+  text-align: left;
+
+  text-shadow:
+    0 0 4px rgba(255, 209, 90, 0.25),
+    0 0 12px rgba(255, 170, 60, 0.18);
+}
+```0
