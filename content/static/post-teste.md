@@ -5,6 +5,7 @@ title: "Tweetão sobre consistência"
 autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
 avatar: "/assets/img/avatar-md.jpg"
+verificado: true
 ---
 
 Ninguém desiste de si de uma vez.
