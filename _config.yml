@@ -7,12 +7,19 @@ highlighter: rouge
 
 # Diz pro Jekyll quais layouts usar pros .md
 defaults:
-  # Carrosséis
+  # Carrosséis padrão
   - scope:
       path: "content/carrossel"
     values:
       layout: carrossel
       type: carrossel
+
+  # Carrosséis com mídia (imagem/vídeo)
+  - scope:
+      path: "content/carrossel-media"
+    values:
+      layout: carrossel_media
+      type: carrossel_media
 
   # Posts estáticos
   - scope:
