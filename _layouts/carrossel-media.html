@@ -1,0 +1,103 @@
+---
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} · Carrossel mídia · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="fc-body fc-body--carrossel fc-body--carrossel-media">
+
+  <header class="fc-topbar">
+    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
+    <span class="fc-topbar__badge">CR · Carrossel mídia</span>
+  </header>
+
+  <!-- Botão fixo de download (mesmo fluxo do carrossel padrão) -->
+  <button
+    id="download-carrossel"
+    class="fc-download-fixed"
+    type="button">
+    ↓ PNG
+  </button>
+
+  <main class="fc-main fc-main--carrossel">
+    <section class="fc-hero">
+      <div class="fc-hero__tag">Pipeline MD → Moldura → Canva/CapCut</div>
+      <h1 class="fc-hero__title">{{ page.title }}</h1>
+      {% if page.tagline %}
+        <p class="fc-hero__subtitle">{{ page.tagline }}</p>
+      {% endif %}
+      {% if page.autor %}
+        <p class="fc-hero__meta">Roteiro por {{ page.autor }}</p>
+      {% endif %}
+      <p class="fc-hero__hint">
+        A parte visual é um espaço reservado. Depois você encaixa a imagem/vídeo no Canva ou CapCut.
+      </p>
+    </section>
+
+    {% assign slides = page.slides | default: empty %}
+    {% if slides and slides.size > 0 %}
+      <section class="fc-slides fc-slides--media">
+        {% for s in slides %}
+          {% assign pos = s.posicao | default: 'bottom' %}
+
+          <!-- 
+            fc-slide--media-bottom  = faixa de texto embaixo
+            fc-slide--media-top     = faixa de texto em cima
+          -->
+          <article class="fc-slide slide fc-slide--media fc-slide--media-{{ pos }}">
+            
+            <!-- Área reservada para IMAGEM/VÍDEO (você substitui depois no Canva/CapCut) -->
+            <div class="fc-slide__media">
+              <div class="fc-slide__img fc-slide__img--placeholder"></div>
+            </div>
+
+            <!-- Faixa de texto -->
+            <div class="fc-slide__overlay">
+              {% if s.tipo %}
+                <div class="fc-slide__pill fc-slide__pill--media">
+                  {{ s.tipo }} · #{{ forloop.index }}
+                </div>
+              {% endif %}
+
+              {% if s.hook %}
+                <h2 class="fc-slide__hook fc-slide__hook--media">
+                  {{ s.hook | newline_to_br }}
+                </h2>
+              {% endif %}
+
+              {% if s.texto %}
+                <div class="fc-slide__text fc-slide__text--media">
+                  {{ s.texto | markdownify }}
+                </div>
+              {% endif %}
+
+              {% if s.cta %}
+                <p class="fc-slide__cta fc-slide__cta--media">
+                  {{ s.cta | newline_to_br }}
+                </p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </section>
+    {% else %}
+      <section class="fc-empty">
+        <p>Nenhum slide encontrado. Defina a lista <code>slides:</code> no front matter deste arquivo.</p>
+      </section>
+    {% endif %}
+  </main>
+
+  <footer class="fc-footer">
+    <p>Fábrica de Conteúdo · Moldura de carrossel para encaixar imagem em Canva/CapCut.</p>
+  </footer>
+
+  <!-- JS de captura (mesmo do carrossel padrão) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+
+</body>
+</html>
