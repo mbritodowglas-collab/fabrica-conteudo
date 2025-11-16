@@ -1230,3 +1230,82 @@ main {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.fc-open-models {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 980;
+}
+
+.fc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+.fc-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.fc-modal__content {
+  position: relative;
+  max-width: 720px;
+  margin: 60px auto;
+  background: #0a0a0f;
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+.fc-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.fc-modal__close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.fc-card-model {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.fc-card-model pre {
+  white-space: pre-wrap;
+  font-size: 0.84rem;
+  margin-bottom: 12px;
+}
+
+.fc-copy {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
