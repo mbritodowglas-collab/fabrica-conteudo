@@ -29,6 +29,7 @@ title: "Posts estáticos"
       <a href="{{ '/' | relative_url }}" class="fc-link-back">← Voltar para a Fábrica</a>
     </p>
 
+    <!-- LISTA -->
     <section class="fc-section">
       <h2>Cards estáticos disponíveis</h2>
       <p class="fc-section__subtitle">
@@ -65,11 +66,62 @@ title: "Posts estáticos"
       </ul>
     </section>
 
+    <!-- BOTÃO DO MODAL -->
+    <section class="fc-section">
+      <h2>Modelo de YAML para Posts Estáticos</h2>
+      <p class="fc-section__subtitle">
+        Clique abaixo para copiar o template oficial para criar novos posts estáticos.
+      </p>
+
+      <button type="button" class="fc-open-modal fc-btn fc-btn--primary">
+        Abrir modelo de YAML
+      </button>
+    </section>
+
   </main>
 
   <footer class="fc-footer">
     Fábrica de Conteúdo · Posts estáticos.
   </footer>
 
+  <!-- MODAL -->
+  <div id="fc-modal" class="fc-modal" aria-hidden="true">
+    <div class="fc-modal__backdrop"></div>
+
+    <div class="fc-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fc-modal-title">
+      <div class="fc-modal__header">
+        <h2 id="fc-modal-title">Modelo YAML – Post Estático</h2>
+      </div>
+
+      <div class="fc-modal__body">
+        <textarea id="fc-modal-text" class="fc-modal__textarea" readonly>
+---
+layout: static
+type: static
+title: "TÍTULO DO POST"
+autor_nome: "Márcio Dowglas"
+autor_handle: "@mdpersonal"
+avatar: "/assets/img/avatar-md.jpg"
+verificado: true
+contexto: "Categoria do assunto (ex.: Neurociência aplicada ao treino)"
+---
+
+Seu texto aqui…
+        </textarea>
+
+        <button id="fc-copy" type="button" class="fc-btn fc-btn--primary">
+          Copiar modelo
+        </button>
+      </div>
+
+      <div class="fc-modal__footer">
+        <button id="fc-close" class="fc-btn fc-btn--ghost">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 </body>
 </html>
