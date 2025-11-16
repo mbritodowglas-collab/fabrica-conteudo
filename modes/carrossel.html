@@ -2,64 +2,76 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Fábrica de Conteúdo · Modo Carrossel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Carrossel · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <!-- html2canvas para exportar PNG -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+  <script src="../assets/js/carrossel.js" defer></script>
 </head>
-<body>
-  <header class="app-header">
-    <div class="app-brand">
-      <a href="../index.html" class="app-logo-link">
-        <span class="app-logo">FC</span>
-      </a>
-      <div class="app-brand-text">
-        <h1>Modo Carrossel</h1>
-        <p>Cole seu .md com <code>## Slide X</code> · HOOK · TEXTO · CTA.</p>
+<body class="fc-body">
+  <header class="fc-header">
+    <div class="fc-container fc-header-inner">
+      <a href="../index.html" class="fc-back">← Voltar</a>
+      <div>
+        <h1 class="fc-logo">Carrossel</h1>
+        <p class="fc-subtitle">Arquivo .md em /content → slides formatados → PNG</p>
       </div>
     </div>
   </header>
 
-  <main class="app-main">
-    <section class="tool-panel">
-      <div class="tool-header">
-        <h2>Entrada de Markdown</h2>
-        <p class="tool-hint">
-          Estrutura sugerida:
-          <code>## Slide 1</code> seguido de linhas como
-          <code>HOOK:</code>,
-          <code>TEXTO:</code> e
-          <code>CTA:</code>.
-        </p>
+  <main class="fc-container fc-main fc-main-split">
+    <section class="fc-panel">
+      <h2>Carregar arquivo .md</h2>
+      <p class="fc-help">
+        Salve seu roteiro de carrossel em <code>/content</code> e informe abaixo o nome do arquivo.<br>
+        Exemplo: <code>carrossel-musculacao-01.md</code>
+      </p>
+
+      <label class="fc-help" for="carousel-filename">Nome do arquivo (.md):</label>
+      <input id="carousel-filename" class="fc-textinput" type="text"
+             placeholder="carrossel-musculacao-01.md">
+
+      <div style="margin-top:10px;">
+        <button id="carousel-load" class="fc-btn">Carregar arquivo</button>
+        <button id="carousel-download-all" class="fc-btn fc-btn-secondary" disabled>Baixar todos os slides</button>
       </div>
 
-      <textarea id="carrossel-input" class="md-input" placeholder="Cole aqui o conteúdo .md dos seus slides..."></textarea>
+      <details style="margin-top:14px;">
+        <summary class="fc-help">Modelo de .md sugerido</summary>
+        <pre class="fc-code">
+# Título geral
+Como treinar depois dos 30 sem se destruir
 
-      <div class="tool-actions">
-        <button id="process-carrossel" class="btn btn-primary">
-          Processar Carrossel
-        </button>
-        <span class="tool-status" id="carrossel-status"></span>
-      </div>
+## Slide 1
+HOOK:
+Você não está cansada porque é fraca.
+TEXTO:
+Seu corpo só nunca foi treinado pra rotina que você vive hoje.
+
+## Slide 2
+TEXTO:
+Aqui entra o conteúdo principal...
+
+## Slide 5
+CTA:
+Quer uma avaliação gratuita? Me chama na DM.
+        </pre>
+      </details>
     </section>
 
-    <section class="results-panel">
-      <div class="results-header">
-        <h2>Slides Gerados</h2>
-        <p>Cada card é um slide pronto para usar. Use os botões para copiar.</p>
-      </div>
-
-      <div id="carrossel-results" class="cards-grid cards-grid--slides">
-        <!-- Cards de slides serão inseridos aqui via JS -->
+    <section class="fc-panel">
+      <h2>Slides gerados</h2>
+      <div id="carousel-slides" class="fc-slides-grid">
+        <!-- slides criados via JS -->
       </div>
     </section>
   </main>
 
-  <footer class="app-footer">
-    <span>Fábrica de Conteúdo · Modo Carrossel</span>
+  <footer class="fc-footer">
+    <div class="fc-container">
+      <small>Fábrica de Conteúdo · Carrossel</small>
+    </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script type="module" src="../assets/js/carrossel.js"></script>
 </body>
 </html>
