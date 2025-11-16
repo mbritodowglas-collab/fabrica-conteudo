@@ -41,7 +41,23 @@
           </div>
 
           <div class="fc-static-user">
-            <div class="fc-static-user__name">{{ nome }}</div>
+            <div class="fc-static-user__name">
+              {{ nome }}
+              {% if page.verificado %}
+              <span class="fc-verified-icon" title="Perfil verificado">
+                <svg viewBox="0 0 24 24" class="fc-verified-svg" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M12 2.25c-1.26 0-2.36.81-2.76 1.98-.14.43-.54.72-.99.72H7.5c-1.38 0-2.5 1.12-2.5 
+                       2.5v.75c0 .45-.29.85-.72.99A2.81 2.81 0 0 0 2.25 12c0 1.26.81 2.36 1.98 2.76.43.14.72.54.72.99v.75c0 1.38 
+                       1.12 2.5 2.5 2.5h.75c.45 0 .85.29.99.72.4 1.17 1.5 1.98 2.76 1.98s2.36-.81 2.76-1.98c.14-.43.54-.72.99-.72h.75c1.38 
+                       0 2.5-1.12 2.5-2.5v-.75c0-.45.29-.85.72-.99A2.81 2.81 0 0 0 21.75 12c0-1.26-.81-2.36-1.98-2.76a1.13 1.13 0 0 1-.72-.99V7.5c0-1.38-1.12-2.5-2.5-2.5h-.75a1.13 1.13 
+                       0 0 1-.99-.72A2.81 2.81 0 0 0 12 2.25Zm3.53 8.03-4.24 4.24a.75.75 0 0 1-1.06 0l-2.12-2.12a.75.75 0 0 1 
+                       1.06-1.06l1.59 1.59 3.71-3.71a.75.75 0 1 1 1.06 1.06Z" />
+                </svg>
+              </span>
+              {% endif %}
+            </div>
+
             {% if page.autor_handle %}
               <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
             {% endif %}
