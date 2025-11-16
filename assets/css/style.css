@@ -1844,3 +1844,99 @@ main {
   font-weight: 700;
   color: #ffffff;
 }
+
+/* =========================================
+   ESTÁTICO – AJUSTES BASE (tweet-like)
+   ========================================= */
+
+.fc-body--static .fc-static-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.fc-body--static .fc-static-header {
+  margin-bottom: 1.2rem;
+}
+
+.fc-body--static .fc-static-body {
+  margin-top: 0;
+  flex-grow: 0;
+}
+
+/* =========================================
+   ESTÁTICO – HERO (FRASE PRINCIPAL)
+   ========================================= */
+
+.fc-static-wrapper--hero {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.fc-static-card--hero {
+  width: 900px;
+  max-width: 92vw;
+  aspect-ratio: 4 / 5; /* 4:5 vertical feed */
+  border-radius: 28px;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255, 40, 40, 0.4), transparent 55%),
+    radial-gradient(circle at 85% 100%, rgba(212, 175, 55, 0.38), transparent 60%),
+    #050509;
+  padding: 20px 24px 18px;
+}
+
+/* header igual ao tweet, só ajustando espaço */
+.fc-static-card--hero .fc-static-header {
+  margin-bottom: 1.6rem;
+}
+
+/* corpo hero: organiza frase grande + texto de apoio */
+.fc-static-body--hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.9rem;
+}
+
+/* frase principal – grande, impacto, alinhada à esquerda */
+.fc-hero-quote {
+  font-size: 1.7rem;
+  line-height: 1.28;
+  font-weight: 700;
+  color: #f8f3da;
+}
+
+.fc-hero-quote p {
+  margin: 0;
+}
+
+/* texto de apoio – menor, ainda dentro do card */
+.fc-hero-subtext {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: rgba(235, 235, 245, 0.82);
+}
+
+.fc-hero-subtext p {
+  margin: 0;
+}
+
+/* responsivo: mobile */
+@media (max-width: 768px) {
+  .fc-static-card--hero {
+    padding: 18px 18px 16px;
+  }
+
+  .fc-hero-quote {
+    font-size: 1.4rem;
+  }
+
+  .fc-hero-subtext {
+    font-size: 0.9rem;
+  }
+}
