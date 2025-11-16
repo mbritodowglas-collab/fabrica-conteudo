@@ -12,21 +12,22 @@
 <body class="fc-body fc-body--static">
 
   <header class="fc-topbar">
-    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica</a>
+    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
     <span class="fc-topbar__badge">ST · Post estático</span>
   </header>
 
   {% assign nome = page.autor_nome | default: 'MD Personal' %}
   {% assign partes = nome | split: ' ' %}
-  {% assign primeira = partes[0] | slice: 0,1 %}
-  {% assign segunda = '' %}
+  {% assign p1 = partes[0] | slice: 0,1 %}
+  {% assign p2 = '' %}
   {% if partes.size > 1 %}
-    {% assign segunda = partes[1] | slice: 0,1 %}
+    {% assign p2 = partes[1] | slice: 0,1 %}
   {% endif %}
-  {% assign iniciais = primeira | append: segunda %}
+  {% assign iniciais = p1 | append: p2 %}
 
   <main class="fc-main fc-main--static">
     <section class="fc-static-wrapper">
+      <!-- CARD EM FORMATO 4:5 PARA PRINT / PNG -->
       <article class="fc-static-card">
         <header class="fc-static-header">
           <div class="fc-avatar">
@@ -53,12 +54,14 @@
     </section>
 
     <section class="fc-static-hint">
-      <p>Este layout foi pensado para ser um “tweet premium” estático. Exporte em PNG e publique direto no feed.</p>
+      <p>
+        Card único no formato visual 4:5, pensado pra você só exportar como imagem/PDF e postar no feed.
+      </p>
     </section>
   </main>
 
   <footer class="fc-footer">
-    <p>Fábrica de Conteúdo · tweetão de autoridade pronto pra uso.</p>
+    <p>Fábrica de Conteúdo · Tweetão de autoridade pronto pra uso.</p>
   </footer>
 
 </body>
