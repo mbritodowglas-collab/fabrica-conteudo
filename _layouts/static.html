@@ -43,7 +43,12 @@
               </div>
 
               <div class="fc-static-user">
-                <div class="fc-static-user__name">{{ nome }}</div>
+                <div class="fc-static-user__name">
+                  {{ nome }}
+                  {% if page.verificado %}
+                    <span class="fc-verified-badge" title="Verificado"></span>
+                  {% endif %}
+                </div>
                 {% if page.autor_handle %}
                   <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
                 {% endif %}
@@ -71,7 +76,12 @@
             </div>
 
             <div class="fc-static-user">
-              <div class="fc-static-user__name">{{ nome }}</div>
+              <div class="fc-static-user__name">
+                {{ nome }}
+                {% if page.verificado %}
+                  <span class="fc-verified-badge" title="Verificado"></span>
+                {% endif %}
+              </div>
               {% if page.autor_handle %}
                 <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
               {% endif %}
