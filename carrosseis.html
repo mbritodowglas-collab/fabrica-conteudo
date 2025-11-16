@@ -1,252 +1,251 @@
-Atualiza o carroosseis..  
----  
-layout: none  
-title: "Carrosséis"  
----  
-  
-<!DOCTYPE html>  
-<html lang="pt-BR">  
-<head>  
-  <meta charset="UTF-8">  
-  <title>Carrosséis · Fábrica de Conteúdo</title>  
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">  
-</head>  
-<body class="fc-body">  
-  
-  <header class="fc-header">  
-    <div class="fc-header__brand">  
-      <div class="fc-badge">FC</div>  
-      <div>  
-        <h1>Carrosséis</h1>  
-        <p>Painel de carrosséis gerados a partir de arquivos .md em <code>content/carrossel/</code>.</p>  
-      </div>  
-    </div>  
-  </header>  
-  
-  <main class="fc-main">  
-  
-    <p style="margin: 0 0 10px;">  
-      <a href="{{ '/' | relative_url }}" class="fc-link-back">← Voltar para a Fábrica</a>  
-    </p>  
-  
-    <!-- LISTA DE CARROSSEIS -->  
-    <section class="fc-section">  
-      <h2>Carrosséis disponíveis</h2>  
-      <p class="fc-section__subtitle">  
-        Cada arquivo <code>.md</code> abaixo vira uma página de carrossel pronta para exportar.  
-      </p>  
-  
-      {% assign carrossel_pages = site.pages | where:"type","carrossel" %}  
-      <ul class="fc-list">  
-        {% if carrossel_pages.size > 0 %}  
-          {% for p in carrossel_pages %}  
-            <li>  
-              <a class="fc-list__link" href="{{ p.url | relative_url }}">  
-                <div class="fc-list__left">  
-                  <div class="fc-list__thumb fc-list__thumb--carrossel">  
-                    <span>CR</span>  
-                  </div>  
-                  <div class="fc-list__text">  
-                    <div class="fc-list__title">  
-                      {{ p.title | default: p.name | replace: '.md','' }}  
-                    </div>  
-                    <div class="fc-list__meta">  
-                      Carrossel • {{ p.name | replace: '.md','' }}  
-                    </div>  
-                  </div>  
-                </div>  
-              </a>  
-            </li>  
-          {% endfor %}  
-        {% else %}  
-          <li class="fc-list__empty">  
-            Nenhum carrossel ainda. Suba um .md em <code>content/carrossel/</code>.  
-          </li>  
-        {% endif %}  
-      </ul>  
-    </section>  
-  
-    <!-- BLOCO: MODELOS DE PROMPT -->  
-    <section class="fc-section">  
-      <h2>Modelos de Prompt</h2>  
-      <p class="fc-section__subtitle">  
-        Copie o modelo pronto, cole no ChatGPT e peça o roteiro em <code>.md</code> com front matter já no padrão da Fábrica.  
-      </p>  
-  
-      <button type="button" class="fc-open-modal fc-btn fc-btn--primary">  
-        Modelos de prompt  
-      </button>  
-    </section>  
-  
-  </main>  
-  
-  <footer class="fc-footer">  
-    Fábrica de Conteúdo · Carrosséis.  
-  </footer>  
-  
-  <!-- MODAL COM OS 3 MODELOS SEPARADOS -->  
-  <div id="fc-modal" class="fc-modal" aria-hidden="true">  
-    <div class="fc-modal__backdrop"></div>  
-  
-    <div class="fc-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fc-modal-title">  
-      <div class="fc-modal__header">  
-        <h2 id="fc-modal-title">Prompt Oficial – Fábrica de Conteúdo</h2>  
-      </div>  
-  
-      <div class="fc-modal__body">  
-  
-        <!-- MODELO 1 -->  
-        <div class="fc-prompt-card">  
-          <h3 class="fc-prompt-card__title">Modelo 1 – Impacto MD</h3>  
-          <textarea class="fc-modal__textarea" readonly>  
-Você é meu roteirista de carrosséis para Instagram.  
-  
-Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo  
-(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo  
-com o tema que eu informar:  
-  
----  
-layout: carrossel  
-type: carrossel  
-title: "TÍTULO DO CARROSSEL (impacto forte)"  
-tagline: "Descrição curta em uma frase"  
-autor: "Márcio Dowglas – Personal Trainer"  
-slides:  
-  - tipo: "HOOK"  
-    hook: "Frase de impacto principal"  
-    texto: "Explicação curta (até 5 linhas) aprofundando o problema."  
-  - tipo: "CONTEÚDO"  
-    hook: "Primeiro ponto de consciência"  
-    texto: "Explique o porquê esse problema existe na rotina."  
-  - tipo: "CONTEÚDO"  
-    hook: "Segundo ponto (consequência)"  
-    texto: "Mostre o que acontece se nada mudar."  
-  - tipo: "CONTEÚDO"  
-    hook: "Terceiro ponto (caminho/método)"  
-    texto: "Apresente o começo da solução no meu estilo de treino."  
-  - tipo: "CTA"  
-    hook: "Chamada final forte"  
-    texto: "Resuma o benefício da transformação."  
-    cta: "Clique no link da bio e preencha a avaliação gratuita."  
----  
-  
-Regras:  
-- Cada slide contém: tipo, hook, texto; a propriedade **cta** aparece só no último slide.  
-- Linguagem feminina, empática, falando direto com uma mulher depois dos 30.  
-- Tom de conversa, como orientação de personal que entende de neurociência.  
-  
-Tema do carrossel: [DESCREVA O TEMA AQUI].  
-          </textarea>  
-          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">  
-            Copiar modelo 1  
-          </button>  
-        </div>  
-  
-        <!-- MODELO 2 -->  
-        <div class="fc-prompt-card">  
-          <h3 class="fc-prompt-card__title">Modelo 2 – Lista de erros</h3>  
-          <textarea class="fc-modal__textarea" readonly>  
-Você é meu roteirista de carrosséis para Instagram.  
-  
-Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo  
-(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo  
-com o tema que eu informar:  
-  
----  
-layout: carrossel  
-type: carrossel  
-title: "TÍTULO DO CARROSSEL (lista de erros)"  
-tagline: "Explicação curta em uma frase"  
-autor: "Márcio Dowglas – Personal Trainer"  
-slides:  
-  - tipo: "HOOK"  
-    hook: "Título chamando atenção para os erros (ex.: 5 erros que travam X)"  
-    texto: "Contextualize em até 5 linhas por que esses erros importam."  
-  - tipo: "CONTEÚDO"  
-    hook: "Erro 1"  
-    texto: "Explique o erro 1 de forma simples e específica."  
-  - tipo: "CONTEÚDO"  
-    hook: "Erro 2"  
-    texto: "Explique o erro 2 de forma simples e específica."  
-  - tipo: "CONTEÚDO"  
-    hook: "Erro 3"  
-    texto: "Explique o erro 3, conectando com o impacto na rotina."  
-  - tipo: "CTA"  
-    hook: "Convite para corrigir esses erros com acompanhamento"  
-    texto: "Mostre como meu método ajuda a resolver esses erros na prática."  
-    cta: "Clique no link da bio e preencha a avaliação gratuita."  
----  
-  
-Regras:  
-- Cada slide contém: tipo, hook, texto; a propriedade **cta** aparece só no último slide.  
-- Linguagem feminina, empática, focada em emagrecimento depois dos 30.  
-- Use exemplos do dia a dia (trabalho, filhos, cansaço, culpa, falta de tempo).  
-  
-Tema do carrossel: [DESCREVA O TEMA AQUI].  
-          </textarea>  
-          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">  
-            Copiar modelo 2  
-          </button>  
-        </div>  
-  
-        <!-- MODELO 3 -->  
-        <div class="fc-prompt-card">  
-          <h3 class="fc-prompt-card__title">Modelo 3 – Jornada</h3>  
-          <textarea class="fc-modal__textarea" readonly>  
-Você é meu roteirista de carrosséis para Instagram.  
-  
-Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo  
-(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo  
-com o tema que eu informar:  
-  
----  
-layout: carrossel  
-type: carrossel  
-title: "TÍTULO DO CARROSSEL (jornada de transformação)"  
-tagline: "Resumo da jornada em uma frase"  
-autor: "Márcio Dowglas – Personal Trainer"  
-slides:  
-  - tipo: "HOOK"  
-    hook: "Frase mostrando o problema atual ou ponto de partida"  
-    texto: "Descreva a situação em que ela se encontra hoje."  
-  - tipo: "CONTEÚDO"  
-    hook: "Consequências de continuar assim"  
-    texto: "Mostre de forma empática o que ela já está sentindo (dor, cansaço, frustração)."  
-  - tipo: "CONTEÚDO"  
-    hook: "Virada de chave"  
-    texto: "Explique a mudança de mentalidade que inicia a transformação."  
-  - tipo: "CONTEÚDO"  
-    hook: "Caminho / método"  
-    texto: "Mostre como meu estilo de treino + neurociência organiza esse caminho."  
-  - tipo: "CTA"  
-    hook: "Próximo passo da jornada"  
-    texto: "Reforce que ela não precisa fazer isso sozinha."  
-    cta: "Clique no link da bio e preencha a avaliação gratuita."  
----  
-  
-Regras:  
-- Cada slide contém: tipo, hook, texto; a propriedade **cta** aparece só no último slide.  
-- Linguagem feminina, acolhedora, mostrando progresso em etapas.  
-- Trate o carrossel como uma mini jornada do ponto A ao ponto B.  
-  
-Tema do carrossel: [DESCREVA O TEMA AQUI].  
-          </textarea>  
-          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">  
-            Copiar modelo 3  
-          </button>  
-        </div>  
-  
-      </div>  
-  
-      <div class="fc-modal__footer">  
-        <button type="button" id="fc-close" class="fc-btn fc-btn--ghost">  
-          Fechar  
-        </button>  
-      </div>  
-    </div>  
-  </div>  
-  
-  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>  
-</body>  
+---
+layout: none
+title: "Carrosséis"
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrosséis · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="fc-body">
+
+  <header class="fc-header">
+    <div class="fc-header__brand">
+      <div class="fc-badge">FC</div>
+      <div>
+        <h1>Carrosséis</h1>
+        <p>Painel de carrosséis gerados a partir de arquivos .md em <code>content/carrossel/</code>.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="fc-main">
+
+    <p style="margin: 0 0 10px;">
+      <a href="{{ '/' | relative_url }}" class="fc-link-back">← Voltar para a Fábrica</a>
+    </p>
+
+    <!-- LISTA DE CARROSSEIS -->
+    <section class="fc-section">
+      <h2>Carrosséis disponíveis</h2>
+      <p class="fc-section__subtitle">
+        Cada arquivo <code>.md</code> abaixo vira uma página de carrossel pronta para exportar.
+      </p>
+
+      {% assign carrossel_pages = site.pages | where:"type","carrossel" %}
+      <ul class="fc-list">
+        {% if carrossel_pages.size > 0 %}
+          {% for p in carrossel_pages %}
+            <li>
+              <a class="fc-list__link" href="{{ p.url | relative_url }}">
+                <div class="fc-list__left">
+                  <div class="fc-list__thumb fc-list__thumb--carrossel">
+                    <span>CR</span>
+                  </div>
+                  <div class="fc-list__text">
+                    <div class="fc-list__title">
+                      {{ p.title | default: p.name | replace: '.md','' }}
+                    </div>
+                    <div class="fc-list__meta">
+                      Carrossel • {{ p.name | replace: '.md','' }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="fc-list__empty">
+            Nenhum carrossel ainda. Suba um .md em <code>content/carrossel/</code>.
+          </li>
+        {% endif %}
+      </ul>
+    </section>
+
+    <!-- BLOCO: MODELOS DE PROMPT -->
+    <section class="fc-section">
+      <h2>Modelos de Prompt</h2>
+      <p class="fc-section__subtitle">
+        Copie o modelo pronto, cole no ChatGPT e peça o roteiro em <code>.md</code> com front matter já no padrão da Fábrica.
+      </p>
+
+      <button type="button" class="fc-open-modal fc-btn fc-btn--primary">
+        Modelos de prompt
+      </button>
+    </section>
+
+  </main>
+
+  <footer class="fc-footer">
+    Fábrica de Conteúdo · Carrosséis.
+  </footer>
+
+  <!-- MODAL COM OS 3 MODELOS SEPARADOS -->
+  <div id="fc-modal" class="fc-modal" aria-hidden="true">
+    <div class="fc-modal__backdrop"></div>
+
+    <div class="fc-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fc-modal-title">
+      <div class="fc-modal__header">
+        <h2 id="fc-modal-title">Prompt Oficial – Fábrica de Conteúdo</h2>
+      </div>
+
+      <div class="fc-modal__body">
+
+        <!-- MODELO 1 -->
+        <div class="fc-prompt-card">
+          <h3 class="fc-prompt-card__title">Modelo 1 – Impacto MD</h3>
+          <textarea class="fc-modal__textarea" readonly>
+Você é meu roteirista de carrosséis para Instagram.
+
+Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo
+(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo
+com o tema que eu informar:
+
+---
+layout: carrossel
+type: carrossel
+title: "TÍTULO DO CARROSSEL (impacto forte)"
+tagline: "Descrição curta em uma frase"
+autor: "Márcio Dowglas – Personal Trainer"
+slides:
+  - tipo: "HOOK"
+    hook: "Frase de impacto principal"
+    texto: "Explicação curta (até 5 linhas) aprofundando o problema."
+  - tipo: "CONTEÚDO"
+    hook: "Primeiro ponto de consciência"
+    texto: "Explique o porquê esse problema existe na rotina."
+  - tipo: "CONTEÚDO"
+    hook: "Segundo ponto (consequência)"
+    texto: "Mostre o que acontece se nada mudar."
+  - tipo: "CONTEÚDO"
+    hook: "Terceiro ponto (caminho/método)"
+    texto: "Apresente o começo da solução no meu estilo de treino."
+  - tipo: "CTA"
+    hook: "Chamada final forte"
+    texto: "Resuma o benefício da transformação."
+    cta: "Clique no link da bio e preencha a avaliação gratuita."
+---
+
+Regras:
+- Cada slide contém: tipo, hook, texto; a propriedade **cta** aparece só no último slide.
+- Linguagem feminina, empática, falando direto com uma mulher depois dos 30.
+- Tom de conversa, como orientação de personal que entende de neurociência.
+
+Tema do carrossel: [DESCREVA O TEMA AQUI].
+          </textarea>
+          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">
+            Copiar modelo 1
+          </button>
+        </div>
+
+        <!-- MODELO 2 -->
+        <div class="fc-prompt-card">
+          <h3 class="fc-prompt-card__title">Modelo 2 – Lista de erros</h3>
+          <textarea class="fc-modal__textarea" readonly>
+Você é meu roteirista de carrosséis para Instagram.
+
+Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo
+(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo
+com o tema que eu informar:
+
+---
+layout: carrossel
+type: carrossel
+title: "TÍTULO DO CARROSSEL (lista de erros)"
+tagline: "Explicação curta em uma frase"
+autor: "Márcio Dowglas – Personal Trainer"
+slides:
+  - tipo: "HOOK"
+    hook: "Título chamando atenção para os erros (ex.: 5 erros que travam X)"
+    texto: "Contextualize em até 5 linhas por que esses erros importam."
+  - tipo: "CONTEÚDO"
+    hook: "Erro 1"
+    texto: "Explique o erro 1 de forma simples e específica."
+  - tipo: "CONTEÚDO"
+    hook: "Erro 2"
+    texto: "Explique o erro 2 de forma simples e específica."
+  - tipo: "CONTEÚDO"
+    hook: "Erro 3"
+    texto: "Explique o erro 3, conectando com o impacto na rotina."
+  - tipo: "CTA"
+    hook: "Convite para corrigir esses erros com acompanhamento"
+    texto: "Mostre como meu método ajuda a resolver esses erros na prática."
+    cta: "Clique no link da bio e preencha a avaliação gratuita."
+---
+
+Regras:
+- Cada slide contém: tipo, hook, texto; a propriedade **cta** aparece só no último slide.
+- Linguagem feminina, empática, focada em emagrecimento depois dos 30.
+- Use exemplos do dia a dia (trabalho, filhos, cansaço, culpa, falta de tempo).
+
+Tema do carrossel: [DESCREVA O TEMA AQUI].
+          </textarea>
+          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">
+            Copiar modelo 2
+          </button>
+        </div>
+
+        <!-- MODELO 3 -->
+        <div class="fc-prompt-card">
+          <h3 class="fc-prompt-card__title">Modelo 3 – Jornada</h3>
+          <textarea class="fc-modal__textarea" readonly>
+Você é meu roteirista de carrosséis para Instagram.
+
+Gere um arquivo em **Markdown** com front matter Jekyll no padrão abaixo
+(mantenha a sintaxe YAML exatamente como está) e preencha tudo de acordo
+com o tema que eu informar:
+
+---
+layout: carrossel
+type: carrossel
+title: "TÍTULO DO CARROSSEL (jornada de transformação)"
+tagline: "Resumo da jornada em uma frase"
+autor: "Márcio Dowglas – Personal Trainer"
+slides:
+  - tipo: "HOOK"
+    hook: "Frase mostrando o problema atual ou ponto de partida"
+    texto: "Descreva a situação em que ela se encontra hoje."
+  - tipo: "CONTEÚDO"
+    hook: "Consequências de continuar assim"
+    texto: "Mostre de forma empática o que ela já está sentindo (dor, cansaço, frustração)."
+  - tipo: "CONTEÚDO"
+    hook: "Virada de chave"
+    texto: "Explique a mudança de mentalidade que inicia a transformação."
+  - tipo: "CONTEÚDO"
+    hook: "Caminho / método"
+    texto: "Mostre como meu estilo de treino + neurociência organiza esse caminho."
+  - tipo: "CTA"
+    hook: "Próximo passo da jornada"
+    texto: "Reforce que ela não precisa fazer isso sozinha."
+    cta: "Clique no link da bio e preencha a avaliação gratuita."
+---
+
+Regras:
+- Cada slide contém: tipo, hook, texto; a propriedade **cta** aparece só no último slide.
+- Linguagem feminina, acolhedora, mostrando progresso em etapas.
+- Trate o carrossel como uma mini jornada do ponto A ao ponto B.
+
+Tema do carrossel: [DESCREVA O TEMA AQUI].
+          </textarea>
+          <button type="button" class="fc-btn fc-btn--primary fc-copy-btn">
+            Copiar modelo 3
+          </button>
+        </div>
+
+      </div>
+
+      <div class="fc-modal__footer">
+        <button type="button" id="fc-close" class="fc-btn fc-btn--ghost">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+</body>
 </html>
