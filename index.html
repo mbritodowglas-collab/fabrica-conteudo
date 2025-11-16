@@ -2,55 +2,90 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Fábrica de Conteúdo</title>
+  <title>Fábrica de Conteúdo · Modo Carrossel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
   <header class="app-header">
     <div class="app-brand">
-      <span class="app-logo">FC</span>
+      <a href="../index.html" class="app-logo-link">
+        <span class="app-logo">FC</span>
+      </a>
       <div class="app-brand-text">
-        <h1>Fábrica de Conteúdo</h1>
-        <p>Organize seu .md em blocos prontos para redes sociais.</p>
+        <h1>Modo Carrossel</h1>
+        <p>
+          Carrega arquivos <code>.md</code> do repositório (content/carrossel) ou pela caixa de texto,
+          e organiza em slides com HOOK · TEXTO · CTA.
+        </p>
       </div>
     </div>
   </header>
 
   <main class="app-main">
-    <section class="app-intro-card">
-      <h2>Escolha o modo de produção</h2>
-      <p>
-        Cole seu arquivo <code>.md</code> e deixe a Fábrica organizar o texto em blocos prontos para
-        carrossel, post estático ou scripts de conteúdo. Zero imagem, 100% texto estratégico.
-      </p>
+    <!-- BLOCO: arquivos vindos do repositório -->
+    <section class="tool-panel repo-panel">
+      <div class="tool-header">
+        <h2>Carrosséis do repositório</h2>
+        <p class="tool-hint">
+          Commit seus arquivos <code>.md</code> em <code>content/carrossel/</code> no GitHub e recarregue a lista.
+        </p>
+      </div>
 
-      <div class="mode-grid">
-        <a class="mode-card" href="modes/carrossel.html">
-          <h3>Modo Carrossel</h3>
-          <p>
-            Lê seções <code>## Slide X</code> com <strong>HOOK</strong>, <strong>TEXTO</strong> e
-            <strong>CTA</strong>, e monta cards individuais com botões de copiar.
-          </p>
-          <span class="mode-tag">Instagram / Reels</span>
-        </a>
+      <div class="tool-actions">
+        <button id="reload-carrossel-files" class="btn btn-secondary">
+          Recarregar lista
+        </button>
+        <span id="carrossel-files-status" class="tool-status"></span>
+      </div>
 
-        <a class="mode-card" href="modes/static.html">
-          <h3>Post Estático</h3>
-          <p>
-            Extrai <strong>Nome</strong>, <strong>@handle</strong>, <strong>texto</strong> e
-            <strong>meta</strong> de um <code>.md</code> e entrega um card estilo Twitter/X, pronto
-            para copiar.
-          </p>
-          <span class="mode-tag">Twitter / Threads / Legendas</span>
-        </a>
+      <div id="carrossel-file-list" class="cards-grid cards-grid--files">
+        <!-- Lista de arquivos .md do repositório -->
+      </div>
+    </section>
+
+    <!-- BLOCO: entrada manual via textarea -->
+    <section class="tool-panel">
+      <div class="tool-header">
+        <h2>Entrada manual de Markdown</h2>
+        <p class="tool-hint">
+          Estrutura sugerida:
+          <code>## Slide 1</code> seguido de linhas como
+          <code>HOOK:</code>,
+          <code>TEXTO:</code> e
+          <code>CTA:</code>.
+        </p>
+      </div>
+
+      <textarea id="carrossel-input" class="md-input" placeholder="Cole aqui o conteúdo .md dos seus slides..."></textarea>
+
+      <div class="tool-actions">
+        <button id="process-carrossel" class="btn btn-primary">
+          Processar Carrossel (entrada manual)
+        </button>
+        <span class="tool-status" id="carrossel-status"></span>
+      </div>
+    </section>
+
+    <!-- BLOCO: resultados -->
+    <section class="results-panel">
+      <div class="results-header">
+        <h2>Slides Gerados</h2>
+        <p>Cada card é um slide pronto para copiar e usar.</p>
+      </div>
+
+      <div id="carrossel-results" class="cards-grid cards-grid--slides">
+        <!-- Cards de slides serão inseridos aqui via JS -->
       </div>
     </section>
   </main>
 
   <footer class="app-footer">
-    <span>Fábrica de Conteúdo · texto primeiro, sempre.</span>
+    <span>Fábrica de Conteúdo · Modo Carrossel</span>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script type="module" src="../assets/js/carrossel.js"></script>
 </body>
 </html>
