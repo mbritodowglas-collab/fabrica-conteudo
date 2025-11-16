@@ -1,69 +1,67 @@
----
----
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>Fábrica de Conteúdo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body class="fc-body">
   <header class="fc-header">
-    <div class="fc-container fc-header-inner">
+    <div class="fc-header__brand">
+      <span class="fc-badge">FC</span>
       <div>
-        <h1 class="fc-logo"><span>Fábrica</span> de Conteúdo</h1>
-        <p class="fc-subtitle">
-          Suba arquivos .md em <code>content/carrossel</code> ou <code>content/static</code>
-          e acesse os links abaixo.
-        </p>
+        <h1>Fábrica de Conteúdo</h1>
+        <p>Transforma arquivos .md em carrosséis e posts estáticos prontos pra download.</p>
       </div>
     </div>
   </header>
 
-  <main class="fc-container fc-main">
-    <section class="fc-panel">
+  <main class="fc-main">
+    <section class="fc-section">
       <h2>Carrosséis</h2>
-      <p class="fc-help">
-        Arquivos em <code>content/carrossel/</code> com layout <code>fc_carrossel</code>.
+      <p class="fc-section__subtitle">
+        Coloque seus arquivos em <code>content/carrossel/</code> com front matter mínimo
+        e eles aparecem aqui automaticamente.
       </p>
+
       <ul class="fc-list">
-        {% assign carrossel_pages = site.pages | where: "type", "carrossel" %}
+        {% assign carrossel_pages = site.pages | where:"type","carrossel" %}
         {% for p in carrossel_pages %}
           <li>
-            <a href="{{ p.url | relative_url }}">{{ p.title | default:p.path }}</a>
+            <a href="{{ p.url | relative_url }}" class="fc-list__link">
+              {{ p.title | default: p.name | replace: '.md','' }}
+            </a>
           </li>
+        {% else %}
+          <li class="fc-list__empty">Nenhum carrossel ainda.</li>
         {% endfor %}
-        {% if carrossel_pages == empty %}
-          <li><span class="fc-help">Nenhum carrossel ainda. Crie um .md em content/carrossel.</span></li>
-        {% endif %}
       </ul>
     </section>
 
-    <section class="fc-panel">
+    <section class="fc-section">
       <h2>Posts estáticos</h2>
-      <p class="fc-help">
-        Arquivos em <code>content/static/</code> com layout <code>fc_static</code>.
+      <p class="fc-section__subtitle">
+        Arquivos em <code>content/static/</code> viram cards de post único.
       </p>
+
       <ul class="fc-list">
-        {% assign static_pages = site.pages | where: "type", "static" %}
+        {% assign static_pages = site.pages | where:"type","static" %}
         {% for p in static_pages %}
           <li>
-            <a href="{{ p.url | relative_url }}">{{ p.title | default:p.path }}</a>
+            <a href="{{ p.url | relative_url }}" class="fc-list__link">
+              {{ p.title | default: p.name | replace: '.md','' }}
+            </a>
           </li>
+        {% else %}
+          <li class="fc-list__empty">Nenhum post estático ainda.</li>
         {% endfor %}
-        {% if static_pages == empty %}
-          <li><span class="fc-help">Nenhum post estático ainda. Crie um .md em content/static.</span></li>
-        {% endif %}
       </ul>
     </section>
   </main>
 
   <footer class="fc-footer">
-    <div class="fc-container">
-      <small>Fábrica de Conteúdo · pipeline MD → página → arte</small>
-    </div>
+    Fábrica de Conteúdo · pipeline MD → página → arte
   </footer>
 </body>
 </html>
