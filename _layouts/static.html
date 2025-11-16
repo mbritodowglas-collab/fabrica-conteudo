@@ -28,7 +28,49 @@
 
   <main class="fc-main fc-main--static">
 
-    {%- if has_cards and page.cards.size > 0 -%}
+    {%- if page.variant == "hero" -%}
+      <!-- MODE HERO (FRASE PRINCIPAL) -->
+      <section class="fc-static-wrapper fc-static-wrapper--hero">
+        <article class="fc-static-card fc-static-card--hero">
+          <header class="fc-static-header">
+            <div class="fc-avatar">
+              {% if page.avatar %}
+                <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+              {% else %}
+                <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+              {% endif %}
+            </div>
+
+            <div class="fc-static-user">
+              <div class="fc-static-user__name">
+                {{ nome }}
+                {% if page.verificado %}
+                  <span class="fc-verified-badge" title="Verificado"></span>
+                {% endif %}
+              </div>
+              {% if page.autor_handle %}
+                <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+              {% endif %}
+            </div>
+          </header>
+
+          <div class="fc-static-body fc-static-body--hero">
+            {% if page.frase_principal %}
+              <div class="fc-hero-quote">
+                {{ page.frase_principal | markdownify }}
+              </div>
+            {% endif %}
+
+            {% if page.texto_apoio %}
+              <div class="fc-hero-subtext">
+                {{ page.texto_apoio | markdownify }}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      </section>
+
+    {%- elsif has_cards and page.cards.size > 0 -%}
       <!-- MODE MULTI-CARD -->
       <section class="fc-static-wrapper fc-static-wrapper--multi">
         {%- for c in page.cards -%}
