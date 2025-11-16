@@ -1,6 +1,5 @@
 ---
 ---
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,14 +15,14 @@
     <span class="fc-topbar__badge">ST · Post estático</span>
   </header>
 
-  {% assign nome = page.autor_nome | default: 'MD Personal' %}
-  {% assign partes = nome | split: ' ' %}
-  {% assign p1 = partes[0] | slice: 0,1 %}
-  {% assign p2 = '' %}
-  {% if partes.size > 1 %}
-    {% assign p2 = partes[1] | slice: 0,1 %}
-  {% endif %}
-  {% assign iniciais = p1 | append: p2 %}
+  {%- assign nome = page.autor_nome | default: 'MD Personal' -%}
+  {%- assign partes = nome | split: ' ' -%}
+  {%- assign p1 = partes[0] | slice: 0,1 -%}
+  {%- assign p2 = '' -%}
+  {%- if partes.size > 1 -%}
+    {%- assign p2 = partes[1] | slice: 0,1 -%}
+  {%- endif -%}
+  {%- assign iniciais = p1 | append: p2 -%}
 
   <main class="fc-main fc-main--static">
     <section class="fc-static-wrapper">
@@ -31,8 +30,16 @@
       <article class="fc-static-card">
         <header class="fc-static-header">
           <div class="fc-avatar">
-            <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+            {% if page.avatar %}
+              <img
+                src="{{ page.avatar | relative_url }}"
+                alt="{{ nome }}"
+                class="fc-avatar__img">
+            {% else %}
+              <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+            {% endif %}
           </div>
+
           <div class="fc-static-user">
             <div class="fc-static-user__name">{{ nome }}</div>
             {% if page.autor_handle %}
