@@ -1,39 +1,78 @@
 // assets/js/carrossel.js
 document.addEventListener('DOMContentLoaded', () => {
-  const downloadBtn = document.getElementById('download-carrossel');
 
+  /* ===========================
+     DOWNLOAD DOS SLIDES
+     =========================== */
+  const downloadBtn = document.getElementById('download-carrossel');
   const slides = Array.from(document.querySelectorAll('.slide'));
 
-  if (!downloadBtn || !slides.length) return;
+  if (downloadBtn && slides.length) {
+    downloadBtn.addEventListener('click', async () => {
+      const slug = document.title
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '') || 'carrossel';
 
-  downloadBtn.addEventListener('click', async () => {
-    const slug = document.title
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'carrossel';
+      for (let i = 0; i < slides.length; i++) {
+        const slide = slides[i];
 
-    for (let i = 0; i < slides.length; i++) {
-      const slide = slides[i];
+        slide.scrollIntoView({ behavior: 'instant', block: 'center' });
 
-      slide.scrollIntoView({ behavior: 'instant', block: 'center' });
+        const canvas = await html2canvas(slide, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: null
+        });
 
-      const canvas = await html2canvas(slide, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: null
-      });
+        const link = document.createElement('a');
+        const num = String(i + 1).padStart(2, '0');
 
-      const link = document.createElement('a');
-      const num = String(i + 1).padStart(2, '0');
+        link.download = `${slug}-slide-${num}.png`;
+        link.href = canvas.toDataURL('image/png');
 
-      link.download = `${slug}-slide-${num}.png`;
-      link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    });
+  }
 
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  });
+
+  /* ===========================
+     MODAL DO PROMPT
+     =========================== */
+
+  const modal = document.getElementById("fc-modal");
+  const openModal = document.querySelector(".fc-open-modal");
+  const closeModal = document.getElementById("fc-close");
+  const copyBtn = document.getElementById("fc-copy");
+  const textArea = document.getElementById("fc-modal-text");
+
+  // abrir modal
+  if (openModal && modal) {
+    openModal.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+  }
+
+  // fechar modal
+  if (closeModal && modal) {
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
+
+  // copiar prompt
+  if (copyBtn && textArea) {
+    copyBtn.addEventListener("click", () => {
+      textArea.select();
+      document.execCommand("copy");
+      copyBtn.textContent = "Copiado!";
+      setTimeout(() => copyBtn.textContent = "Copiar", 1500);
+    });
+  }
+
 });
