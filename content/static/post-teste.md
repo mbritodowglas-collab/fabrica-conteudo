@@ -1,8 +1,15 @@
 ---
+layout: static
 title: "Tweetão sobre consistência"
+autor_nome: "Márcio Dowglas"
+autor_handle: "@mdpersonal"
+contexto: "Consistência no treino e na alimentação"
 ---
 
-**Ninguém muda o corpo em 7 dias.**  
-Mas muita gente destrói o processo em 7 dias de ansiedade.
+Ninguém desiste de si de uma vez.
 
-Comece pequeno, mantenha simples, e não pare de aparecer.
+É sempre um “tanto faz” depois do outro.
+
+A boa notícia?
+
+Você também não precisa mudar tudo de uma vez. Só precisa virar o jogo **um** “tanto faz” por dia.
