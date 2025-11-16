@@ -2,80 +2,57 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Post Estático · Fábrica de Conteúdo</title>
+  <title>{{ page.title }} · Post Estático</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- html2canvas para exportar PNG -->
+  <link rel="stylesheet" href="/assets/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-  <script src="../assets/js/static.js" defer></script>
+  <script src="/assets/js/fc-static.js" defer></script>
 </head>
 <body class="fc-body">
   <header class="fc-header">
     <div class="fc-container fc-header-inner">
-      <a href="../index.html" class="fc-back">← Voltar</a>
       <div>
-        <h1 class="fc-logo">Post Estático</h1>
-        <p class="fc-subtitle">Arquivo .md em /content → card pronto → PNG</p>
+        <h1 class="fc-logo"><span>FC</span> Estático</h1>
+        <p class="fc-subtitle">
+          Arquivo: <code>{{ page.path }}</code>
+        </p>
       </div>
     </div>
   </header>
 
-  <main class="fc-container fc-main fc-main-split">
+  <main class="fc-container fc-main">
     <section class="fc-panel">
-      <h2>Carregar arquivo .md</h2>
+      <h2>Prévia do post</h2>
       <p class="fc-help">
-        Salve seu conteúdo em <code>/content</code> e informe abaixo apenas o nome do arquivo.<br>
-        Exemplo: <code>post-estatico-energia.md</code>
+        Card único no estilo “post de frase”. Depois vamos plugar o botão de download.
       </p>
-
-      <label class="fc-help" for="static-filename">Nome do arquivo (.md):</label>
-      <input id="static-filename" class="fc-textinput" type="text"
-             placeholder="post-estatico-energia.md">
-
-      <div style="margin-top:10px;">
-        <button id="static-load" class="fc-btn">Carregar arquivo</button>
-        <button id="static-download" class="fc-btn fc-btn-secondary" disabled>Baixar PNG</button>
+      <div class="fc-tweet-wrapper">
+        <div id="fc-tweet-card" class="fc-tweet-card">
+          <!-- preenchido via JS -->
+        </div>
       </div>
 
-      <details style="margin-top:14px;">
-        <summary class="fc-help">Modelo de .md sugerido</summary>
-        <pre class="fc-code">
-@mdpersonal
-Nome: MD Personal
-Texto:
-Este é um post rápido sobre disciplina, treino e saúde mental depois dos 30.
-Meta:
-22:41 · 20 de novembro de 2025 · 120 curtidas · 14 comentários
-        </pre>
-      </details>
+      <div style="margin-top:12px; text-align:right;">
+        <button class="fc-btn" id="fc-download-static" disabled>
+          Baixar PNG (em breve)
+        </button>
+      </div>
     </section>
 
     <section class="fc-panel">
-      <h2>Preview do Card</h2>
-      <div id="static-preview-wrapper">
-        <div id="static-card" class="fc-tweet-card">
-          <div class="fc-tweet-header">
-            <div class="fc-avatar"></div>
-            <div>
-              <div class="fc-tweet-name" id="static-name">Nome da Conta</div>
-              <div class="fc-tweet-handle" id="static-handle">@handle</div>
-            </div>
-          </div>
-          <div class="fc-tweet-body" id="static-text">
-            O texto do post vai aparecer aqui depois que você carregar o arquivo .md.
-          </div>
-          <div class="fc-tweet-meta" id="static-meta">
-            22:41 · 20 de novembro de 2025 · 0 curtidas · 0 comentários
-          </div>
-        </div>
-      </div>
+      <h2>Conteúdo bruto (.md)</h2>
+      <pre class="fc-code" style="white-space:pre-wrap; font-size:0.8rem;">
+{{ page.content | escape }}
+      </pre>
     </section>
   </main>
 
   <footer class="fc-footer">
     <div class="fc-container">
-      <small>Fábrica de Conteúdo · Post estático</small>
+      <small>Fábrica de Conteúdo · Post Estático</small>
     </div>
   </footer>
+
+  <script type="text/plain" id="raw-md">{{ page.content | strip }}</script>
 </body>
 </html>
