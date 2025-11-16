@@ -6,7 +6,7 @@ autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
 avatar: "/assets/img/avatar-mdpersonal.png"
 cards:
-  
+  - contexto: "Consistência no treino e na alimentação"
     texto: |
       Ninguém desiste de si de uma vez.
 
