@@ -69,11 +69,11 @@ layout: none
     </div>
   </section>
 
-  <!-- BOTÃO PARA ABRIR O MODAL DE PROMPTS -->
+  <!-- MODELOS DE PROMPT -->
   <section class="fc-section">
     <h2>Modelos de prompt</h2>
     <p class="fc-section__subtitle">
-      Copie o modelo pronto, cole no ChatGPT e peça o roteiro em .md com front matter.
+      Copie o modelo pronto, cole no ChatGPT e peça o roteiro em <code>.md</code> com front matter.
     </p>
 
     <button type="button" class="fc-open-modal">
@@ -88,93 +88,64 @@ layout: none
 </footer>
 
 <!-- MODAL DE PROMPTS -->
-<div id="fc-modal" class="fc-modal" aria-hidden="true">
+<div id="fc-modal" class="fc-modal">
   <div class="fc-modal__backdrop"></div>
 
-  <div class="fc-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fc-modal-title">
+  <div class="fc-modal__dialog">
     <header class="fc-modal__header">
-      <h2 id="fc-modal-title">Modelos de prompt</h2>
-      <button type="button" id="fc-close" class="fc-modal__close" aria-label="Fechar">×</button>
+      <h2>Modelos de prompt</h2>
+      <button id="fc-close" class="fc-modal__close" type="button">&times;</button>
     </header>
 
     <div class="fc-modal__body">
 
-      <!-- CARD 1 – CARROSSEL EDUCACIONAL MD -->
-      <section class="fc-modal-card">
-        <h3>Carrossel educacional MD</h3>
-        <p>Prompt para gerar roteiro + front matter no formato do carrossel educacional.</p>
+      <!-- CARD 1 · CARROSSEL EDUCACIONAL -->
+      <article class="fc-modal-card">
+        <h3>Carrossel educacional · MD Personal</h3>
+        <p>Use esse modelo para gerar um carrossel em <code>.md</code> já com front matter e lista de <code>slides:</code>.</p>
 
-        <textarea class="fc-modal-text" rows="12">
-Você é roteirista de carrosséis para Instagram voltados para mulheres acima dos 30 anos que querem emagrecer sem dietas malucas.
+        <textarea id="fc-modal-text" class="fc-modal-text" readonly>
+Quero que você gere um arquivo em Markdown para um carrossel educacional no padrão abaixo.
 
-Gere um arquivo em Markdown com FRONT MATTER YAML no começo, seguindo EXATAMENTE esta estrutura:
+Use EXATAMENTE esta estrutura de front matter, preenchendo os campos com base nas instruções do tema que eu enviar em seguida:
 
 ---
-layout: carrossel-md
-title: "TÍTULO DO CARROSSEL (promessa clara)"
-tagline: "Descrição curta do carrossel"
+layout: carrossel
+title: "TÍTULO DO CARROSSEL (curto e direto)"
+tagline: "Frase explicando o carrossel em 1 linha, voltada para mulheres após os 30."
 autor: "Márcio Dowglas – Personal Trainer"
 slides:
-  - tipo: "HOOK"
-    hook: "Frase de impacto do slide 1"
-    texto: "Texto curto reforçando o gancho do problema."
-  - tipo: "CONTEÚDO"
-    hook: "Frase forte do slide 2"
-    texto: "Explicação simples e direta para leigas."
-  - tipo: "CONTEÚDO"
-    hook: "Frase forte do slide 3"
-    texto: "Desenvolva a ideia, com foco em clareza."
-  - tipo: "CONTEÚDO"
-    hook: "Frase forte do slide 4"
-    texto: "Traga exemplos do dia a dia da aluna."
+  - tipo: "Hook"
+    hook: "Frase de impacto que prende a atenção em 1–2 linhas."
+    texto: "Explicação rápida do problema, ainda gerando curiosidade."
+  - tipo: "Conteúdo"
+    hook: "Ponto principal #1 em formato de frase forte."
+    texto: "Parágrafo curto explicando esse ponto, pensando em linguagem simples, feminina e empática."
+  - tipo: "Conteúdo"
+    hook: "Ponto principal #2."
+    texto: "Explicação direta, com foco em dor real do dia a dia."
+  - tipo: "Conteúdo"
+    hook: "Ponto principal #3."
+    texto: "Mostre consequência de não agir e benefício de mudar."
   - tipo: "CTA"
-    hook: "Chamada principal do slide final"
-    texto: "Contextualização rápida da solução (treino/mentoria)."
-    cta: "Chamada para ação final."
+    hook: "Chamada final convidando para agir (avaliar, salvar, compartilhar)."
+    texto: "Fale em primeira pessoa como Márcio, chamando para avaliação física gratuita."
 ---
 
-Tema do carrossel: [descreva aqui o tema exato].
+Depois do front matter, NÃO escreva mais nada. Apenas retorne o YAML acima já preenchido de acordo com o tema que eu mandar.
         </textarea>
 
-        <button type="button" class="fc-copy-btn">Copiar prompt</button>
-      </section>
-
-      <!-- CARD 2 – POST ESTÁTICO TWEETÃO -->
-      <section class="fc-modal-card">
-        <h3>Post estático · Tweetão MD</h3>
-        <p>Prompt para gerar um único card em formato tweet, com front matter de post estático.</p>
-
-        <textarea class="fc-modal-text" rows="12">
-Você é roteirista de posts curtos para Instagram no estilo "tweetão premium", voltados para mulheres acima dos 30 anos que querem emagrecer com treino de força.
-
-Gere um arquivo em Markdown com FRONT MATTER YAML no começo, seguindo EXATAMENTE esta estrutura:
-
----
-layout: estatico-md
-title: "Título interno do arquivo (não precisa ser igual ao card)"
-tagline: "Descrição curta opcional"
-autor: "Márcio Dowglas – Personal Trainer"
-tipo: "tweetao"
-tweet:
-  nome: "Márcio Dowglas"
-  handle: "@marciodowglasfitness"
-  texto: |
-    Texto do card no estilo tweet, com quebras de linha estratégicas
-    para leitura em 3–5 linhas principais.
----
-
-Tema do post estático: [descreva aqui o tema exato].
-        </textarea>
-
-        <button type="button" class="fc-copy-btn">Copiar prompt</button>
-      </section>
+        <button id="fc-copy" class="fc-copy-btn" type="button">
+          Copiar modelo
+        </button>
+      </article>
 
     </div>
   </div>
 </div>
 
-<!-- JS DA HOME (MODAL/CLIPBOARD) -->
-<script src="{{ '/assets/js/home.js' | relative_url }}"></script>
+<!-- Scripts (modal + futuros usos) -->
+<script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 
 </body>
 </html>
