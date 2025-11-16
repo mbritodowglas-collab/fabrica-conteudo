@@ -1,23 +1,28 @@
 // assets/js/carrossel.js
 document.addEventListener('DOMContentLoaded', () => {
-  const downloadBtn = document.getElementById('fc-download-carrossel');
+  const downloadBtn = document.getElementById('download-carrossel');
 
-  // Captura individual dos slides existentes no layout
-  const slides = Array.from(document.querySelectorAll('.fc-slide'));
+  const slides = Array.from(document.querySelectorAll('.slide'));
 
   if (!downloadBtn || !slides.length) return;
 
   downloadBtn.addEventListener('click', async () => {
-    const slug = document.body.getAttribute('data-slug') || 'carrossel';
+    const slug = document.title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'carrossel';
 
     for (let i = 0; i < slides.length; i++) {
       const slide = slides[i];
 
-      // Garante visibilidade no viewport para capturar corretamente
       slide.scrollIntoView({ behavior: 'instant', block: 'center' });
 
       const canvas = await html2canvas(slide, {
-        scale: 2
+        scale: 2,
+        useCORS: true,
+        backgroundColor: null
       });
 
       const link = document.createElement('a');
