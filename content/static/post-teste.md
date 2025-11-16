@@ -3,7 +3,6 @@ layout: static
 title: "Tweetão sobre consistência"
 autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
-contexto: "Consistência no treino e na alimentação"
 ---
 
 Ninguém desiste de si de uma vez.
