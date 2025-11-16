@@ -2,90 +2,80 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Fábrica de Conteúdo · Post Estático</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Post Estático · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <!-- html2canvas para exportar PNG -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+  <script src="../assets/js/static.js" defer></script>
 </head>
-<body>
-  <header class="app-header">
-    <div class="app-brand">
-      <a href="../index.html" class="app-logo-link">
-        <span class="app-logo">FC</span>
-      </a>
-      <div class="app-brand-text">
-        <h1>Post Estático</h1>
-        <p>
-          Carrega posts <code>.md</code> do repositório (content/static) ou via caixa de texto,
-          e organiza em card único pronto pra copiar.
-        </p>
+<body class="fc-body">
+  <header class="fc-header">
+    <div class="fc-container fc-header-inner">
+      <a href="../index.html" class="fc-back">← Voltar</a>
+      <div>
+        <h1 class="fc-logo">Post Estático</h1>
+        <p class="fc-subtitle">Arquivo .md em /content → card pronto → PNG</p>
       </div>
     </div>
   </header>
 
-  <main class="app-main">
-    <!-- BLOCO: arquivos vindos do repositório -->
-    <section class="tool-panel repo-panel">
-      <div class="tool-header">
-        <h2>Posts estáticos do repositório</h2>
-        <p class="tool-hint">
-          Commit seus arquivos <code>.md</code> em <code>content/static/</code> no GitHub e recarregue a lista.
-        </p>
+  <main class="fc-container fc-main fc-main-split">
+    <section class="fc-panel">
+      <h2>Carregar arquivo .md</h2>
+      <p class="fc-help">
+        Salve seu conteúdo em <code>/content</code> e informe abaixo apenas o nome do arquivo.<br>
+        Exemplo: <code>post-estatico-energia.md</code>
+      </p>
+
+      <label class="fc-help" for="static-filename">Nome do arquivo (.md):</label>
+      <input id="static-filename" class="fc-textinput" type="text"
+             placeholder="post-estatico-energia.md">
+
+      <div style="margin-top:10px;">
+        <button id="static-load" class="fc-btn">Carregar arquivo</button>
+        <button id="static-download" class="fc-btn fc-btn-secondary" disabled>Baixar PNG</button>
       </div>
 
-      <div class="tool-actions">
-        <button id="reload-static-files" class="btn btn-secondary">
-          Recarregar lista
-        </button>
-        <span id="static-files-status" class="tool-status"></span>
-      </div>
-
-      <div id="static-file-list" class="cards-grid cards-grid--files">
-        <!-- Lista de arquivos .md do repositório -->
-      </div>
+      <details style="margin-top:14px;">
+        <summary class="fc-help">Modelo de .md sugerido</summary>
+        <pre class="fc-code">
+@mdpersonal
+Nome: MD Personal
+Texto:
+Este é um post rápido sobre disciplina, treino e saúde mental depois dos 30.
+Meta:
+22:41 · 20 de novembro de 2025 · 120 curtidas · 14 comentários
+        </pre>
+      </details>
     </section>
 
-    <!-- BLOCO: entrada manual -->
-    <section class="tool-panel">
-      <div class="tool-header">
-        <h2>Entrada manual de Markdown</h2>
-        <p class="tool-hint">
-          Estrutura sugerida:<br>
-          <code>Nome: Fulana da Silva</code><br>
-          <code>Handle: @fulana</code><br>
-          <code>Meta: #musculacao #emagrecimento</code><br>
-          linha em branco e depois o texto do post.
-        </p>
-      </div>
-
-      <textarea id="static-input" class="md-input" placeholder="Cole aqui o conteúdo .md do seu post estático..."></textarea>
-
-      <div class="tool-actions">
-        <button id="process-static" class="btn btn-primary">
-          Processar Post Estático (entrada manual)
-        </button>
-        <span class="tool-status" id="static-status"></span>
-      </div>
-    </section>
-
-    <!-- BLOCO: resultado -->
-    <section class="results-panel">
-      <div class="results-header">
-        <h2>Prévia do Post</h2>
-        <p>Card textual organizado, pronto para copiar.</p>
-      </div>
-
-      <div id="static-result" class="cards-grid">
-        <!-- Card do post será inserido aqui via JS -->
+    <section class="fc-panel">
+      <h2>Preview do Card</h2>
+      <div id="static-preview-wrapper">
+        <div id="static-card" class="fc-tweet-card">
+          <div class="fc-tweet-header">
+            <div class="fc-avatar"></div>
+            <div>
+              <div class="fc-tweet-name" id="static-name">Nome da Conta</div>
+              <div class="fc-tweet-handle" id="static-handle">@handle</div>
+            </div>
+          </div>
+          <div class="fc-tweet-body" id="static-text">
+            O texto do post vai aparecer aqui depois que você carregar o arquivo .md.
+          </div>
+          <div class="fc-tweet-meta" id="static-meta">
+            22:41 · 20 de novembro de 2025 · 0 curtidas · 0 comentários
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="app-footer">
-    <span>Fábrica de Conteúdo · Modo Post Estático</span>
+  <footer class="fc-footer">
+    <div class="fc-container">
+      <small>Fábrica de Conteúdo · Post estático</small>
+    </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script type="module" src="../assets/js/static.js"></script>
 </body>
 </html>
