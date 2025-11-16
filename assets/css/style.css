@@ -1815,3 +1815,32 @@ main {
   padding-bottom: 0;   /* evita empurrar pra baixo */
   flex-grow: 0;        /* não deixar o texto “encher” o card pra centralizar */
 }
+
+/* ===========================
+   SELO DE VERIFICADO ESTILO TWITTER
+   =========================== */
+
+.fc-verified-badge {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  vertical-align: middle;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff 0%, #d6ebff 30%, #1da1f2 100%);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 2px #050509; /* contraste com fundo */
+}
+
+/* Check dentro do selo */
+.fc-verified-badge::before {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+}
