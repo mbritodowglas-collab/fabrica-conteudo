@@ -1,0 +1,28 @@
+title: "Fábrica de Conteúdo"
+description: "Pipeline de posts e carrosséis a partir de arquivos .md"
+timezone: America/Manaus
+
+# Garante que o Jekyll processe tudo normalmente
+markdown: kramdown
+highlighter: rouge
+
+# Onde estão os arquivos que vão virar páginas
+defaults:
+  # Carrosséis
+  - scope:
+      path: "content/carrossel"
+    values:
+      layout: fc_carrossel
+      type: carrossel
+
+  # Posts estáticos
+  - scope:
+      path: "content/static"
+    values:
+      layout: fc_static
+      type: static
+
+# Opções básicas de build
+exclude:
+  - README.md
+  - LICENSE
