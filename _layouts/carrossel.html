@@ -12,7 +12,7 @@
 <body class="fc-body fc-body--carrossel">
 
   <header class="fc-topbar">
-    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica</a>
+    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
     <span class="fc-topbar__badge">CR · Carrossel educacional</span>
   </header>
 
@@ -27,7 +27,7 @@
         <p class="fc-hero__meta">Roteiro por {{ page.autor }}</p>
       {% endif %}
       <p class="fc-hero__hint">
-        Cada bloco abaixo é um slide vertical. Salve como PDF/PNG e publique em sequência no Instagram.
+        Cada bloco abaixo é um slide vertical. Pense em cada um como um 1080×1350 pra exportar em PDF/PNG.
       </p>
     </section>
 
@@ -39,7 +39,7 @@
             <div class="fc-slide__inner">
               <header class="fc-slide__header">
                 <span class="fc-slide__pill">
-                  {{ s.tipo | default: 'Slide' }} · {{ forloop.index | prepend: '#' }}
+                  {{ s.tipo | default: 'Slide' }} · #{{ forloop.index }}
                 </span>
               </header>
 
@@ -74,7 +74,7 @@
   </main>
 
   <footer class="fc-footer">
-    <p>Fábrica de Conteúdo · carrossel educacional pronto pra exportar.</p>
+    <p>Fábrica de Conteúdo · Carrossel educacional pronto pra exportar.</p>
   </footer>
 
 </body>
