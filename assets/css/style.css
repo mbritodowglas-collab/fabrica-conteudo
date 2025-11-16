@@ -1792,3 +1792,26 @@ main {
 .fc-static-body p:first-child {
   margin-top: 0;
 }
+
+/* ===========================
+   AJUSTE DO POST ESTÁTICO (tweetão)
+   Texto começando mais em cima
+   =========================== */
+
+.fc-body--static .fc-static-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* nada de centralizar verticalmente */
+}
+
+/* Espaço entre avatar/nome e o texto principal */
+.fc-body--static .fc-static-header {
+  margin-bottom: 1.4rem;
+}
+
+/* Texto principal começa logo abaixo do header */
+.fc-body--static .fc-static-body {
+  margin-top: 0;       /* override se em algum lugar tiver margin-top:auto; */
+  padding-bottom: 0;   /* evita empurrar pra baixo */
+  flex-grow: 0;        /* não deixar o texto “encher” o card pra centralizar */
+}
