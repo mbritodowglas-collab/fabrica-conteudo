@@ -21,6 +21,8 @@
   ↓ PNG
 </button>
 
+{% assign modo_midia = page.midia | default: false %}
+
 <main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
@@ -46,9 +48,9 @@
 
     {% for s in slides %}
     <article class="fc-slide slide">
-      <div class="fc-slide__inner">
+      <div class="fc-slide__inner{% if modo_midia %} fc-slide--with-media{% endif %}">
 
-        <!-- NOVO HEADER PREMIUM: LINHA DOURADA + DIAMANTE + CONTADOR -->
+        <!-- HEADER PREMIUM: LINHA DOURADA + DIAMANTE + CONTADOR -->
         <header class="fc-slide__header">
           <div class="fc-slide-divider">
             <span class="fc-divider-line"></span>
@@ -73,6 +75,12 @@
           <footer class="fc-slide__footer">
             <p class="fc-slide__cta">{{ s.cta | newline_to_br }}</p>
           </footer>
+        {% endif %}
+
+        {% if modo_midia %}
+          <div class="fc-slide__media-slot">
+            <div class="fc-slide__media-box"></div>
+          </div>
         {% endif %}
 
       </div>
