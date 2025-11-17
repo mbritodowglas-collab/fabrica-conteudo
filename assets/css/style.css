@@ -2125,3 +2125,34 @@ main {
   opacity: .6;
   margin-bottom: 12px;
 }
+
+/* divisor premium */
+.fc-slide-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  opacity: .85;
+}
+
+.fc-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #C9A84E, transparent);
+}
+
+.fc-divider-icon {
+  padding: 0 8px;
+  color: #C9A84E; /* dourado */
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* número minimalista */
+.fc-slide-num {
+  text-align: center;
+  font-size: 11px;
+  color: #d9d9d9;
+  opacity: .6;
+  margin-bottom: 12px;
+}
