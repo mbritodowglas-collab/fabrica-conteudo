@@ -24,4 +24,4 @@ slides:
     texto: "Eu montei a Bella Prime justamente pra mulheres que estão voltando pro jogo."
     cta: "Clique no link da bio e preencha a avaliação gratuita."
     midia: false
---
+---
