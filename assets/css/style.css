@@ -2156,3 +2156,24 @@ main {
   opacity: .6;
   margin-bottom: 12px;
 }
+
+.cm-card__media {
+  width: 100%;
+  height: 40%; /* altura fixa proporcional */
+  margin: 14px 0 8px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.cm-card__media-placeholder {
+  color: rgba(255,255,255,0.25);
+  font-size: 14px;
+  font-style: italic;
+}
