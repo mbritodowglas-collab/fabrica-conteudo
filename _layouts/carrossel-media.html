@@ -10,92 +10,74 @@
 </head>
 <body class="fc-body fc-body--carrossel">
 
-  <header class="fc-topbar">
-    <a class="fc-topbar__back" href="{{ '/carrosseis.html' | relative_url }}">← Carrosséis</a>
-    <span class="fc-topbar__badge">CM · Carrossel com mídia</span>
-  </header>
+<header class="fc-topbar">
+  <a class="fc-topbar__back" href="{{ '/carrossel-media.html' | relative_url }}">← Carrosséis com mídia</a>
+  <span class="fc-topbar__badge">CM · Carrossel com mídia</span>
+</header>
 
-  <main class="fc-main fc-main--carrossel">
-    <section class="fc-section fc-section--carrossel-head">
-      <div class="fc-section__intro">
-        <h1 class="fc-page-title">{{ page.title }}</h1>
-        {% if page.tagline %}
-          <p class="fc-page-subtitle">{{ page.tagline }}</p>
-        {% endif %}
-      </div>
+<main class="fc-main fc-main--carrossel">
 
-      <button id="download-carrossel" class="fc-btn fc-btn--primary">
-        Baixar slides (PNG)
-      </button>
-    </section>
-
-    <section class="fc-carousel fc-carousel--media">
-
-      {% assign slides = page.slides | default: empty %}
-      {% if slides and slides.size > 0 %}
-
-        {% for s in slides %}
-          {% assign pos = s.posicao_texto | default: 'bottom' %}
-
-          <!-- Cada SECTION é um slide 4:5 pronto pra exportar -->
-          <section class="fc-slide fc-slide--media slide">
-            <article class="cm-card">
-              {% if pos == 'top' %}
-                <div class="cm-card__text cm-card__text--top">
-                  {% if s.hook %}
-                    <h2 class="cm-card__hook">{{ s.hook }}</h2>
-                  {% endif %}
-                  {% if s.texto %}
-                    <div class="cm-card__body">
-                      {{ s.texto | markdownify }}
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              <div class="cm-card__media">
-                {% if s.midia %}
-                  <!-- Aqui você troca a mídia no Canva/CapCut; o src é só referência -->
-                  <div class="cm-card__media-placeholder">
-                    <span class="cm-card__media-label">Área de imagem / vídeo</span>
-                    <span class="cm-card__media-path">{{ s.midia }}</span>
-                  </div>
-                  <!--
-                  Exemplo se quiser já pré-visualizar:
-                  <img src="{{ s.midia | relative_url }}" alt="{{ s.hook | default: page.title }}">
-                  -->
-                {% else %}
-                  <div class="cm-card__media-placeholder">
-                    <span class="cm-card__media-label">Área de imagem / vídeo</span>
-                    <span class="cm-card__media-path">Definir em Canva/CapCut</span>
-                  </div>
-                {% endif %}
-              </div>
-
-              {% if pos != 'top' %}
-                <div class="cm-card__text cm-card__text--bottom">
-                  {% if s.hook %}
-                    <h2 class="cm-card__hook">{{ s.hook }}</h2>
-                  {% endif %}
-                  {% if s.texto %}
-                    <div class="cm-card__body">
-                      {{ s.texto | markdownify }}
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </article>
-          </section>
-
-        {% endfor %}
-
-      {% else %}
-        <p>Este carrossel ainda não possui slides configurados.</p>
+  <section class="fc-section fc-section--carrossel-head">
+    <div class="fc-section__intro">
+      <h1 class="fc-page-title">{{ page.title }}</h1>
+      {% if page.tagline %}
+        <p class="fc-page-subtitle">{{ page.tagline }}</p>
       {% endif %}
+    </div>
 
-    </section>
-  </main>
+    <button id="download-carrossel" class="fc-btn fc-btn--primary">
+      Baixar slides (PNG)
+    </button>
+  </section>
 
-  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+  <section class="fc-carousel fc-carousel--media">
+
+    {% assign slides = page.slides | default: empty %}
+    {% if slides %}
+      {% for s in slides %}
+        {% assign pos = s.posicao_texto | default: 'bottom' %}
+
+        <section class="fc-slide fc-slide--media slide">
+          <article class="cm-card">
+
+            {% if pos == 'top' %}
+            <div class="cm-card__text cm-card__text--top">
+              <h2 class="cm-card__hook">{{ s.hook }}</h2>
+              <div class="cm-card__body">
+                {{ s.texto | markdownify }}
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- BLOCO FIXO DE MÍDIA (SEM CAMINHO DE ARQUIVO) -->
+            <div class="cm-card__media">
+              <div class="cm-card__media-placeholder">
+                <span class="cm-card__media-label">Área de imagem / vídeo</span>
+              </div>
+            </div>
+
+            {% if pos != 'top' %}
+            <div class="cm-card__text cm-card__text--bottom">
+              <h2 class="cm-card__hook">{{ s.hook }}</h2>
+              <div class="cm-card__body">
+                {{ s.texto | markdownify }}
+              </div>
+            </div>
+            {% endif %}
+
+          </article>
+        </section>
+
+      {% endfor %}
+    {% else %}
+      <p>Este carrossel não possui slides configurados.</p>
+    {% endif %}
+
+  </section>
+
+</main>
+
+<script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+
 </body>
 </html>
