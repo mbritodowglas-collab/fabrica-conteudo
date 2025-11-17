@@ -2014,3 +2014,30 @@ main {
   margin: 0 auto 32px;
   padding: 32px 28px 28px;
   border-radius:
+
+/* ==== HARD RESET · ÁREA DE MÍDIA DO CARROSSEL ==== */
+
+/* espaço da imagem/vídeo: só reserva área, sem caixa, sem borda, sem nada */
+.cm-card__media {
+  flex: 0 0 40%;
+  width: 100%;
+  margin: 8px 0 14px;
+  border-radius: 24px;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* garante que nenhum pseudo-elemento antigo desenhe linha ou borda */
+.cm-card__media::before,
+.cm-card__media::after {
+  content: none !important;
+}
+
+/* mata qualquer placeholder/texto antigo que ainda exista */
+.cm-card__media-placeholder,
+.cm-card__media-label,
+.cm-card__media-path {
+  display: none !important;
+}
