@@ -2326,3 +2326,17 @@ main {
     height: 220px;
   }
 }
+
+/* ---------- CARROSSEL · MODO COM MÍDIA ---------- */
+/* Slides marcados com midia: true ganham um rodapé vazio
+   para encaixar imagem/vídeo horizontal no Canva/CapCut. */
+
+.fc-slide--midia .fc-slide__inner {
+  padding-bottom: 180px; /* reserva área inferior */
+}
+
+/* se quiser deixar o texto um pouco mais enxuto nesses slides */
+.fc-slide--midia .fc-slide__text {
+  max-height: 220px;
+  overflow: hidden;
+}
