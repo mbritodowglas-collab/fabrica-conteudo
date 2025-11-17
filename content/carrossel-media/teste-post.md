@@ -1,28 +1,24 @@
 ---
-layout: carrossel-media
-title: "Treinar cansada vs. treinar zerada"
-tagline: "Carrossel com foto/vídeo em cada slide + texto curto explicando."
+layout: carrossel_media
+type: carrossel_media
+title: "TÍTULO DO CARROSSEL"
+tagline: "Descrição curta da ideia central"
 autor: "Márcio Dowglas – Personal Trainer"
 slides:
-  - img: "/assets/img/carrossel-media/slide-01.jpg"
-    posicao_texto: "bottom"   # ou "top"
-    hook: "Treinar só quando está 100% é a maior armadilha."
+  - img: "/assets/img/tmp/slide-1.jpg"
+    tipo: "Hook"
+    hook: "Frase forte do slide 1"
     texto: |
-      Se você espera o dia perfeito pra treinar,
-      o treino nunca vira rotina. A foto aqui mostra a “versão cansada”
-      indo assim mesmo.
-
-  - img: "/assets/img/carrossel-media/slide-02.jpg"
-    posicao_texto: "top"
-    hook: "Seu corpo entende repetição, não perfeição."
+      Texto curto complementar (3–5 linhas),
+      explicando a ideia principal do slide.
+  - img: "/assets/img/tmp/slide-2.jpg"
+    tipo: "Conteúdo"
+    hook: "Frase do slide 2"
     texto: |
-      Use esse slide com vídeo curto de execução do exercício.
-      No texto, reforça que o que muda o corpo é frequência.
-
-  - img: "/assets/img/carrossel-media/slide-03.jpg"
-    posicao_texto: "bottom"
-    hook: "Resumo visual + CTA"
+      Continuação da explicação, conectando com a imagem.
+  - img: "/assets/img/tmp/slide-3.jpg"
+    tipo: "CTA"
+    hook: "Frase final chamando pra ação"
     texto: |
-      Recapitula a ideia em 2–3 linhas e puxa
-      pra salvar o post e mandar no direct.
+      Encerramento + chamada para ação sutil.
 ---
