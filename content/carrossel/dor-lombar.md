@@ -6,7 +6,7 @@ tagline: "Carrossel educacional sobre dor lombar no público feminino"
 
 slides:
   - tipo: "HOOK"
-    hook: "Amiga… vamos falar da sua lombar?"
+    hook: "Ei mana… vamos falar da sua lombar?"
     texto: "Porque eu sei que você tenta ignorar, mas ela tá aí te lembrando todos os dias que o corpo não tá confortável."
 
   - tipo: "CONTEÚDO"
@@ -19,7 +19,7 @@ slides:
 
   - tipo: "CONTEÚDO"
     hook: "Foi aqui que o treino de força virou a virada."
-    texto: "Quando você ativa transverso do abdome, multífidos e glúteo médio… amiga, é como se o corpo dissesse: “até que enfim alguém me deu suporte!”"
+    texto: "Quando você ativa transverso do abdome, multífidos e glúteo médio… é como se o corpo dissesse: “até que enfim alguém me deu suporte!”"
 
   - tipo: "CONTEÚDO"
     hook: "E sim, eu quero que você entenda isso:"
