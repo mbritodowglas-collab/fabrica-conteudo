@@ -2159,7 +2159,7 @@ main {
 
 /* ===========================================
    OVERRIDES · FORMATO QUADRADO (1:1)
-   Para carrossel e posts estáticos
+   Carrossel (CR) + Estático (ST)
    =========================================== */
 
 /* ---------- CARROSSEL (CR) ---------- */
@@ -2180,45 +2180,44 @@ main {
 
 /* cada slide ocupa até 1080px de largura */
 .fc-body--carrossel .fc-slide {
-  width: 100%;
+  width: 100% !important;
   max-width: 1080px;
 }
 
-/* área útil QUADRADA 1:1 */
+/* área útil QUADRADA 1:1 (forçando por cima do 4:5 antigo) */
 .fc-body--carrossel .fc-slide__inner {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;      /* 🔹 chave do formato quadrado */
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;   /* 🔹 quadrado */
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 40px 36px !important;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 40px 36px;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* garante respiro interno pro texto */
+/* conteúdo interno pode rolar se ficar grande demais */
+.fc-body--carrossel .fc-slide__hook,
+.fc-body--carrossel .fc-slide__text,
+.fc-body--carrossel .fc-slide__footer {
+  overflow: auto;
+}
+
+/* divisor + contador ficam mais compactos */
+.fc-body--carrossel .fc-slide__header {
+  margin-bottom: 8px;
+}
+
 .fc-body--carrossel .fc-slide__hook {
-  margin-top: 16px;
+  margin-top: 12px;
   margin-bottom: 16px;
 }
 
 .fc-body--carrossel .fc-slide__text {
   margin-bottom: 16px;
-}
-
-/* se o texto passar muito, ele começa a rolar dentro do card
-   (melhor do que estourar o quadrado na exportação) */
-.fc-body--carrossel .fc-slide__inner {
-  overflow: hidden;
-}
-
-.fc-body--carrossel .fc-slide__inner > * {
-  overflow: auto;
-}
-
-/* opcional: deixa o contador mais discreto no topo */
-.fc-body--carrossel .fc-slide__header {
-  margin-bottom: 4px;
 }
 
 /* ---------- POST ESTÁTICO (ST) ---------- */
@@ -2230,21 +2229,28 @@ main {
 
 /* card 1:1, também até 1080px */
 .fc-body--static .fc-static-card {
-  width: 100%;
+  width: 100% !important;
   max-width: 1080px;
-  aspect-ratio: 1 / 1;      /* 🔹 quadrado */
+  aspect-ratio: 1 / 1 !important;  /* 🔹 quadrado */
   display: flex;
   flex-direction: column;
   padding: 40px 36px;
   box-sizing: border-box;
 }
 
-/* header fixo no topo, texto ocupando o resto */
 .fc-body--static .fc-static-header {
   margin-bottom: 16px;
 }
 
 .fc-body--static .fc-static-body {
   flex: 1;
-  overflow: auto;           /* se o texto for grande, rola dentro do quadrado */
+  overflow: auto;
+}
+
+/* opcional: dar uma enxugada no padding em telas menores */
+@media (max-width: 480px) {
+  .fc-body--carrossel .fc-slide__inner,
+  .fc-body--static .fc-static-card {
+    padding: 28px 20px !important;
+  }
 }
