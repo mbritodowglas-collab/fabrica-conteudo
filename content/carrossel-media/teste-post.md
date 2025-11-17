@@ -1,24 +1,20 @@
 ---
-layout: carrossel_media
+layout: carrossel-media
 type: carrossel_media
 title: "TÍTULO DO CARROSSEL"
-tagline: "Descrição curta da ideia central"
+tagline: "Descrição curta"
 autor: "Márcio Dowglas – Personal Trainer"
 slides:
-  - img: "/assets/img/tmp/slide-1.jpg"
-    tipo: "Hook"
-    hook: "Frase forte do slide 1"
+  - hook: "Título do slide"
     texto: |
-      Texto curto complementar (3–5 linhas),
-      explicando a ideia principal do slide.
-  - img: "/assets/img/tmp/slide-2.jpg"
-    tipo: "Conteúdo"
-    hook: "Frase do slide 2"
+      Texto complementar em até 4 linhas.
+    posicao_texto: "bottom"  # ou "top"
+  - hook: "Título do slide 2"
     texto: |
-      Continuação da explicação, conectando com a imagem.
-  - img: "/assets/img/tmp/slide-3.jpg"
-    tipo: "CTA"
-    hook: "Frase final chamando pra ação"
+      Texto do slide 2.
+    posicao_texto: "bottom"
+  - hook: "Título do slide 3"
     texto: |
-      Encerramento + chamada para ação sutil.
+      Texto do slide 3.
+    posicao_texto: "top"
 ---
