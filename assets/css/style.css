@@ -2156,3 +2156,95 @@ main {
   opacity: .6;
   margin-bottom: 12px;
 }
+
+/* ===========================================
+   OVERRIDES · FORMATO QUADRADO (1:1)
+   Para carrossel e posts estáticos
+   =========================================== */
+
+/* ---------- CARROSSEL (CR) ---------- */
+
+.fc-body--carrossel .fc-main--carrossel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* lista de slides centralizada */
+.fc-body--carrossel .fc-slides {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+/* cada slide ocupa até 1080px de largura */
+.fc-body--carrossel .fc-slide {
+  width: 100%;
+  max-width: 1080px;
+}
+
+/* área útil QUADRADA 1:1 */
+.fc-body--carrossel .fc-slide__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;      /* 🔹 chave do formato quadrado */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 40px 36px;
+  box-sizing: border-box;
+}
+
+/* garante respiro interno pro texto */
+.fc-body--carrossel .fc-slide__hook {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.fc-body--carrossel .fc-slide__text {
+  margin-bottom: 16px;
+}
+
+/* se o texto passar muito, ele começa a rolar dentro do card
+   (melhor do que estourar o quadrado na exportação) */
+.fc-body--carrossel .fc-slide__inner {
+  overflow: hidden;
+}
+
+.fc-body--carrossel .fc-slide__inner > * {
+  overflow: auto;
+}
+
+/* opcional: deixa o contador mais discreto no topo */
+.fc-body--carrossel .fc-slide__header {
+  margin-bottom: 4px;
+}
+
+/* ---------- POST ESTÁTICO (ST) ---------- */
+
+.fc-body--static .fc-static-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* card 1:1, também até 1080px */
+.fc-body--static .fc-static-card {
+  width: 100%;
+  max-width: 1080px;
+  aspect-ratio: 1 / 1;      /* 🔹 quadrado */
+  display: flex;
+  flex-direction: column;
+  padding: 40px 36px;
+  box-sizing: border-box;
+}
+
+/* header fixo no topo, texto ocupando o resto */
+.fc-body--static .fc-static-header {
+  margin-bottom: 16px;
+}
+
+.fc-body--static .fc-static-body {
+  flex: 1;
+  overflow: auto;           /* se o texto for grande, rola dentro do quadrado */
+}
