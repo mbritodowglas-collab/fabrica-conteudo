@@ -21,12 +21,10 @@
   ↓ PNG
 </button>
 
-{% assign modo_midia = page.midia | default: false %}
-
 <main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
-    <div class="fc-hero__tag">Pipeline MD → Página → Arte</div>
+    <div class="fc-hero__tag">PIPELINE MD → PÁGINA → ARTE</div>
     <h1 class="fc-hero__title">{{ page.title }}</h1>
 
     {% if page.tagline %}
@@ -47,10 +45,13 @@
   <section class="fc-slides">
 
     {% for s in slides %}
-    <article class="fc-slide slide">
-      <div class="fc-slide__inner{% if modo_midia %} fc-slide--with-media{% endif %}">
+    {%- assign usa_midia = s.midia | default: false -%}
 
-        <!-- HEADER PREMIUM: LINHA DOURADA + DIAMANTE + CONTADOR -->
+    <!-- se midia: true, aplica classe extra pra reservar área de mídia no rodapé -->
+    <article class="fc-slide slide{% if usa_midia %} fc-slide--midia{% endif %}">
+      <div class="fc-slide__inner">
+
+        <!-- HEADER PREMIUM: divisor + contador -->
         <header class="fc-slide__header">
           <div class="fc-slide-divider">
             <span class="fc-divider-line"></span>
@@ -64,23 +65,23 @@
         </header>
 
         {% if s.hook %}
-          <h2 class="fc-slide__hook">{{ s.hook | newline_to_br }}</h2>
+          <h2 class="fc-slide__hook">
+            {{ s.hook | newline_to_br }}
+          </h2>
         {% endif %}
 
         {% if s.texto %}
-          <p class="fc-slide__text">{{ s.texto | newline_to_br }}</p>
+          <p class="fc-slide__text">
+            {{ s.texto | newline_to_br }}
+          </p>
         {% endif %}
 
         {% if s.cta %}
           <footer class="fc-slide__footer">
-            <p class="fc-slide__cta">{{ s.cta | newline_to_br }}</p>
+            <p class="fc-slide__cta">
+              {{ s.cta | newline_to_br }}
+            </p>
           </footer>
-        {% endif %}
-
-        {% if modo_midia %}
-          <div class="fc-slide__media-slot">
-            <div class="fc-slide__media-box"></div>
-          </div>
         {% endif %}
 
       </div>
