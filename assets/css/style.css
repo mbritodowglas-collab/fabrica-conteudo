@@ -2252,3 +2252,77 @@ main {
   top: 14px;
   right: 14px;
 }
+
+/* ============================================================
+   CARROSSEL — MODO TEXTO + MÍDIA (midia: true)
+   ============================================================ */
+
+/* quando o slide estiver em modo mídia */
+.fc-slide--with-media {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 40px; /* espaço extra pra não grudar na mídia */
+  min-height: 1350px; /* mantém proporção IG vertical */
+}
+
+/* container onde a mídia (imagem/vídeo) será encaixada no Canva */
+.fc-slide__media-slot {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* caixa “vazia” que serve como placeholder visual (1080×608 equivalência) */
+.fc-slide__media-box {
+  width: 100%;
+  height: 360px; /* altura ideal para vídeos/imagens 16:9 */
+  max-height: 380px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
+
+  backdrop-filter: blur(2px);
+}
+
+/* quando a mídia tiver hook e texto longos, mantém respiro */
+.fc-slide--with-media .fc-slide__text {
+  margin-bottom: 24px;
+}
+
+/* ============================================================
+   LUXO VISUAL — linha dourada adicional para separação
+   ============================================================ */
+
+.fc-slide--with-media .fc-divider-line {
+  background: linear-gradient(to right, transparent, #d4b86a, transparent);
+}
+
+.fc-slide--with-media .fc-divider-icon {
+  color: #d4b86a;
+}
+
+/* ============================================================
+   GARANTIA DE RESPONSIVIDADE NO DASHBOARD
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .fc-slide__media-box {
+    height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fc-slide__media-box {
+    height: 220px;
+  }
+}
