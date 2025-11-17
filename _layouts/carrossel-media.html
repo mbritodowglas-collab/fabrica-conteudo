@@ -33,35 +33,40 @@
   <section class="fc-carousel fc-carousel--media">
 
     {% assign slides = page.slides | default: empty %}
-    {% if slides %}
+    {% if slides and slides.size > 0 %}
       {% for s in slides %}
         {% assign pos = s.posicao_texto | default: 'bottom' %}
 
+        <!-- Cada section = 1 slide 4:5 -->
         <section class="fc-slide fc-slide--media slide">
           <article class="cm-card">
 
             {% if pos == 'top' %}
             <div class="cm-card__text cm-card__text--top">
-              <h2 class="cm-card__hook">{{ s.hook }}</h2>
-              <div class="cm-card__body">
-                {{ s.texto | markdownify }}
-              </div>
+              {% if s.hook %}
+                <h2 class="cm-card__hook">{{ s.hook }}</h2>
+              {% endif %}
+              {% if s.texto %}
+                <div class="cm-card__body">
+                  {{ s.texto | markdownify }}
+                </div>
+              {% endif %}
             </div>
             {% endif %}
 
-            <!-- BLOCO FIXO DE MÍDIA (SEM CAMINHO DE ARQUIVO) -->
-            <div class="cm-card__media">
-              <div class="cm-card__media-placeholder">
-                <span class="cm-card__media-label">Área de imagem / vídeo</span>
-              </div>
-            </div>
+            <!-- BLOCO FIXO DE MÍDIA – área vazia pra imagem/vídeo no Canva -->
+            <div class="cm-card__media"></div>
 
             {% if pos != 'top' %}
             <div class="cm-card__text cm-card__text--bottom">
-              <h2 class="cm-card__hook">{{ s.hook }}</h2>
-              <div class="cm-card__body">
-                {{ s.texto | markdownify }}
-              </div>
+              {% if s.hook %}
+                <h2 class="cm-card__hook">{{ s.hook }}</h2>
+              {% endif %}
+              {% if s.texto %}
+                <div class="cm-card__body">
+                  {{ s.texto | markdownify }}
+                </div>
+              {% endif %}
             </div>
             {% endif %}
 
@@ -77,6 +82,8 @@
 
 </main>
 
+<!-- html2canvas + script de download -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 
 </body>
