@@ -1,6 +1,5 @@
 ---
 ---
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -45,10 +44,17 @@
         {% for s in slides %}
           <article class="fc-slide slide">
             <div class="fc-slide__inner">
+
+              <!-- cabeçalho mais clean: pill + contador -->
               <header class="fc-slide__header">
-                <span class="fc-slide__pill">
-                  {{ s.tipo | default: 'Slide' }} · #{{ forloop.index }}
-                </span>
+                <div class="fc-slide__meta">
+                  <span class="fc-slide__pill">
+                    {{ s.tipo | default: 'Slide' | upcase }}
+                  </span>
+                  <span class="fc-slide__count">
+                    {{ forloop.index }} / {{ slides.size }}
+                  </span>
+                </div>
               </header>
 
               {% if s.hook %}
