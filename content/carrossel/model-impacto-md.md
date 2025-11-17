@@ -1,42 +1,29 @@
 ---
 layout: carrossel
-type: "carrossel"
-title: "Impacto MD · Exemplo"
-tagline: "Carrossel de impacto com frase-chave gigante no primeiro slide."
+title: "Como recomeçar do zero sem se quebrar"
 autor: "Márcio Dowglas – Personal Trainer"
----
+tagline: "Carrossel educacional para o feed da Bella Prime"
 
 slides:
-  - tipo: "Hook"
-    hook: |
-      INTELIGÊNCIA HORMONAL
-      É O NOVO DESEMPENHO.
-    texto: |
-      Seu corpo não responde só a calorias.
-      Ele responde à forma como você dorme, se alimenta, treina
-      e gerencia o estresse.
-    cta: ""
+  - tipo: "HOOK"
+    midia: true
+    img: "/caminho/da-imagem-1.jpg"
+    hook: "Recomeçar do zero não é fracasso."
+    texto: "É estratégia de quem ainda não desistiu de si mesma."
 
-  - tipo: "Conteúdo"
-    hook: "Erro 1 · Viver em modo urgência o tempo todo."
-    texto: |
-      Quando o corpo acha que está em perigo constante,
-      ele segura gordura, derruba energia e bagunça o humor.
-      Não é falta de força de vontade, é fisiologia de sobrevivência.
-    cta: ""
+  - tipo: "CONTEÚDO"
+    midia: false
+    hook: "O corpo não está te sabotando."
+    texto: "Ele só está reagindo a anos de estresse, sono ruim e alimentação caótica. Treino é uma forma de ensinar o corpo a confiar em você de novo."
 
-  - tipo: "Conteúdo"
-    hook: "Erro 2 · Treinar só para “queimar caloria”."
-    texto: |
-      Treino de força bem feito ensina seu corpo a usar energia melhor,
-      protege sua massa magra e melhora a sensibilidade à insulina.
-      Sem isso, dieta vira castigo e efeito sanfona vira padrão.
-    cta: ""
+  - tipo: "CONTEÚDO"
+    midia: false
+    hook: "Constância > intensidade perfeita."
+    texto: "Três treinos medianos na semana mudam mais a sua vida do que um treino perfeito a cada quinze dias."
 
   - tipo: "CTA"
-    hook: "Quer alinhar treino e hormônios em vez de brigar com o corpo?"
-    texto: |
-      Quando você entende o porquê do corpo travar, fica mais fácil
-      construir um plano que ele aceite manter.
-    cta: |
-      Clique no link da bio e preencha a avaliação gratuita.
+    midia: false
+    hook: "Quer recomeçar sem se quebrar de novo?"
+    texto: "Eu montei a Bella Prime justamente pra mulheres que estão voltando pro jogo."
+    cta: "Clique no link da bio e preencha a avaliação gratuita."
+---
