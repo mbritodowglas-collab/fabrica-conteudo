@@ -4,98 +4,105 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>{{ page.title }} · Carrossel com mídia · Fábrica de Conteúdo</title>
+  <title>{{ page.title }} · Carrossel quadrado · Fábrica de Conteúdo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body class="fc-body fc-body--carrossel">
+<body class="fc-body fc-body--carrossel fc-body--carrossel-media">
 
   <header class="fc-topbar">
-    <a class="fc-topbar__back" href="{{ '/carrosseis.html' | relative_url }}">← Carrosséis</a>
-    <span class="fc-topbar__badge">CM · Carrossel com mídia</span>
+    <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
+    <span class="fc-topbar__badge">CM · Carrossel quadrado</span>
   </header>
 
+  <!-- Botão fixo de download no topo direito -->
+  <button
+    id="download-carrossel"
+    class="fc-download-fixed"
+    type="button">
+    ↓ PNG
+  </button>
+
   <main class="fc-main fc-main--carrossel">
-    <section class="fc-section fc-section--carrossel-head">
-      <div class="fc-section__intro">
-        <h1 class="fc-page-title">{{ page.title }}</h1>
-        {% if page.tagline %}
-          <p class="fc-page-subtitle">{{ page.tagline }}</p>
-        {% endif %}
-      </div>
-
-      <button id="download-carrossel" class="fc-btn fc-btn--primary">
-        Baixar slides (PNG)
-      </button>
-    </section>
-
-    <section class="fc-carousel fc-carousel--media">
-
-      {% assign slides = page.slides | default: empty %}
-      {% if slides and slides.size > 0 %}
-
-        {% for s in slides %}
-          {% assign pos = s.posicao_texto | default: 'bottom' %}
-
-          <!-- Cada SECTION é um slide 4:5 pronto pra exportar -->
-          <section class="fc-slide fc-slide--media slide">
-            <article class="cm-card">
-              {% if pos == 'top' %}
-                <div class="cm-card__text cm-card__text--top">
-                  {% if s.hook %}
-                    <h2 class="cm-card__hook">{{ s.hook }}</h2>
-                  {% endif %}
-                  {% if s.texto %}
-                    <div class="cm-card__body">
-                      {{ s.texto | markdownify }}
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              <div class="cm-card__media">
-                {% if s.midia %}
-                  <!-- Aqui você troca a mídia no Canva/CapCut; o src é só referência -->
-                  <div class="cm-card__media-placeholder">
-                    <span class="cm-card__media-label">Área de imagem / vídeo</span>
-                    <span class="cm-card__media-path">{{ s.midia }}</span>
-                  </div>
-                  {#
-                  Exemplo se quiser já pré-visualizar:
-                  <img src="{{ s.midia | relative_url }}" alt="{{ s.hook | default: page.title }}">
-                  #}
-                {% else %}
-                  <div class="cm-card__media-placeholder">
-                    <span class="cm-card__media-label">Área de imagem / vídeo</span>
-                    <span class="cm-card__media-path">Definir em Canva/CapCut</span>
-                  </div>
-                {% endif %}
-              </div>
-
-              {% if pos != 'top' %}
-                <div class="cm-card__text cm-card__text--bottom">
-                  {% if s.hook %}
-                    <h2 class="cm-card__hook">{{ s.hook }}</h2>
-                  {% endif %}
-                  {% if s.texto %}
-                    <div class="cm-card__body">
-                      {{ s.texto | markdownify }}
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </article>
-          </section>
-
-        {% endfor %}
-
-      {% else %}
-        <p>Este carrossel ainda não possui slides configurados.</p>
+    <section class="fc-hero">
+      <div class="fc-hero__tag">Pipeline MD → Página → Arte</div>
+      <h1 class="fc-hero__title">{{ page.title }}</h1>
+      {% if page.tagline %}
+        <p class="fc-hero__subtitle">{{ page.tagline }}</p>
       {% endif %}
-
+      {% if page.autor %}
+        <p class="fc-hero__meta">Roteiro por {{ page.autor }}</p>
+      {% endif %}
+      <p class="fc-hero__hint">
+        Aqui cada slide é quadrado (1:1), pronto pra anúncio e feed patrocinado.
+      </p>
     </section>
+
+    {% assign slides = page.slides | default: empty %}
+    {% if slides and slides.size > 0 %}
+      <section class="fc-slides fc-slides--media">
+        {% for s in slides %}
+          <article class="fc-slide slide fc-slide--media">
+            <div class="fc-slide__inner fc-slide__inner--media">
+
+              {% if s.img %}
+                <div class="fc-slide__img-wrap">
+                  <img
+                    src="{{ s.img | relative_url }}"
+                    alt="{{ s.hook | default: page.title }}"
+                    class="fc-slide__img">
+                </div>
+              {% endif %}
+
+              <header class="fc-slide__header fc-slide__header--media">
+                <div class="fc-slide__meta">
+                  <span class="fc-slide__pill">
+                    {{ s.tipo | default: 'Slide' | upcase }}
+                  </span>
+                  <span class="fc-slide__count">
+                    {{ forloop.index }} / {{ slides.size }}
+                  </span>
+                </div>
+              </header>
+
+              {% if s.hook %}
+                <h2 class="fc-slide__hook fc-slide__hook--media">
+                  {{ s.hook | newline_to_br }}
+                </h2>
+              {% endif %}
+
+              {% if s.texto %}
+                <p class="fc-slide__text fc-slide__text--media">
+                  {{ s.texto | newline_to_br }}
+                </p>
+              {% endif %}
+
+              {% if s.cta %}
+                <footer class="fc-slide__footer fc-slide__footer--media">
+                  <p class="fc-slide__cta">
+                    {{ s.cta | newline_to_br }}
+                  </p>
+                </footer>
+              {% endif %}
+
+            </div>
+          </article>
+        {% endfor %}
+      </section>
+    {% else %}
+      <section class="fc-empty">
+        <p>Nenhum slide encontrado. Defina a lista <code>slides:</code> no front matter deste arquivo.</p>
+      </section>
+    {% endif %}
   </main>
 
+  <footer class="fc-footer">
+    <p>Fábrica de Conteúdo · Carrossel quadrado pronto pra exportar.</p>
+  </footer>
+
+  <!-- Scripts para captura em PNG (reaproveita o mesmo JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+
 </body>
 </html>
