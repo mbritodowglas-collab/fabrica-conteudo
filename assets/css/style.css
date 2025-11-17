@@ -2156,3 +2156,99 @@ main {
   opacity: .6;
   margin-bottom: 12px;
 }
+
+/* ===========================
+   CARROSSEL · ÁREA DE MÍDIA EMBAIXO (PARA VÍDEO/IMAGEM HORIZONTAL)
+   =========================== */
+
+.fc-slide__media-slot {
+  margin-top: auto;              /* gruda a área de mídia no fim do slide */
+  padding-top: 12px;
+}
+
+.fc-slide__media-box {
+  width: 100%;
+  border-radius: 18px;
+  min-height: 120px;
+  /* proporção aproximada 16:9 dentro do slide vertical */
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 55%),
+              rgba(0, 0, 0, 0.65);
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.9),
+    0 0 24px rgba(0, 0, 0, 0.85);
+}
+
+/* ===========================
+   CARROSSEL QUADRADO (carrossel_media)
+   =========================== */
+
+.fc-body--carrossel-media .fc-main--carrossel {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.fc-body--carrossel-media .fc-slides.fc-slides--media {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.fc-body--carrossel-media .fc-slide.fc-slide--media {
+  width: min(900px, 92vw);
+  aspect-ratio: 1 / 1;          /* quadrado 1:1 */
+}
+
+.fc-body--carrossel-media .fc-slide__inner.fc-slide__inner--media {
+  height: 100%;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* área da imagem dentro do quadrado */
+.fc-slide__img-wrap {
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  aspect-ratio: 16 / 9;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-slide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* tipografia ajustada pra caber bem dentro do 1:1 */
+.fc-body--carrossel-media .fc-slide__header--media {
+  margin-bottom: 8px;
+}
+
+.fc-body--carrossel-media .fc-slide__hook--media {
+  font-size: 1.2rem;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.fc-body--carrossel-media .fc-slide__text--media {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.fc-body--carrossel-media .fc-slide__footer--media {
+  margin-top: auto;
+}
+
+/* só pra garantir que o botão fixo de download não brigue com o layout quadrado */
+.fc-body--carrossel-media .fc-download-fixed {
+  top: 14px;
+  right: 14px;
+}
