@@ -1,33 +1,33 @@
 ---
 layout: static
 type: static
-title: "Aeróbico antes ou depois? A resposta de verdade"
+title: "Tweetão — A verdade que ninguém te conta sobre a ordem do treino"
 autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
 avatar: "/assets/img/avatar-md.jpg"
 verificado: true
 ---
 
-Aeróbico *antes* da musculação?
+Olha… tem um erro que faz MUITA mulher travar no treino,
+mas quase ninguém fala disso porque dá audiência vender “faça do seu jeito”.
 
-Você perde força.  
-Perde técnica.  
-E ainda entra na musculação com o cérebro no modo “economiza aí”.
+A verdade?
 
-Aeróbico *depois* da musculação?
+Se você faz aeróbico antes da musculação,
+você está literalmente sabotando o seu próprio resultado.
 
-Mais força.  
-Mais fibra rápida.  
-Mais hipertrofia.  
-E, de quebra, um boost de humor no final.
+Você chega cansada na parte mais importante,
+perde força,
+perde técnica,
+perde estímulo muscular…
 
-A ordem é simples:
+E depois acha que “seu corpo não responde”.
 
-Se o seu objetivo é **corpo, força, técnica ou emagrecer sem perder massa** →  
-**Musculação primeiro.**
+Quando na verdade o problema é só isso:
+**você está treinando na ordem errada.**
 
-Se o objetivo é só melhorar o cardio →  
-**Aí sim o aeróbico abre o treino.**
+Musculação vem primeiro.
+Ponto.
 
-Fisiologia não liga pra opinião.  
-Ela só responde ao estímulo certo na hora certa.
+Não é opinião.  
+É fisiologia feminina.
