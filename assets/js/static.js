@@ -3,16 +3,22 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Botão fixo no topo (igual está no layout)
-  const btn = document.getElementById('download-static');
+  const btn =
+    document.getElementById('download-static') ||
+    document.querySelector('[data-download="static"]');
+
   if (!btn) {
     console.warn('[static] Botão #download-static não encontrado no DOM.');
     return;
   }
 
   // Wrapper principal que contém o card (hero, multi ou single)
-  const wrapper = document.querySelector('.fc-static-wrapper');
+  const wrapper =
+    document.querySelector('.fc-static-wrapper') ||
+    document.querySelector('.fc-static');
+
   if (!wrapper) {
-    console.warn('[static] .fc-static-wrapper não encontrado. Nada para capturar.');
+    console.warn('[static] .fc-static-wrapper/.fc-static não encontrado. Nada para capturar.');
     return;
   }
 
@@ -21,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btn.addEventListener('click', async () => {
     try {
+      if (typeof html2canvas !== 'function') {
+        console.error('[static] html2canvas não está disponível. Confere se o script foi incluído antes de static.js.');
+        return;
+      }
+
       // Garante que o bloco está visível e centralizado na tela
       wrapper.scrollIntoView({ behavior: 'auto', block: 'center' });
 
