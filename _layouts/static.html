@@ -15,7 +15,7 @@
     <span class="fc-topbar__badge">ST · Post estático</span>
   </header>
 
-  <!-- Botão fixo de download no topo direito (reaproveita o mesmo CSS do carrossel) -->
+  <!-- Botão fixo de download -->
   <button
     id="download-static"
     class="fc-download-fixed"
@@ -37,9 +37,9 @@
   <main class="fc-main fc-main--static">
 
     {%- if page.variant == "hero" -%}
-      <!-- MODE HERO (FRASE PRINCIPAL) -->
+      <!-- MODE HERO -->
       <section class="fc-static-wrapper fc-static-wrapper--hero">
-        <article class="fc-static-card fc-static-card--hero">
+        <article class="fc-static-card fc-static-card--hero fc-static-block">
           <header class="fc-static-header">
             <div class="fc-avatar">
               {% if page.avatar %}
@@ -82,7 +82,7 @@
       <!-- MODE MULTI-CARD -->
       <section class="fc-static-wrapper fc-static-wrapper--multi">
         {%- for c in page.cards -%}
-          <article class="fc-static-card">
+          <article class="fc-static-card fc-static-block">
             <header class="fc-static-header">
               <div class="fc-avatar">
                 {% if page.avatar %}
@@ -113,9 +113,9 @@
       </section>
 
     {%- else -%}
-      <!-- MODE SINGLE (1 CARD) -->
+      <!-- MODE SINGLE -->
       <section class="fc-static-wrapper">
-        <article class="fc-static-card">
+        <article class="fc-static-card fc-static-block">
           <header class="fc-static-header">
             <div class="fc-avatar">
               {% if page.avatar %}
@@ -147,8 +147,9 @@
 
   </main>
 
-  <!-- Scripts para captura em PNG -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="{{ '/assets/js/static.js' | relative_url }}"></script>
 
 </body>
