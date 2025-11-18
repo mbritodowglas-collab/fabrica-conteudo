@@ -1,33 +1,38 @@
 ---
 layout: static
 type: static
-title: "Tweetão — A verdade que ninguém te conta sobre a ordem do treino"
+title: "Tweetão — A verdade sobre a ordem do treino"
 autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
 avatar: "/assets/img/avatar-md.jpg"
 verificado: true
+cards:
+  - texto: |
+      Olha… tem uma coisa que trava a evolução de MUITA mulher.
+
+      Não é idade.  
+      Não é genética.  
+      Não é “lute contra a preguiça”.  
+      
+      É pura lógica do corpo:
+      
+      Se você faz aeróbico antes da musculação,
+      você JÁ CHEGA cansada na parte que mais importa.
+
+      A força cai.  
+      A técnica piora.  
+      E você começa a achar que “seu corpo não responde”.
+
+      Mas o problema é só isso:
+      **você está treinando na ordem errada.**
+  - texto: |
+      Se você quer tônus, firmeza e emagrecimento sem murchar:
+
+      👉 Musculação primeiro.  
+      👉 Aeróbico depois.  
+
+      Sem mistério. Sem drama. Sem achismo.
+
+      Quer aprender a treinar do jeito que o corpo feminino realmente responde?
+      Faça sua avaliação gratuita no link da bio.
 ---
-
-Olha… tem um erro que faz MUITA mulher travar no treino,
-mas quase ninguém fala disso porque dá audiência vender “faça do seu jeito”.
-
-A verdade?
-
-Se você faz aeróbico antes da musculação,
-você está literalmente sabotando o seu próprio resultado.
-
-Você chega cansada na parte mais importante,
-perde força,
-perde técnica,
-perde estímulo muscular…
-
-E depois acha que “seu corpo não responde”.
-
-Quando na verdade o problema é só isso:
-**você está treinando na ordem errada.**
-
-Musculação vem primeiro.
-Ponto.
-
-Não é opinião.  
-É fisiologia feminina.
