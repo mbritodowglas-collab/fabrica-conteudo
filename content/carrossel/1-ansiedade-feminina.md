@@ -2,6 +2,10 @@
 layout: carrossel
 title: "Como o treino virou meu remédio natural contra ansiedade"
 autor: "Márcio Dowglas – Personal Trainer"
+autor_nome: "Márcio Dowglas"
+autor_handle: "@marciodowglas.trainer"
+avatar: "/assets/img/avatar-mdpersonal.jpg"
+verificado: true
 tagline: "Carrossel educacional sobre ansiedade feminina e treino de força"
 
 slides:
