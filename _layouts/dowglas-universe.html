@@ -43,14 +43,16 @@
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.75);
       background-image: url("{{ '/assets/img/dowglas-universe.jpg' | relative_url }}");
       background-size: cover;
-      background-position: center;
+      /* 🔧 Ancorado no bottom pra não cortar o rodapé da arte */
+      background-position: center bottom;
       background-repeat: no-repeat;
     }
 
     .du-content {
       position: absolute;
       inset: 0;
-      padding: 4.5rem 3.5rem 4rem;
+      /* 🔧 Mais respiro embaixo pra não invadir o rodapé da imagem */
+      padding: 4.5rem 3.5rem 6rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -75,9 +77,10 @@
       white-space: pre-line;
     }
 
+    /* Mantive o footer HTML, mas um pouco mais alto pra não brigar com o da arte */
     .du-footer {
       position: absolute;
-      bottom: 2.5rem;
+      bottom: 3.5rem;
       left: 0;
       right: 0;
       text-align: center;
