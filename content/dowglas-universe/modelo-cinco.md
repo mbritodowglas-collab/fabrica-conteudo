@@ -1,5 +1,5 @@
 ---
-layout: universe
+layout: dowglas-universe
 title: "Modelo · Lista reflexiva"
 perfil: "Dowglas Universe"
 tipo_post: "lista-reflexiva"
