@@ -1,5 +1,5 @@
 ---
-layout: universe
+layout: dowglad/universe
 title: "Modelo · Textão quadro único"
 perfil: "Dowglas Universe"
 tipo_post: "textao-unico"
