@@ -1,5 +1,5 @@
 ---
-layout: carrossel
+layout: universe
 title: "Modelo · Textão multiquadros"
 perfil: "Dowglas Universe"
 tipo_post: "textao-multiquadros"
