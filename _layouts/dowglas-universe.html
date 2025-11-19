@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} · Dowglas Universe · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <style>
+    .du-body {
+      background: #05070b;
+      color: #e3e7f7;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .du-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .du-hero-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .du-hero-sub {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .du-wrapper {
+      width: 1080px;
+      height: 1350px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.75);
+      background-image: url("{{ '/assets/img/dowglas-universe-bg.jpg' | relative_url }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .du-content {
+      position: absolute;
+      inset: 0;
+      padding: 4.5rem 3.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 2rem;
+      color: #e3e7f7;
+    }
+
+    .du-title {
+      font-size: 2.6rem;
+      line-height: 1.25;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      max-width: 80%;
+    }
+
+    .du-text {
+      font-size: 1.45rem;
+      line-height: 1.6;
+      font-weight: 300;
+      opacity: 0.95;
+      max-width: 85%;
+      white-space: pre-line;
+    }
+
+    .du-footer {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #9ba4cf;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .du-download-btn {
+      position: fixed;
+      right: 1.5rem;
+      top: 1.5rem;
+      z-index: 50;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .du-download-btn:hover {
+      background: rgba(30, 64, 175, 0.9);
+    }
+
+    @media (max-width: 1200px) {
+      .du-wrapper {
+        transform: scale(0.75);
+        transform-origin: top center;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .du-wrapper {
+        transform: scale(0.6);
+      }
+    }
+  </style>
+</head>
+
+<body class="du-body">
+
+<header class="fc-topbar">
+  <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
+  <span class="fc-topbar__badge">DU · Dowglas Universe</span>
+</header>
+
+<button id="download-du" class="du-download-btn" type="button">
+  ↓ PNG
+</button>
+
+<main class="du-main">
+
+  <section class="fc-hero">
+    <h1 class="du-hero-title">{{ page.title }}</h1>
+    <p class="du-hero-sub">
+      Espaço livre para filmes, animes, filosofia, rotina e caos organizado do Dowglas Universe.
+    </p>
+    <p class="fc-hero__hint">
+      O bloco abaixo é um post vertical 1080×1350 pronto para exportar. O texto vem desse próprio arquivo
+      ou de um conteúdo Markdown que você definir.
+    </p>
+  </section>
+
+  <section>
+    <div class="du-wrapper" id="du-capture">
+      <div class="du-content">
+        {% if page.titulo %}
+          <div class="du-title">{{ page.titulo }}</div>
+        {% endif %}
+
+        {% if page.texto %}
+          <div class="du-text">
+            {{ page.texto | newline_to_br }}
+          </div>
+        {% else %}
+          <div class="du-text">
+            {{ content | markdownify }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="du-footer">
+        DOWGLAS UNIVERSE
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fc-footer">
+  Fábrica de Conteúdo · Modo Dowglas Universe.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('download-du');
+  const target = document.getElementById('du-capture');
+
+  if (!btn || !target || typeof html2canvas !== 'function') return;
+
+  btn.addEventListener('click', async () => {
+    try {
+      const canvas = await html2canvas(target, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: null
+      });
+
+      // slug básico a partir do título
+      let raw = document.title || 'dowglas-universe';
+      raw = raw.replace(/· Dowglas Universe.*$/i, '').trim();
+      const slug = (raw || 'dowglas-universe')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+      const link = document.createElement('a');
+      link.download = `${slug || 'dowglas-universe'}.png`;
+      link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error('[DU] erro ao exportar PNG:', err);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
