@@ -1,5 +1,5 @@
 ---
-layout: universe
+layout: dowglas-universe
 title: "Modelo · Textão multiquadros"
 perfil: "Dowglas Universe"
 tipo_post: "textao-multiquadros"
