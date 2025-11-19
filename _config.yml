@@ -28,6 +28,13 @@ defaults:
       layout: static
       type: static
 
+  # Dowglas Universe — Posts verticais 1080×1350 cósmicos
+  - scope:
+      path: "content/dowglas universe"
+    values:
+      layout: dowglas-universe
+      type: dowglas-universe
+
 exclude:
   - README.md
   - LICENSE
