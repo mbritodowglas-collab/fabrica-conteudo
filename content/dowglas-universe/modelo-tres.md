@@ -1,5 +1,5 @@
 ---
-layout: universe
+layout: dowglas-universe
 title: "Modelo · Imagem + análise"
 perfil: "Dowglas Universe"
 tipo_post: "imagem-topo"
