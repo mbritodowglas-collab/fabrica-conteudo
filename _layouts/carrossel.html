@@ -21,6 +21,20 @@
   ↓ PNG
 </button>
 
+{%- comment %}
+  Adicionando o mesmo esquema de avatar/nome usado no "static".
+  NÃO altera nada do layout. Apenas cria variáveis.
+{% endcomment -%}
+
+{%- assign nome = page.autor_nome | default: page.autor | default: 'MD Personal' -%}
+{%- assign partes = nome | split: ' ' -%}
+{%- assign p1 = partes[0] | slice: 0,1 -%}
+{%- assign p2 = '' -%}
+{%- if partes.size > 1 -%}
+  {%- assign p2 = partes[1] | slice: 0,1 -%}
+{%- endif -%}
+{%- assign iniciais = p1 | append: p2 -%}
+
 <main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
@@ -47,7 +61,6 @@
     {% for s in slides %}
     {%- assign usa_midia = s.midia | default: false -%}
 
-    <!-- se midia: true, aplica classe extra pra reservar área de mídia no rodapé -->
     <article class="fc-slide slide{% if usa_midia %} fc-slide--midia{% endif %}">
       <div class="fc-slide__inner">
 
@@ -74,6 +87,39 @@
           <p class="fc-slide__text">
             {{ s.texto | newline_to_br }}
           </p>
+        {% endif %}
+
+        {%- comment %}
+          🔥 INSERÇÃO DO BLOCO DE PERFIL NO ÚLTIMO SLIDE
+          Mantendo exatamente o design do estilo Twitter.
+        {% endcomment -%}
+        {% if forloop.last %}
+        <div class="fc-slide__profile" style="margin-top: 2rem;">
+          <div class="fc-static-header">
+
+            <div class="fc-avatar">
+              {% if page.avatar %}
+                <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+              {% else %}
+                <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+              {% endif %}
+            </div>
+
+            <div class="fc-static-user">
+              <div class="fc-static-user__name">
+                {{ nome }}
+                {% if page.verificado %}
+                  <span class="fc-verified-badge" title="Verificado"></span>
+                {% endif %}
+              </div>
+
+              {% if page.autor_handle %}
+                <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
         {% endif %}
 
         {% if s.cta %}
