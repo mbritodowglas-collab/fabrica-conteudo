@@ -91,11 +91,11 @@
 
         {%- comment %}
           🔥 INSERÇÃO DO BLOCO DE PERFIL NO ÚLTIMO SLIDE
-          Mantendo exatamente o design do estilo Twitter.
+          Posição 1: base do slide, centralizado, estilo assinatura.
         {% endcomment -%}
         {% if forloop.last %}
-        <div class="fc-slide__profile" style="margin-top: 2rem;">
-          <div class="fc-static-header">
+        <div class="fc-slide__profile" style="margin-top: 2.5rem; display: flex; justify-content: center;">
+          <div class="fc-profile-card" style="display: flex; align-items: center; gap: 0.75rem;">
 
             <div class="fc-avatar">
               {% if page.avatar %}
@@ -105,7 +105,7 @@
               {% endif %}
             </div>
 
-            <div class="fc-static-user">
+            <div class="fc-static-user" style="text-align: left;">
               <div class="fc-static-user__name">
                 {{ nome }}
                 {% if page.verificado %}
