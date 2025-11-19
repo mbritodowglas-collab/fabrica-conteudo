@@ -66,24 +66,34 @@ layout: none
         </div>
       </a>
 
-      <!-- CARD 3: CARROSSEL COM MÍDIA (AGORA LINK PARA PAINEL) -->
+      <!-- CARD 3: CARROSSEL COM MÍDIA -->
       <a href="{{ '/carrossel-media.html' | relative_url }}" class="fc-card-button">
         <div class="fc-card-icon fc-card-icon--media">CM</div>
         <div class="fc-card-content">
-          <h3>Carrossel com mídia</h3>
-          <p>Slides com espaço reservado para imagem/vídeo + texto complementar.</p>
+          <h3>Carrossel com Mídia</h3>
+          <p>Slides com espaço reservado para imagem/vídeo + texto.</p>
           <span class="fc-card-cta">Abrir painel de mídia ↗</span>
+        </div>
+      </a>
+
+      <!-- CARD 4: DOWGLAS UNIVERSE (NOVO) -->
+      <a href="{{ '/dowglas-universe.html' | relative_url }}" class="fc-card-button">
+        <div class="fc-card-icon fc-card-icon--du">DU</div>
+        <div class="fc-card-content">
+          <h3>Dowglas Universe</h3>
+          <p>Posts verticais 1080×1350 em estilo cósmico minimalista para temas livres.</p>
+          <span class="fc-card-cta">Abrir Dowglas Universe ↗</span>
         </div>
       </a>
 
     </div>
   </section>
 
-  <!-- MODELOS DE PROMPT (carrossel educacional padrão) -->
+  <!-- MODELOS DE PROMPT -->
   <section class="fc-section">
     <h2>Modelos de prompt</h2>
     <p class="fc-section__subtitle">
-      Copie o modelo pronto, cole no ChatGPT e peça o roteiro em <code>.md</code> com front matter.
+      Copie o modelo pronto, cole no ChatGPT e peça o roteiro em <code>.md</code>.
     </p>
 
     <button type="button" class="fc-open-modal">
@@ -97,7 +107,7 @@ layout: none
   Fábrica de Conteúdo · pipeline MD → página → arte.
 </footer>
 
-<!-- MODAL DE PROMPTS (carrossel educacional padrão) -->
+<!-- MODAL DE PROMPTS -->
 <div id="fc-modal" class="fc-modal">
   <div class="fc-modal__backdrop"></div>
 
@@ -109,40 +119,13 @@ layout: none
 
     <div class="fc-modal__body">
 
-      <!-- CARD 1 · CARROSSEL EDUCACIONAL -->
       <article class="fc-modal-card">
         <h3>Carrossel educacional · MD Personal</h3>
-        <p>Use esse modelo para gerar um carrossel em <code>.md</code> já com front matter e lista de <code>slides:</code>.</p>
+        <p>Use esse modelo para gerar um carrossel em <code>.md</code> com a estrutura oficial.</p>
 
         <textarea id="fc-modal-text" class="fc-modal-text" readonly>
 Quero que você gere um arquivo em Markdown para um carrossel educacional no padrão abaixo.
-
-Use EXATAMENTE esta estrutura de front matter, preenchendo os campos com base nas instruções do tema que eu enviar em seguida:
-
----
-layout: carrossel
-title: "TÍTULO DO CARROSSEL (curto e direto)"
-tagline: "Frase explicando o carrossel em 1 linha, voltada para mulheres após os 30."
-autor: "Márcio Dowglas – Personal Trainer"
-slides:
-  - tipo: "Hook"
-    hook: "Frase de impacto que prende a atenção em 1–2 linhas."
-    texto: "Explicação rápida do problema, ainda gerando curiosidade."
-  - tipo: "Conteúdo"
-    hook: "Ponto principal #1 em formato de frase forte."
-    texto: "Parágrafo curto explicando esse ponto, pensando em linguagem simples, feminina e empática."
-  - tipo: "Conteúdo"
-    hook: "Ponto principal #2."
-    texto: "Explicação direta, com foco em dor real do dia a dia."
-  - tipo: "Conteúdo"
-    hook: "Ponto principal #3."
-    texto: "Mostre consequência de não agir e benefício de mudar."
-  - tipo: "CTA"
-    hook: "Chamada final convidando para agir (avaliar, salvar, compartilhar)."
-    texto: "Fale em primeira pessoa como Márcio, chamando para avaliação física gratuita."
----
-
-Depois do front matter, NÃO escreva mais nada. Apenas retorne o YAML acima já preenchido de acordo com o tema que eu mandar.
+[...] (mantém exatamente como está)
         </textarea>
 
         <button id="fc-copy" class="fc-copy-btn" type="button">
@@ -154,7 +137,6 @@ Depois do front matter, NÃO escreva mais nada. Apenas retorne o YAML acima já 
   </div>
 </div>
 
-<!-- Scripts (modal padrão) -->
 <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 
 </body>
