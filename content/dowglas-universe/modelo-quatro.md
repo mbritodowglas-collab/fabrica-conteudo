@@ -1,5 +1,5 @@
 ---
-layout: static
+layout: universe
 title: "Modelo · Storytelling pessoal"
 perfil: "Dowglas Universe"
 tipo_post: "storytelling"
