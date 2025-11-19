@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -39,7 +41,7 @@
       overflow: hidden;
       position: relative;
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.75);
-      background-image: url("{{ '/assets/img/dowglas-universe-bg.jpg' | relative_url }}");
+      background-image: url("{{ '/assets/img/dowglas-universe.jpg' | relative_url }}");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -143,8 +145,9 @@
       Espaço livre para filmes, animes, filosofia, rotina e caos organizado do Dowglas Universe.
     </p>
     <p class="fc-hero__hint">
-      O bloco abaixo é um post vertical 1080×1350 pronto para exportar. O texto vem desse próprio arquivo
-      ou de um conteúdo Markdown que você definir.
+      O bloco abaixo é um post vertical 1080×1350 pronto para exportar. 
+      O texto vem deste próprio arquivo .md (campos <code>titulo</code> e <code>texto</code>)
+      ou do conteúdo em Markdown.
     </p>
   </section>
 
@@ -194,9 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
         backgroundColor: null
       });
 
-      // slug básico a partir do título
       let raw = document.title || 'dowglas-universe';
       raw = raw.replace(/· Dowglas Universe.*$/i, '').trim();
+
       const slug = (raw || 'dowglas-universe')
         .toLowerCase()
         .normalize('NFD')
@@ -207,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const link = document.createElement('a');
       link.download = `${slug || 'dowglas-universe'}.png`;
       link.href = canvas.toDataURL('image/png');
+
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
