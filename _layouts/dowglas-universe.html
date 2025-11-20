@@ -23,11 +23,11 @@
       overflow-x: auto; /* deixa rolar pro lado se precisar no multi */
     }
 
-    /* MAIN, clonando a ideia do static – AGORA EMPILHANDO NA VERTICAL */
+    /* MAIN – agora empilhando tudo na vertical */
     body.du-body .fc-main--static {
       display: flex;
-      flex-direction: column;   /* <– isso aqui é o que resolve o “lado a lado” */
-      align-items: center;      /* centraliza os wrappers/cards */
+      flex-direction: column;
+      align-items: center;
       justify-content: flex-start;
       padding: 2rem 1rem;
       box-sizing: border-box;
@@ -42,14 +42,14 @@
     }
 
     /* ============================
-       QUADRO BASE (usado pelo MULTI)
+       QUADRO BASE (usado pelo MULTI e CTA)
        ============================ */
     body.du-body .fc-static-card.fc-static-block {
       width: 1080px;
       height: 1350px;
       box-sizing: border-box;
 
-      padding: 96px 96px 120px;
+      padding: 72px 72px 96px; /* um pouco menos gordo que antes */
       border-radius: 40px;
 
       position: relative;
@@ -75,7 +75,7 @@
       #dowglas-universe.fc-static-card.fc-static-block {
         width: 1080px;
         height: 1350px;
-        padding: 96px 96px 120px;
+        padding: 72px 72px 96px;
       }
     }
 
@@ -229,6 +229,18 @@
     .du-cta-text {
       font-size: 1.02rem;
       line-height: 1.6;
+      max-width: 70%;
+    }
+
+    /* CTA: centralizar verticalmente e dar mais presença pro texto */
+    .fc-static-card--cta .du-inner {
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .fc-static-card--cta .du-cta-text {
+      font-size: 1.1rem;
+      max-width: 70%;
     }
 
     .fc-download-fixed {
@@ -299,7 +311,7 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
 
       {% if page.show_profile_cta %}
         <section class="fc-static-wrapper">
-          <article class="fc-static-card fc-static-block">
+          <article class="fc-static-card fc-static-block fc-static-card--cta">
             <div class="du-inner">
               <div class="du-profile-row">
                 <div class="fc-avatar">
@@ -364,7 +376,7 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
 
       {% if page.show_profile_cta %}
         <section class="fc-static-wrapper">
-          <article class="fc-static-card fc-static-block">
+          <article class="fc-static-card fc-static-block fc-static-card--cta">
             <div class="du-inner">
               <div class="du-profile-row">
                 <div class="fc-avatar">
