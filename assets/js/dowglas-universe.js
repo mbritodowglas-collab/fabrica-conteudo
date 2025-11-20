@@ -1,6 +1,6 @@
 // assets/js/dowglas-universe.js
 // Exporta cada quadro (.du-block) do Dowglas Universe como PNG separado
-// em formato 4:5 (ex: 1080x1350), ancorando o corte na parte inferior.
+// em formato 4:5 (1080x1350), SEM cortar o conteúdo: apenas encaixa com letterbox.
 
 document.addEventListener('DOMContentLoaded', () => {
   // Botão global de download
@@ -28,27 +28,31 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Gera um slug a partir do título da aba
+      // slug a partir do título da aba
       const rawTitle = document.title || 'dowglas-universe';
       const baseTitle = (
         rawTitle
-          .replace(/·\s*Dowglas Universe/i, '') // tira o sufixo do título
+          .replace(/·\s*Dowglas Universe/i, '')
           .trim()
           .toLowerCase()
           .replace(/[^\w]+/g, '-')
           .replace(/^-+|-+$/g, '')
       ) || 'dowglas-universe';
 
+      // padrão feed vertical IG
+      const TARGET_W = 1080;
+      const TARGET_H = 1350;
+
       for (let i = 0; i < slides.length; i++) {
         const slide = slides[i];
 
-        // Garante que o quadro atual está visível (ajuda na renderização)
+        // garante que o quadro atual está renderizado
         slide.scrollIntoView({ behavior: 'auto', block: 'center' });
         await new Promise((resolve) => setTimeout(resolve, 80));
 
-        // Canvas "bruto" do slide, do jeito que está na tela
+        // captura "bruta" do slide
         const fullCanvas = await html2canvas(slide, {
-          scale: 2,          // mais nítido
+          scale: 2,
           useCORS: true,
           backgroundColor: null
         });
@@ -56,47 +60,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const fullW = fullCanvas.width;
         const fullH = fullCanvas.height;
 
-        // Queremos formato 4:5 (H = 1.25 * W)
-        const cropW = fullW;
-        let cropH = Math.round(fullW * 5 / 4);
-
-        // Se por algum motivo o slide for mais baixo que isso,
-        // limita o crop à própria altura.
-        if (cropH > fullH) {
-          cropH = fullH;
-        }
-
-        // Âncora embaixo: preserva o rodapé (Dowglas Universe) e
-        // corta de cima, se precisar.
-        const offsetY = Math.max(0, fullH - cropH);
-
-        // Canvas intermediário com o recorte 4:5
-        const cropCanvas = document.createElement('canvas');
-        cropCanvas.width = cropW;
-        cropCanvas.height = cropH;
-
-        const cropCtx = cropCanvas.getContext('2d');
-        cropCtx.drawImage(
-          fullCanvas,
-          0, offsetY,          // origem do recorte no canvas cheio
-          cropW, cropH,        // tamanho do recorte
-          0, 0,                // posição no canvas recortado
-          cropW, cropH         // tamanho final no canvas recortado
-        );
-
-        // Agora escalamos para 1080 de largura (padrão Instagram)
-        const targetW = 1080;
-        const scale = targetW / cropW;
-        const targetH = Math.round(cropH * scale); // deve ficar 1350 se tudo estiver 4:5
-
+        // canvas final 4:5
         const finalCanvas = document.createElement('canvas');
-        finalCanvas.width = targetW;
-        finalCanvas.height = targetH;
+        finalCanvas.width = TARGET_W;
+        finalCanvas.height = TARGET_H;
+        const ctx = finalCanvas.getContext('2d');
 
-        const finalCtx = finalCanvas.getContext('2d');
-        finalCtx.setTransform(scale, 0, 0, scale, 0, 0);
-        finalCtx.drawImage(cropCanvas, 0, 0);
-        finalCtx.setTransform(1, 0, 0, 1, 0, 0); // reseta transformação
+        // fundo preto (combina com o espaço)
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, TARGET_W, TARGET_H);
+
+        // escala uniforme para CABER inteiro dentro de 1080x1350
+        const scale = Math.min(TARGET_W / fullW, TARGET_H / fullH);
+        const drawW = fullW * scale;
+        const drawH = fullH * scale;
+
+        // centraliza o slide dentro do quadro 4:5
+        const offsetX = (TARGET_W - drawW) / 2;
+        const offsetY = (TARGET_H - drawH) / 2;
+
+        ctx.drawImage(fullCanvas, offsetX, offsetY, drawW, drawH);
 
         const num = String(i + 1).padStart(2, '0');
         const filename = `${baseTitle}-slide-${num}.png`;
