@@ -2260,3 +2260,16 @@ background-color: #02040a;
   padding: 180px 120px 220px; /* espaço para topo e rodapé */
   box-sizing: border-box;
 }
+
+.du-watermark {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 42px;
+  letter-spacing: 0.28em;
+  opacity: 0.14;
+  color: #ffffff;
+  pointer-events: none;
+  user-select: none;
+}
