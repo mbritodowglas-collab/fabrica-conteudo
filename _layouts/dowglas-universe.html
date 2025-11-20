@@ -37,8 +37,10 @@
     .du-block {
       min-height: 100vh;
       width: 100%;
-      padding: clamp(1.5rem, 4vw, 2.5rem);
-      padding-top: clamp(3rem, 7vh, 4.5rem); /* sobe o conteúdo e libera mais espaço pro rodapé */
+      /* ↑ continua ocupando a tela inteira */
+
+      /* ↓ aumentei padding superior e usei flex-start pra subir o conteúdo */
+      padding: clamp(3rem, 8vh, 4rem) clamp(1.5rem, 4vw, 2.5rem) clamp(2.5rem, 6vh, 3.5rem);
       display: flex;
       justify-content: center;
       align-items: flex-start; /* antes: center */
