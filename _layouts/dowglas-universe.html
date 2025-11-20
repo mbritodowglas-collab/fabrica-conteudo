@@ -267,7 +267,7 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
 
       {% if page.blocos %}
         {% for b in page.blocos %}
-          <!-- cada bloco também é fc-static-block, como no static.html -->
+          <!-- multi-quadro (aqui não uso o id, só a classe-padrão) -->
           <section class="du-block du-block--content slide fc-static-block">
             <article class="du-card">
               {% if forloop.first %}
@@ -325,8 +325,10 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
         {% endif %}
 
       {% else %}
-        <!-- modo quadro único -->
-        <section class="du-block du-block--single slide fc-static-block">
+        <!-- MODO QUADRO ÚNICO: é aqui que o JS usa o content "dowglas-universe" -->
+        <section
+          id="dowglas-universe"
+          class="du-block du-block--single slide fc-static-block">
           <article class="du-card">
             <header class="du-header">
               <h1 class="du-title">{{ page.title }}</h1>
