@@ -35,8 +35,13 @@
 
     /* Cada QUADRO (slide) do Universe */
     .du-block {
-      min-height: 100vh;
       width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+
+      /* formato vertical 4:5 (padrão Instagram) */
+      aspect-ratio: 4 / 5;
+
       padding: clamp(1.5rem, 4vw, 2.5rem);
       display: flex;
       justify-content: center;
