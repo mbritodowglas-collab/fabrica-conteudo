@@ -26,13 +26,13 @@
       width: 100%;
     }
 
-    /* Multiquadros: cada slide ocupa a tela inteira (scrollando de um para o outro) */
+    /* Multiquadros: cada quadro = 1 tela, fundo fixo no body */
     .du-multiquadros {
       width: 100%;
     }
 
     .du-quadro {
-      min-height: 100vh;
+      height: 100vh;                 /* aqui é o pulo do gato */
       padding: 6rem 1.5rem 5rem;
       display: flex;
       align-items: center;
@@ -45,8 +45,10 @@
       font-size: 1.05rem;
       line-height: 1.7;
       text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+
+      /* conteúdo rola dentro do quadro, não cresce a tela */
       max-height: calc(100vh - 7rem);
-      overflow-y: auto; /* impede o texto de estourar pra baixo */
+      overflow-y: auto;
     }
 
     .du-tagline {
@@ -86,9 +88,17 @@
       opacity: 0.75;
     }
 
-    /* Só pra diferenciar mentalmente os tipos, se quiser afinar depois via CSS global */
     .du-quadro--capa .du-hook {
       font-size: 1.6rem;
+    }
+
+    /* modo single (textão) reaproveita o mesmo conceito */
+    .du-quadro--single {
+      height: 100vh;
+    }
+    .du-quadro--single .du-quadro__content {
+      max-height: calc(100vh - 7rem);
+      overflow-y: auto;
     }
   </style>
 </head>
@@ -100,6 +110,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed; /* fundo não 'anda' com o texto */
   "
 >
   <main class="du-main">
@@ -140,7 +151,7 @@
       </div>
 
     {%- else -%}
-      <!-- MODO TEXTÃO ÚNICO (post normal) -->
+      <!-- MODO TEXTÃO ÚNICO -->
       <section class="du-quadro du-quadro--single">
         <div class="du-quadro__content">
           {%- if page.tagline -%}
