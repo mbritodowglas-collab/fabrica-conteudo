@@ -10,56 +10,62 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
-    .du-body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      color: #e5e5e5;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url("{{ '/assets/img/dowglas-universe.jpg' | relative_url }}");
+    :root {
+      color-scheme: dark;
     }
 
-    .fc-download-fixed {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 99999;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      border: 0;
-      background: rgba(0, 0, 0, 0.55);
-      color: #fff;
-      font-size: 0.9rem;
-      cursor: pointer;
-      backdrop-filter: blur(4px);
+    body.du-body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #e5e5e5;
+      background: #000; /* fallback */
+      overflow-x: hidden;
     }
 
     .du-main {
       width: 100%;
       max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .du-slides {
+      width: 100%;
+    }
+
+    /* Cada QUADRO (slide) do Universe */
+    .du-block {
+      min-height: 100vh;
+      width: 100%;
       padding: clamp(1.5rem, 4vw, 2.5rem);
       display: flex;
       justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+
+      background-image: url('{{ "/assets/img/dowglas-universe.jpg" | relative_url }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .du-card {
       width: 100%;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       padding: clamp(1.75rem, 4vw, 2.5rem);
       border-radius: 1.25rem;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.65), rgba(0,0,0,0.9));
+      box-shadow: 0 18px 45px rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      box-sizing: border-box;
     }
 
     .du-title {
-      font-size: clamp(1.5rem, 2.1rem, 2.3rem);
-      line-height: 1.2;
-      margin: 0 0 0.75rem 0;
-      letter-spacing: 0.03em;
+      font-size: clamp(1.7rem, 2.3rem, 2.6rem);
+      line-height: 1.15;
+      margin: 0 0 0.45rem 0;
+      letter-spacing: 0.04em;
     }
 
     .du-subtitle {
@@ -68,7 +74,10 @@
       opacity: 0.85;
     }
 
-    /* TEXTÃO */
+    .du-header {
+      margin-bottom: 1.4rem;
+    }
+
     .du-content {
       font-size: 1.05rem;
       line-height: 1.65;
@@ -84,53 +93,32 @@
       padding-left: 1.2rem;
     }
 
-    /* MULTIQUADRO */
-    .du-block {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 2rem 0;
-    }
-
-    .du-block-inner {
-      width: 100%;
-    }
-
     .du-block-title {
       font-size: 1.25rem;
-      margin-bottom: 0.75rem;
+      margin: 0 0 0.9rem 0;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
 
-    /* FOOTER TEXTO */
-    .du-footer {
-      margin-top: 2rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
+    .du-footer-text {
+      margin-top: 1.6rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
       font-size: 0.98rem;
       opacity: 0.9;
     }
 
-    /* BLOCO CTA PERFIL (estilo twitter) */
-    .du-block--cta {
-      min-height: 80vh;
+    /* BLOCO CTA COM PERFIL (estilo twitter) */
+    .du-block--cta .du-card {
+      max-width: 640px;
+    }
+
+    .du-profile-row {
       display: flex;
       align-items: center;
-      padding: 2rem 0;
+      margin-bottom: 0.9rem;
     }
 
-    .du-cta-inner {
-      width: 100%;
-    }
-
-    .du-cta-text {
-      margin-top: 1rem;
-      font-size: 1.02rem;
-      line-height: 1.6;
-    }
-
-    /* Reaproveita estilos do static: fc-avatar / fc-static-user */
     .fc-avatar {
       width: 56px;
       height: 56px;
@@ -185,23 +173,38 @@
       display: inline-block;
     }
 
-    .du-profile-row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
+    .du-cta-text {
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    /* Botão global de download */
+    .fc-download-fixed {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 9999;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
     }
   </style>
 </head>
 
 <body class="du-body">
 
-  <!-- Botão de download em PNG -->
+  <!-- Botão de download em PNG (um arquivo por quadro) -->
   <button id="download-universe" class="fc-download-fixed" type="button">↓ PNG</button>
 
   {%- comment -%}
-    Prepara nome / iniciais / avatar para o quadro de perfil tipo Twitter.
+    Nome / iniciais / avatar para o quadro de perfil tipo Twitter.
   {%- endcomment -%}
-  {%- assign nome = page.autor_nome | default: 'Dowglas Universe' -%}
+  {%- assign nome = page.autor_nome | default: page.perfil | default: 'Dowglas Universe' -%}
   {%- assign partes = nome | split: ' ' -%}
   {%- assign p1 = partes[0] | slice: 0,1 -%}
   {%- assign p2 = '' -%}
@@ -211,92 +214,139 @@
   {%- assign iniciais = p1 | append: p2 -%}
 
   {%- assign cta_profile_text = page.cta_profile_text | default: "
-Se esse universo fez sentido pra você, me segue aqui, deixa um comentário com o que mais falou contigo e curte esse post pra eu saber que fez sentido pra você.
+Se esse multiverso fez sentido pra você, me segue, deixa um comentário
+com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
 " -%}
 
   <main class="du-main">
-    <article class="du-card">
-
-      {% if page.title %}
-        <header style="margin-bottom: 1.5rem;">
-          <h1 class="du-title">{{ page.title }}</h1>
-
-          {% if page.subtitulo %}
-            <p class="du-subtitle">{{ page.subtitulo }}</p>
-          {% endif %}
-        </header>
-      {% endif %}
+    <section class="du-slides">
 
       {% if page.blocos %}
-        <!-- MULTIQUADROS (blocos) -->
-        <section class="du-content">
-          {% for b in page.blocos %}
-            <section class="du-block">
-              <div class="du-block-inner">
+        {%- comment -%}
+          MODO MULTIQUADROS: cada item de "blocos:" vira um slide.
+        {%- endcomment -%}
+        {% for b in page.blocos %}
+          <section class="du-block du-block--content slide">
+            <article class="du-card">
+              {% if forloop.first %}
+                <header class="du-header">
+                  <h1 class="du-title">{{ page.title }}</h1>
+                  {% if page.tagline or page.subtitulo %}
+                    <p class="du-subtitle">
+                      {{ page.tagline | default: page.subtitulo }}
+                    </p>
+                  {% endif %}
+                </header>
+              {% endif %}
+
+              <section class="du-content">
                 {% if b.titulo %}
                   <h2 class="du-block-title">{{ b.titulo }}</h2>
                 {% endif %}
                 {% if b.texto %}
                   {{ b.texto | markdownify }}
                 {% endif %}
-              </div>
-            </section>
-          {% endfor %}
-        </section>
-      {% else %}
-        <!-- TEXTÃO ÚNICO -->
-        <section class="du-content">
-          {{ content | markdownify }}
-        </section>
-      {% endif %}
+              </section>
+            </article>
+          </section>
+        {% endfor %}
 
-      {%- comment -%}
-        Quadro extra com perfil + CTA, opcional.
-        Ativa com: show_profile_cta: true no front matter.
-      {%- endcomment -%}
-      {% if page.show_profile_cta %}
-        <section class="du-block du-block--cta">
-          <div class="du-cta-inner">
-            <div class="du-profile-row">
-              <div class="fc-avatar">
-                {% if page.avatar %}
-                  <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
-                {% else %}
-                  <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
-                {% endif %}
-              </div>
-              <div class="fc-static-user">
-                <div class="fc-static-user__name">
-                  {{ nome }}
-                  {% if page.verificado %}
-                    <span class="fc-verified-badge" title="Verificado"></span>
+        {% if page.show_profile_cta %}
+          <section class="du-block du-block--cta slide">
+            <article class="du-card">
+              <div class="du-profile-row">
+                <div class="fc-avatar">
+                  {% if page.avatar %}
+                    <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+                  {% else %}
+                    <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
                   {% endif %}
                 </div>
-                {% if page.autor_handle %}
-                  <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+                <div class="fc-static-user">
+                  <div class="fc-static-user__name">
+                    {{ nome }}
+                    {% if page.verificado %}
+                      <span class="fc-verified-badge" title="Verificado"></span>
+                    {% endif %}
+                  </div>
+                  {% if page.autor_handle %}
+                    <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="du-cta-text">
+                {{ cta_profile_text | markdownify }}
+              </div>
+            </article>
+          </section>
+        {% endif %}
+
+      {% else %}
+        {%- comment -%}
+          MODO TEXTÃO ÚNICO: 1 slide com o texto + opcional 2º slide de CTA.
+        {%- endcomment -%}
+        <section class="du-block du-block--single slide">
+          <article class="du-card">
+            <header class="du-header">
+              <h1 class="du-title">{{ page.title }}</h1>
+              {% if page.tagline or page.subtitulo %}
+                <p class="du-subtitle">
+                  {{ page.tagline | default: page.subtitulo }}
+                </p>
+              {% endif %}
+            </header>
+
+            <section class="du-content">
+              {{ content | markdownify }}
+            </section>
+
+            {% if page.cta or page.fechamento %}
+              <div class="du-footer-text">
+                {% if page.fechamento %}
+                  {{ page.fechamento | markdownify }}
+                {% endif %}
+                {% if page.cta %}
+                  {{ page.cta | markdownify }}
                 {% endif %}
               </div>
-            </div>
-
-            <div class="du-cta-text">
-              {{ cta_profile_text | markdownify }}
-            </div>
-          </div>
+            {% endif %}
+          </article>
         </section>
+
+        {% if page.show_profile_cta %}
+          <section class="du-block du-block--cta slide">
+            <article class="du-card">
+              <div class="du-profile-row">
+                <div class="fc-avatar">
+                  {% if page.avatar %}
+                    <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+                  {% else %}
+                    <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+                  {% endif %}
+                </div>
+                <div class="fc-static-user">
+                  <div class="fc-static-user__name">
+                    {{ nome }}
+                    {% if page.verificado %}
+                      <span class="fc-verified-badge" title="Verificado"></span>
+                    {% endif %}
+                  </div>
+                  {% if page.autor_handle %}
+                    <div class="fc-static-user__handle">{{ page.autor-handle }}</div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="du-cta-text">
+                {{ cta_profile_text | markdownify }}
+              </div>
+            </article>
+          </section>
+        {% endif %}
       {% endif %}
 
-      {% if page.cta or page.fechamento %}
-        <footer class="du-footer">
-          {% if page.fechamento %}
-            <p>{{ page.fechamento | markdownify }}</p>
-          {% endif %}
-          {% if page.cta %}
-            <p>{{ page.cta | markdownify }}</p>
-          {% endif %}
-        </footer>
-      {% endif %}
-
-    </article>
+    </section>
   </main>
 
   <!-- HTML2Canvas -->
@@ -305,29 +355,39 @@ Se esse universo fez sentido pra você, me segue aqui, deixa um comentário com 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('download-universe');
-      const card = document.querySelector('.du-card');
-      if (!btn || !card) return;
+      const slides = Array.from(document.querySelectorAll('.du-block'));
+
+      if (!btn || !slides.length) return;
 
       btn.addEventListener('click', async () => {
-        card.scrollIntoView({ behavior: "auto", block: "center" });
-
-        const canvas = await html2canvas(card, {
-          scale: 2,
-          backgroundColor: null,
-          useCORS: true
-        });
-
-        const nome = document.title
-          .replace(/ · Dowglas Universe/, '')
+        const baseTitle = (document.title || 'dowglas-universe')
+          .replace(/· Dowglas Universe/i, '')
           .trim()
           .toLowerCase()
           .replace(/[^\w]+/g, '-')
           || 'dowglas-universe';
 
-        const link = document.createElement('a');
-        link.download = `${nome}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
+        for (let i = 0; i < slides.length; i++) {
+          const slide = slides[i];
+
+          slide.scrollIntoView({ behavior: 'auto', block: 'center' });
+
+          const canvas = await html2canvas(slide, {
+            scale: 2,
+            backgroundColor: null,
+            useCORS: true
+          });
+
+          const num = String(i + 1).padStart(2, '0');
+          const filename = `${baseTitle}-slide-${num}.png`;
+
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = canvas.toDataURL('image/png');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
       });
     });
   </script>
