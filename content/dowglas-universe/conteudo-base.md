@@ -5,6 +5,15 @@ perfil: "Dowglas Universe"
 tipo_post: "textao-unico"
 descricao_modelo: "Reflexão curta para quadro único do Dowglas Universe."
 limite_caracteres: 620   # tamanho seguro para caber inteiro no quadro 4:5
+
+# Se quiser usar o MESMO layout em versão multiquadros, dá pra ativar isso aqui:
+# blocos:
+#   - titulo: "Quadro 1"
+#     texto: |
+#       Texto do primeiro quadro...
+#   - titulo: "Quadro 2"
+#     texto: |
+#       Texto do segundo quadro...
 ---
 
 O Dowglas Universe começa aqui — esse espaço onde eu deixo de ser só o personal ou o professor, e volto a ser inteiro de novo.
