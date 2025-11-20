@@ -1,8 +1,7 @@
 // assets/js/dowglas-universe.js
-// Exporta cada quadro (.du-block) do Dowglas Universe como PNG separado
+// Exporta cada quadro (.du-block) do Dowglas Universe como PNG 1080x1350 (padrão Instagram)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Botão global de download
   const btn =
     document.getElementById('download-universe') ||
     document.querySelector('[data-download="dowglas-universe"]');
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Cada QUADRO é uma .du-block (já criada no layout)
   const slides = Array.from(document.querySelectorAll('.du-block'));
 
   if (!slides.length) {
@@ -25,14 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.addEventListener('click', async () => {
     try {
       if (typeof html2canvas !== 'function') {
-        console.error('[dowglas-universe] html2canvas não está disponível. Confere o <script> do CDN.');
+        console.error('[dowglas-universe] html2canvas não está disponível.');
         return;
       }
 
-      // Gera um slug a partir do título da aba
       const rawTitle = document.title || 'dowglas-universe';
       const baseTitle = rawTitle
-        .replace(/·\s*Dowglas Universe/i, '') // tira o sufixo do título
+        .replace(/·\s*Dowglas Universe/i, '')
         .trim()
         .toLowerCase()
         .replace(/[^\w]+/g, '-')
@@ -43,18 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < slides.length; i++) {
         const slide = slides[i];
 
-        // Garante que o quadro atual está visível
         slide.scrollIntoView({ behavior: 'auto', block: 'center' });
 
-        // Pequena pausa para o browser renderizar a posição
-        await new Promise((resolve) => setTimeout(resolve, 80));
+        await new Promise((resolve) => setTimeout(resolve, 120));
 
         console.log(`[dowglas-universe] Capturando slide ${i + 1}/${slides.length}…`);
 
         const canvas = await html2canvas(slide, {
-          scale: 2,          // mais nítido
-          useCORS: true,     // ajuda com imagens do GitHub/CDN
-          backgroundColor: null // respeita o fundo do próprio slide
+          width: 1080,
+          height: 1350,
+          windowWidth: 1080,
+          windowHeight: 1350,
+          scale: 1,            // garante tamanho exato
+          useCORS: true,
+          backgroundColor: null
         });
 
         const num = String(i + 1).padStart(2, '0');
@@ -70,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('[dowglas-universe] Download iniciado:', filename);
       }
+
     } catch (err) {
       console.error('[dowglas-universe] Erro ao gerar/baixar PNG:', err);
     }
