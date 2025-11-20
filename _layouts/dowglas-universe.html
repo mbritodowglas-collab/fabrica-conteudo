@@ -23,13 +23,15 @@
       overflow-x: auto; /* deixa rolar pro lado se precisar no multi */
     }
 
-    /* MAIN, clonando a ideia do static */
+    /* MAIN, clonando a ideia do static – AGORA EMPILHANDO NA VERTICAL */
     body.du-body .fc-main--static {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;   /* <– isso aqui é o que resolve o “lado a lado” */
+      align-items: center;      /* centraliza os wrappers/cards */
+      justify-content: flex-start;
       padding: 2rem 1rem;
       box-sizing: border-box;
+      width: 100%;
     }
 
     body.du-body .fc-static-wrapper {
