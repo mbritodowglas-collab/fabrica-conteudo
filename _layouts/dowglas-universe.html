@@ -20,7 +20,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #e5e5e5;
       background: #000;
-      overflow-x: hidden; /* não deixa sobrar scroll lateral no mobile */
+      overflow-x: auto; /* deixa rolar pro lado se precisar no multi */
     }
 
     /* MAIN, clonando a ideia do static */
@@ -40,16 +40,14 @@
     }
 
     /* ============================
-       QUADRO EXPORTADO – responsivo
+       QUADRO BASE (usado pelo MULTI)
        ============================ */
     body.du-body .fc-static-card.fc-static-block {
-      /* mobile/tablet: encaixa na tela, mantendo 4:5 */
-      width: min(100vw - 32px, 1080px);
-      aspect-ratio: 4 / 5;  /* garante formato de carrossel 1080x1350 */
-      height: auto;
-
+      width: 1080px;
+      height: 1350px;
       box-sizing: border-box;
-      padding: 7vh 7vw 9vh; /* padding relativo pro texto não colar nas bordas */
+
+      padding: 96px 96px 120px;
       border-radius: 40px;
 
       position: relative;
@@ -63,9 +61,16 @@
         0 0 0 1px rgba(15,23,42,0.7);
     }
 
-    /* DESKTOP: trava exatamente em 1080 x 1350 */
+    /* SINGLE QUADRO (id específico) – responsivo no mobile */
+    #dowglas-universe.fc-static-card.fc-static-block {
+      width: min(100vw - 32px, 1080px);
+      aspect-ratio: 4 / 5;
+      height: auto;
+      padding: 7vh 7vw 9vh;
+    }
+
     @media (min-width: 1200px) {
-      body.du-body .fc-static-card.fc-static-block {
+      #dowglas-universe.fc-static-card.fc-static-block {
         width: 1080px;
         height: 1350px;
         padding: 96px 96px 120px;
