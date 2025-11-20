@@ -4,9 +4,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>{{ page.title }} · Dowglas Universe</title>
+  <title>{{ page.title }} · Carrossel · Dowglas Universe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
@@ -14,17 +13,16 @@
       color-scheme: dark;
     }
 
-    body.du-body {
+    body.fc-body--carrossel.du-body {
       margin: 0;
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #e5e5e5;
       background: #000;
-      overflow-x: auto; /* deixa rolar pro lado se precisar no multi */
+      overflow-x: auto; /* deixa rolar pro lado se a tela for menor que 1080 */
     }
 
-    /* MAIN – agora empilhando tudo na vertical */
-    body.du-body .fc-main--static {
+    .fc-main--carrossel {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -32,30 +30,29 @@
       padding: 2rem 1rem;
       box-sizing: border-box;
       width: 100%;
+      gap: 2rem;
     }
 
-    body.du-body .fc-static-wrapper {
+    .fc-slides {
       display: flex;
       flex-direction: column;
       gap: 2rem;
       align-items: center;
+      width: 100%;
     }
 
-    /* ============================
-       QUADRO BASE (usado pelo MULTI e CTA)
-       ============================ */
-    body.du-body .fc-static-card.fc-static-block {
+    /* ==============
+       CARD 1080x1350
+       ============== */
+    .fc-slide.slide {
       width: 1080px;
       height: 1350px;
       box-sizing: border-box;
-
-      padding: 72px 72px 96px; /* um pouco menos gordo que antes */
+      padding: 72px 72px 96px;
       border-radius: 40px;
-
       position: relative;
       overflow: hidden;
 
-      /* fundo cósmico */
       background:
         radial-gradient(circle at top left, #111827 0, #020617 55%, #000 100%);
       box-shadow:
@@ -63,24 +60,8 @@
         0 0 0 1px rgba(15,23,42,0.7);
     }
 
-    /* SINGLE QUADRO (id específico) – responsivo no mobile */
-    #dowglas-universe.fc-static-card.fc-static-block {
-      width: min(100vw - 32px, 1080px);
-      aspect-ratio: 4 / 5;
-      height: auto;
-      padding: 7vh 7vw 9vh;
-    }
-
-    @media (min-width: 1200px) {
-      #dowglas-universe.fc-static-card.fc-static-block {
-        width: 1080px;
-        height: 1350px;
-        padding: 72px 72px 96px;
-      }
-    }
-
-    /* camada de “órbitas” / textura leve */
-    body.du-body .fc-static-card.fc-static-block::before {
+    /* fundo cósmico extra */
+    .fc-slide.slide::before {
       content: "";
       position: absolute;
       inset: -20%;
@@ -93,8 +74,8 @@
       mix-blend-mode: screen;
     }
 
-    /* marca d'água DOWGLAS UNIVERSE no rodapé */
-    body.du-body .fc-static-card.fc-static-block::after {
+    /* marca d'água */
+    .fc-slide.slide::after {
       content: "DOWGLAS UNIVERSE";
       position: absolute;
       bottom: 1.9rem;
@@ -108,8 +89,7 @@
       pointer-events: none;
     }
 
-    /* conteúdo interno do quadro */
-    .du-inner {
+    .fc-slide__inner {
       position: relative;
       z-index: 1;
       width: 100%;
@@ -118,57 +98,75 @@
       flex-direction: column;
     }
 
-    .du-header {
-      margin-bottom: 1.4rem;
-    }
-
-    .du-title {
-      font-size: 2.3rem;
-      line-height: 1.15;
-      margin: 0 0 0.45rem 0;
-      letter-spacing: 0.04em;
-    }
-
-    .du-subtitle {
-      margin: 0;
-      font-size: 0.95rem;
+    /* header do slide (contador + divisor) */
+    .fc-slide__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
       opacity: 0.85;
     }
 
-    .du-content {
-      font-size: 1.05rem;
-      line-height: 1.65;
-      letter-spacing: 0.01em;
-      flex: 1;
+    .fc-slide-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.8);
     }
 
-    .du-content p { margin: 0 0 1rem 0; }
+    .fc-divider-line {
+      display: block;
+      width: 54px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(148,163,184,0.7), transparent);
+    }
 
-    .du-content ul {
+    .fc-slide-num {
+      font-variant-numeric: tabular-nums;
+      font-size: 0.85rem;
+      color: rgba(209,213,219,0.9);
+    }
+
+    .fc-slide__hook {
+      font-size: 1.9rem;
+      line-height: 1.2;
       margin: 0 0 1rem 0;
-      padding-left: 1.3rem;
-    }
-
-    .du-block-title {
-      font-size: 1.25rem;
-      margin: 0 0 0.9rem 0;
-      font-weight: 600;
       letter-spacing: 0.02em;
     }
 
-    .du-footer-text {
-      margin-top: 1.6rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(148,163,184,0.25);
-      font-size: 0.98rem;
-      opacity: 0.9;
+    .fc-slide__text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0;
+      white-space: pre-line;
     }
 
-    /* BLOCO CTA COM PERFIL */
-    .du-profile-row {
+    .fc-slide__footer {
+      margin-top: 1.8rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(148,163,184,0.3);
+    }
+
+    .fc-slide__cta {
+      font-size: 0.98rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    /* BLOCO DE PERFIL NO ÚLTIMO SLIDE */
+    .fc-slide__profile {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .fc-profile-card {
       display: flex;
       align-items: center;
-      margin-bottom: 0.9rem;
       gap: 0.75rem;
     }
 
@@ -181,7 +179,6 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-
       border: 1px solid rgba(148,163,184,0.5);
       background: radial-gradient(circle at 30% 20%, #f97316, #0f172a);
     }
@@ -226,21 +223,11 @@
       box-sizing: border-box;
     }
 
-    .du-cta-text {
-      font-size: 1.02rem;
-      line-height: 1.6;
-      max-width: 70%;
-    }
-
-    /* CTA: centralizar verticalmente e dar mais presença pro texto */
-    .fc-static-card--cta .du-inner {
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .fc-static-card--cta .du-cta-text {
-      font-size: 1.1rem;
-      max-width: 70%;
+    .fc-slide__engage {
+      margin-top: 1rem;
+      text-align: center;
+      opacity: 0.75;
+      font-size: 0.9rem;
     }
 
     .fc-download-fixed {
@@ -257,14 +244,23 @@
       cursor: pointer;
       backdrop-filter: blur(6px);
     }
+
+    footer.fc-footer {
+      margin: 2rem 0 1rem;
+      font-size: 0.8rem;
+      opacity: 0.5;
+      text-align: center;
+    }
   </style>
 </head>
 
-<body class="fc-body fc-body--static du-body">
+<body class="fc-body fc-body--carrossel du-body">
 
-  <button id="download-universe" class="fc-download-fixed" type="button">↓ PNG</button>
+  <button id="download-carrossel" class="fc-download-fixed" type="button">
+    ↓ PNG
+  </button>
 
-  {%- assign nome = page.autor_nome | default: page.perfil | default: 'Dowglas Universe' -%}
+  {%- assign nome = page.autor_nome | default: page.autor | default: 'Dowglas Universe' -%}
   {%- assign partes = nome | split: ' ' -%}
   {%- assign p1 = partes[0] | slice: 0,1 -%}
   {%- assign p2 = '' -%}
@@ -273,144 +269,92 @@
   {%- endif -%}
   {%- assign iniciais = p1 | append: p2 -%}
 
-  {%- assign cta_profile_text = page.cta_profile_text | default: "
-Se esse multiverso fez sentido pra você, me segue, deixa um comentário
-com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
-" -%}
+  {% assign slides = page.slides | default: empty %}
 
-  <main class="fc-main fc-main--static du-main">
-    {% if page.blocos %}
-      <!-- MULTIQUADROS (textão multiquadros) -->
-      <section class="fc-static-wrapper fc-static-wrapper--multi">
-        {% for b in page.blocos %}
-          <article class="fc-static-card fc-static-block">
-            <div class="du-inner">
-              {% if forloop.first %}
-                <header class="du-header">
-                  <h1 class="du-title">{{ page.title }}</h1>
-                  {% if page.tagline or page.subtitulo %}
-                    <p class="du-subtitle">
-                      {{ page.tagline | default: page.subtitulo }}
-                    </p>
-                  {% endif %}
-                </header>
+  <main class="fc-main fc-main--carrossel">
+    {% if slides and slides.size > 0 %}
+      <section class="fc-slides">
+        {% for s in slides %}
+          <article class="fc-slide slide">
+            <div class="fc-slide__inner">
+              <header class="fc-slide__header">
+                <div class="fc-slide-divider">
+                  <span class="fc-divider-line"></span>
+                  <span class="fc-divider-icon">◇</span>
+                  <span class="fc-divider-line"></span>
+                </div>
+                <div class="fc-slide-num">
+                  {{ forloop.index }} / {{ slides.size }}
+                </div>
+              </header>
+
+              {% if s.hook %}
+                <h2 class="fc-slide__hook">
+                  {{ s.hook | newline_to_br }}
+                </h2>
               {% endif %}
 
-              <section class="du-content">
-                {% if b.titulo %}
-                  <h2 class="du-block-title">{{ b.titulo }}</h2>
-                {% endif %}
-                {% if b.texto %}
-                  {{ b.texto | markdownify }}
-                {% endif %}
-              </section>
+              {% if s.texto %}
+                <p class="fc-slide__text">
+                  {{ s.texto | newline_to_br }}
+                </p>
+              {% endif %}
+
+              {% if s.cta %}
+                <footer class="fc-slide__footer">
+                  <p class="fc-slide__cta">
+                    {{ s.cta | newline_to_br }}
+                  </p>
+                </footer>
+              {% endif %}
+
+              {% if forloop.last %}
+                <div class="fc-slide__profile">
+                  <div class="fc-profile-card">
+                    <div class="fc-avatar">
+                      {% if page.avatar %}
+                        <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+                      {% else %}
+                        <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+                      {% endif %}
+                    </div>
+
+                    <div class="fc-static-user">
+                      <div class="fc-static-user__name">
+                        {{ nome }}
+                        {% if page.verificado %}
+                          <span class="fc-verified-badge" title="Verificado"></span>
+                        {% endif %}
+                      </div>
+
+                      {% if page.autor_handle %}
+                        <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fc-slide__engage">
+                  Se esse multiverso fez sentido pra você, salva o post e compartilha com alguém que vive no caos bonito também.
+                </div>
+              {% endif %}
             </div>
           </article>
         {% endfor %}
       </section>
-
-      {% if page.show_profile_cta %}
-        <section class="fc-static-wrapper">
-          <article class="fc-static-card fc-static-block fc-static-card--cta">
-            <div class="du-inner">
-              <div class="du-profile-row">
-                <div class="fc-avatar">
-                  {% if page.avatar %}
-                    <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
-                  {% else %}
-                    <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
-                  {% endif %}
-                </div>
-                <div class="fc-static-user">
-                  <div class="fc-static-user__name">
-                    {{ nome }}
-                    {% if page.verificado %}
-                      <span class="fc-verified-badge" title="Verificado"></span>
-                    {% endif %}
-                  </div>
-                  {% if page.autor_handle %}
-                    <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
-                  {% endif %}
-                </div>
-              </div>
-
-              <div class="du-cta-text">
-                {{ cta_profile_text | markdownify }}
-              </div>
-            </div>
-          </article>
-        </section>
-      {% endif %}
-
     {% else %}
-      <!-- QUADRO ÚNICO -->
-      <section class="fc-static-wrapper">
-        <article id="dowglas-universe" class="fc-static-card fc-static-block">
-          <div class="du-inner">
-            <header class="du-header">
-              <h1 class="du-title">{{ page.title }}</h1>
-              {% if page.tagline or page.subtitulo %}
-                <p class="du-subtitle">
-                  {{ page.tagline | default: page.subtitulo }}
-                </p>
-              {% endif %}
-            </header>
-
-            <section class="du-content">
-              {{ content | markdownify }}
-            </section>
-
-            {% if page.cta or page.fechamento %}
-              <div class="du-footer-text">
-                {% if page.fechamento %}
-                  {{ page.fechamento | markdownify }}
-                {% endif %}
-                {% if page.cta %}
-                  {{ page.cta | markdownify }}
-                {% endif %}
-              </div>
-            {% endif %}
-          </div>
-        </article>
+      <section class="fc-slides">
+        <p>Nenhum slide encontrado. Defina <code>slides:</code> no front matter.</p>
       </section>
-
-      {% if page.show_profile_cta %}
-        <section class="fc-static-wrapper">
-          <article class="fc-static-card fc-static-block fc-static-card--cta">
-            <div class="du-inner">
-              <div class="du-profile-row">
-                <div class="fc-avatar">
-                  {% if page.avatar %}
-                    <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
-                  {% else %}
-                    <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
-                  {% endif %}
-                </div>
-                <div class="fc-static-user">
-                  <div class="fc-static-user__name">
-                    {{ nome }}
-                    {% if page.verificado %}
-                      <span class="fc-verified-badge" title="Verificado"></span>
-                    {% endif %}
-                  </div>
-                  {% if page.autor_handle %}
-                    <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
-                  {% endif %}
-                </div>
-              </div>
-
-              <div class="du-cta-text">
-                {{ cta_profile_text | markdownify }}
-              </div>
-            </div>
-          </article>
-        </section>
-      {% endif %}
     {% endif %}
   </main>
 
+  <footer class="fc-footer">
+    Dowglas Universe · Carrossel pronto para exportação.
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="{{ '/assets/js/dowglas-universe.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 
 </body>
 </html>
