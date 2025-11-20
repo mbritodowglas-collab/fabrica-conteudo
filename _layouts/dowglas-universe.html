@@ -273,6 +273,7 @@
 
   <main class="fc-main fc-main--carrossel">
     {% if slides and slides.size > 0 %}
+      <!-- MODO CARROSSEL MULTI-SLIDE (usa page.slides) -->
       <section class="fc-slides">
         {% for s in slides %}
           <article class="fc-slide slide">
@@ -343,8 +344,59 @@
         {% endfor %}
       </section>
     {% else %}
+      <!-- MODO QUADRO ÚNICO (usa page.title + content) -->
       <section class="fc-slides">
-        <p>Nenhum slide encontrado. Defina <code>slides:</code> no front matter.</p>
+        <article class="fc-slide slide">
+          <div class="fc-slide__inner">
+            <header class="fc-slide__header">
+              <div class="fc-slide-divider">
+                <span class="fc-divider-line"></span>
+                <span class="fc-divider-icon">◇</span>
+                <span class="fc-divider-line"></span>
+              </div>
+              <div class="fc-slide-num">
+                1 / 1
+              </div>
+            </header>
+
+            <h2 class="fc-slide__hook">
+              {{ page.title }}
+            </h2>
+
+            <p class="fc-slide__text">
+              {{ content | markdownify | strip_newlines }}
+            </p>
+
+            <div class="fc-slide__profile">
+              <div class="fc-profile-card">
+                <div class="fc-avatar">
+                  {% if page.avatar %}
+                    <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+                  {% else %}
+                    <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+                  {% endif %}
+                </div>
+
+                <div class="fc-static-user">
+                  <div class="fc-static-user__name">
+                    {{ nome }}
+                    {% if page.verificado %}
+                      <span class="fc-verified-badge" title="Verificado"></span>
+                    {% endif %}
+                  </div>
+
+                  {% if page.autor_handle %}
+                    <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <div class="fc-slide__engage">
+              Se esse multiverso bateu em algo aí dentro, você já habita o Dowglas Universe.
+            </div>
+          </div>
+        </article>
       </section>
     {% endif %}
   </main>
