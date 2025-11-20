@@ -55,9 +55,10 @@
       margin: 0 auto;
       padding: clamp(1.75rem, 4vw, 2.5rem);
       border-radius: 1.25rem;
-      background: radial-gradient(circle at top, rgba(0,0,0,0.65), rgba(0,0,0,0.9));
-      box-shadow: 0 18px 45px rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
+      /* card transparente: sem fundo, sem sombra, sem blur */
+      background: none;
+      box-shadow: none;
+      backdrop-filter: none;
       box-sizing: border-box;
     }
 
@@ -333,7 +334,7 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
                     {% endif %}
                   </div>
                   {% if page.autor_handle %}
-                    <div class="fc-static-user__handle">{{ page.autor-handle }}</div>
+                    <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
                   {% endif %}
                 </div>
               </div>
@@ -349,48 +350,9 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
     </section>
   </main>
 
-  <!-- HTML2Canvas -->
+  <!-- HTML2Canvas + JS externo do Universe -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('download-universe');
-      const slides = Array.from(document.querySelectorAll('.du-block'));
-
-      if (!btn || !slides.length) return;
-
-      btn.addEventListener('click', async () => {
-        const baseTitle = (document.title || 'dowglas-universe')
-          .replace(/· Dowglas Universe/i, '')
-          .trim()
-          .toLowerCase()
-          .replace(/[^\w]+/g, '-')
-          || 'dowglas-universe';
-
-        for (let i = 0; i < slides.length; i++) {
-          const slide = slides[i];
-
-          slide.scrollIntoView({ behavior: 'auto', block: 'center' });
-
-          const canvas = await html2canvas(slide, {
-            scale: 2,
-            backgroundColor: null,
-            useCORS: true
-          });
-
-          const num = String(i + 1).padStart(2, '0');
-          const filename = `${baseTitle}-slide-${num}.png`;
-
-          const link = document.createElement('a');
-          link.download = filename;
-          link.href = canvas.toDataURL('image/png');
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }
-      });
-    });
-  </script>
+  <script src="{{ '/assets/js/dowglas-universe.js' | relative_url }}"></script>
 
 </body>
 </html>
