@@ -19,7 +19,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #e5e5e5;
       background: #000;
-      overflow-x: auto; /* deixa rolar pro lado se a tela for menor que 1080 */
+      overflow-x: auto;
     }
 
     .fc-main--carrossel {
@@ -41,9 +41,7 @@
       width: 100%;
     }
 
-    /* ==============
-       CARD 1080x1350
-       ============== */
+    /* CARD 1080x1350 */
     .fc-slide.slide {
       width: 1080px;
       height: 1350px;
@@ -60,7 +58,6 @@
         0 0 0 1px rgba(15,23,42,0.7);
     }
 
-    /* fundo cósmico extra */
     .fc-slide.slide::before {
       content: "";
       position: absolute;
@@ -74,7 +71,6 @@
       mix-blend-mode: screen;
     }
 
-    /* marca d'água */
     .fc-slide.slide::after {
       content: "DOWGLAS UNIVERSE";
       position: absolute;
@@ -98,7 +94,6 @@
       flex-direction: column;
     }
 
-    /* header do slide (contador + divisor) */
     .fc-slide__header {
       display: flex;
       align-items: center;
@@ -157,7 +152,6 @@
       margin: 0;
     }
 
-    /* BLOCO DE PERFIL NO ÚLTIMO SLIDE */
     .fc-slide__profile {
       margin-top: auto;
       display: flex;
@@ -269,13 +263,20 @@
   {%- endif -%}
   {%- assign iniciais = p1 | append: p2 -%}
 
-  {% assign slides = page.slides | default: empty %}
+  {%- comment %}
+    Aceita tanto `slides:` (padrão carrossel) quanto `blocos:` (versão antiga do DU)
+  {% endcomment -%}
+  {% assign slides = page.slides | default: page.blocos | default: empty %}
 
   <main class="fc-main fc-main--carrossel">
+
     {% if slides and slides.size > 0 %}
-      <!-- MODO CARROSSEL MULTI-SLIDE (usa page.slides) -->
+      <!-- MODO CARROSSEL / MULTIQUADROS -->
       <section class="fc-slides">
         {% for s in slides %}
+          {%- assign hook_val  = s.hook  | default: s.titulo  -%}
+          {%- assign texto_val = s.texto | default: s.conteudo | default: s.body -%}
+
           <article class="fc-slide slide">
             <div class="fc-slide__inner">
               <header class="fc-slide__header">
@@ -289,15 +290,15 @@
                 </div>
               </header>
 
-              {% if s.hook %}
+              {% if hook_val %}
                 <h2 class="fc-slide__hook">
-                  {{ s.hook | newline_to_br }}
+                  {{ hook_val | newline_to_br }}
                 </h2>
               {% endif %}
 
-              {% if s.texto %}
+              {% if texto_val %}
                 <p class="fc-slide__text">
-                  {{ s.texto | newline_to_br }}
+                  {{ texto_val | newline_to_br }}
                 </p>
               {% endif %}
 
@@ -343,8 +344,9 @@
           </article>
         {% endfor %}
       </section>
+
     {% else %}
-      <!-- MODO QUADRO ÚNICO (usa page.title + content) -->
+      <!-- MODO QUADRO ÚNICO: usa title + content -->
       <section class="fc-slides">
         <article class="fc-slide slide">
           <div class="fc-slide__inner">
@@ -364,7 +366,7 @@
             </h2>
 
             <p class="fc-slide__text">
-              {{ content | markdownify | strip_newlines }}
+              {{ content | markdownify }}
             </p>
 
             <div class="fc-slide__profile">
