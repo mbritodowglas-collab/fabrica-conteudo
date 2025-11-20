@@ -1,109 +1,129 @@
 // assets/js/dowglas-universe.js
-// Exporta cada quadro (.du-block) do Dowglas Universe como PNG separado
-// em formato 4:5 (1080x1350). Agora o recorte é ANCORADO NO TOPO.
+// Download em PNG para o layout "Dowglas Universe" (textão quadro único / multiquadros)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Botão global de download
+  // Botão fixo no topo (igual está no layout dowglas-universe.html)
   const btn =
     document.getElementById('download-universe') ||
     document.querySelector('[data-download="dowglas-universe"]');
 
   if (!btn) {
-    console.warn('[dowglas-universe] Botão de download não encontrado (#download-universe).');
+    console.warn('[dowglas-universe] Botão #download-universe não encontrado no DOM.');
     return;
   }
 
-  // Cada QUADRO é uma .du-block (já criada no layout)
-  const slides = Array.from(document.querySelectorAll('.du-block'));
+  // Blocos individuais (cada quadro do Universe)
+  const blocks = Array.from(document.querySelectorAll('.fc-static-block'));
 
-  if (!slides.length) {
-    console.warn('[dowglas-universe] Nenhum slide (.du-block) encontrado.');
+  // Fallback: se não houver .fc-static-block, tenta capturar o wrapper
+  const wrapper =
+    blocks.length === 0
+      ? (document.querySelector('.fc-static-wrapper') ||
+         document.querySelector('.du-slides'))
+      : null;
+
+  if (!blocks.length && !wrapper) {
+    console.warn('[dowglas-universe] Nenhum .fc-static-block nem wrapper encontrado. Nada para capturar.');
     return;
   }
+
+  console.log('[dowglas-universe] botão encontrado:', btn);
+  console.log('[dowglas-universe] blocks encontrados:', blocks.length);
+  if (wrapper) console.log('[dowglas-universe] wrapper (fallback) encontrado:', wrapper);
 
   btn.addEventListener('click', async () => {
     try {
       if (typeof html2canvas !== 'function') {
-        console.error('[dowglas-universe] html2canvas não está disponível. Confere o <script> do CDN.');
+        console.error('[dowglas-universe] html2canvas não está disponível. Confere se o script foi incluído antes de dowglas-universe.js.');
         return;
       }
 
-      // slug a partir do título da aba
-      const rawTitle = document.title || 'dowglas-universe';
-      const baseTitle =
-        rawTitle
-          .replace(/·\s*Dowglas Universe/i, '')
+      // Gera um slug básico para nome do arquivo
+      let slug = document.body.getAttribute('data-slug');
+      if (!slug) {
+        const rawTitle = document.title || 'dowglas-universe';
+        slug = rawTitle
+          // remove o sufixo padrão do layout
+          .replace(/· Dowglas Universe/i, '')
           .trim()
           .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
           .replace(/[^\w]+/g, '-')
-          .replace(/^-+|-+$/g, '') || 'dowglas-universe';
+          .replace(/^-+|-+$/g, '');
+      }
+      slug = slug || 'dowglas-universe';
 
-      // padrão feed vertical IG
-      const TARGET_W = 1080;
-      const TARGET_H = 1350;
-      const TARGET_RATIO = TARGET_W / TARGET_H; // 0.8
+      // Caso principal: temos .fc-static-block (um ou vários)
+      if (blocks.length) {
+        console.log(`[dowglas-universe] iniciando captura de ${blocks.length} block(s)...`);
 
-      for (let i = 0; i < slides.length; i++) {
-        const slide = slides[i];
+        for (let i = 0; i < blocks.length; i++) {
+          const block = blocks[i];
 
-        // garante que o quadro atual está renderizado
-        slide.scrollIntoView({ behavior: 'auto', block: 'start' });
-        await new Promise((resolve) => setTimeout(resolve, 80));
+          // Garante que o bloco está visível e centralizado
+          block.scrollIntoView({ behavior: 'auto', block: 'center' });
 
-        // captura "bruta" do slide (tela inteira)
-        const fullCanvas = await html2canvas(slide, {
-          scale: 2,
-          useCORS: true,
-          backgroundColor: null
-        });
+          console.log(`[dowglas-universe] capturando bloco ${i + 1}/${blocks.length}...`);
 
-        const fullW = fullCanvas.width;
-        const fullH = fullCanvas.height;
-        const fullRatio = fullW / fullH;
+          const canvas = await html2canvas(block, {
+            scale: 2,      // mais nítido
+            useCORS: true, // ajuda com imagens/avatars externos
+            backgroundColor: null
+          });
 
-        // Área de recorte mantendo proporção 4:5
-        let sx, sy, sw, sh;
+          console.log(`[dowglas-universe] captura concluída para bloco ${i + 1}.`);
 
-        if (fullRatio > TARGET_RATIO) {
-          // Tela mais "larga" que 4:5 → corta laterais, mas usa altura INTEIRA
-          sh = fullH;
-          sw = Math.round(fullH * TARGET_RATIO);
-          sx = Math.round((fullW - sw) / 2);
-          sy = 0; // ancora no topo
-        } else {
-          // Tela mais "alta" que 4:5 → usa largura inteira e corta embaixo
-          sw = fullW;
-          sh = Math.round(fullW / TARGET_RATIO);
-          sx = 0;
-          sy = 0; // *** AQUI é a mudança: recorte começa no TOPO, não no meio ***
+          // Se houver mais de um bloco, numera os arquivos
+          const num = blocks.length > 1
+            ? '-' + String(i + 1).padStart(2, '0')
+            : '';
+
+          const filename = `${slug}${num}.png`;
+
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = canvas.toDataURL('image/png');
+
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          console.log('[dowglas-universe] download iniciado:', filename);
         }
 
-        // canvas final 1080x1350
-        const finalCanvas = document.createElement('canvas');
-        finalCanvas.width = TARGET_W;
-        finalCanvas.height = TARGET_H;
-        const ctx = finalCanvas.getContext('2d');
+        return;
+      }
 
-        // recorta e ajusta para 1080x1350
-        ctx.drawImage(
-          fullCanvas,
-          sx, sy, sw, sh,        // área recortada da captura
-          0, 0, TARGET_W, TARGET_H // preenchendo todo o canvas final
-        );
+      // Fallback: captura o wrapper inteiro em um único PNG
+      if (wrapper) {
+        console.log('[dowglas-universe] iniciando captura (fallback wrapper)...');
 
-        const num = String(i + 1).padStart(2, '0');
-        const filename = `${baseTitle}-slide-${num}.png`;
+        wrapper.scrollIntoView({ behavior: 'auto', block: 'center' });
+
+        const canvas = await html2canvas(wrapper, {
+          scale: 2,
+          useCORS: true
+          // backgroundColor: null
+        });
+
+        console.log('[dowglas-universe] captura (wrapper) concluída.');
+
+        const filename = `${slug}.png`;
 
         const link = document.createElement('a');
         link.download = filename;
-        link.href = finalCanvas.toDataURL('image/png');
+        link.href = canvas.toDataURL('image/png');
 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        console.log('[dowglas-universe] download iniciado (wrapper):', filename);
       }
-    } catch (err) {
-      console.error('[dowglas-universe] Erro ao gerar/baixar PNG:', err);
+
+    } catch (error) {
+      console.error('[dowglas-universe] erro ao gerar ou baixar imagem:', error);
     }
   });
 });
