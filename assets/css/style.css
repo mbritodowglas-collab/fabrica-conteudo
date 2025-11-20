@@ -2251,3 +2251,12 @@ background-image:
 background-size: cover;
 background-position: center;
 background-color: #02040a;
+
+.du-block {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  margin: 0 auto;
+  padding: 180px 120px 220px; /* espaço para topo e rodapé */
+  box-sizing: border-box;
+}
