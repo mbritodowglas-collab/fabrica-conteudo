@@ -2231,3 +2231,10 @@ main {
   cursor: pointer;
   backdrop-filter: blur(6px);
 }
+
+/* Ajuste especial: o slide final (CTA) deve ficar centralizado verticalmente */
+.du-block--cta {
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 0 !important; /* remove o espaçamento que empurra para cima */
+}
