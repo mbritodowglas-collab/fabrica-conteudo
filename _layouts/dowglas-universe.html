@@ -23,7 +23,7 @@
       overflow-x: hidden;
     }
 
-    /* MAIN CENTRALIZANDO O QUADRO */
+    /* MAIN – alinhado com o static (fc-main) + nosso ajuste */
     .du-main {
       width: 100%;
       margin: 0;
@@ -32,9 +32,10 @@
       justify-content: center;
       align-items: flex-start;
       box-sizing: border-box;
-      overflow-x: auto; /* em telas menores, rola para o lado */
+      overflow-x: auto; /* em telas menores, rola pro lado */
     }
 
+    /* wrapper no mesmo espírito do fc-static-wrapper */
     .du-slides {
       display: flex;
       flex-direction: column;
@@ -99,9 +100,8 @@
       border-radius: 1.25rem;
       box-sizing: border-box;
       position: relative;
-      z-index: 1; /* fica acima do fundo/efeitos */
+      z-index: 1; /* acima do fundo/efeitos */
 
-      /* “caixa” mínima: borda + brilho bem discreto */
       border: 1px solid rgba(148,163,184,0.22);
       background:
         radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(0,0,0,0.92));
@@ -244,7 +244,7 @@
   </style>
 </head>
 
-<body class="du-body">
+<body class="fc-body fc-body--static du-body">
 
   <button id="download-universe" class="fc-download-fixed" type="button">↓ PNG</button>
 
@@ -262,12 +262,13 @@ Se esse multiverso fez sentido pra você, me segue, deixa um comentário
 com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
 " -%}
 
-  <main class="du-main">
-    <section class="du-slides">
+  <main class="fc-main fc-main--static du-main">
+    <section class="fc-static-wrapper du-slides">
 
       {% if page.blocos %}
         {% for b in page.blocos %}
-          <section class="du-block du-block--content slide">
+          <!-- cada bloco também é fc-static-block, como no static.html -->
+          <section class="du-block du-block--content slide fc-static-block">
             <article class="du-card">
               {% if forloop.first %}
                 <header class="du-header">
@@ -293,7 +294,7 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
         {% endfor %}
 
         {% if page.show_profile_cta %}
-          <section class="du-block du-block--cta slide">
+          <section class="du-block du-block--cta slide fc-static-block">
             <article class="du-card">
               <div class="du-profile-row">
                 <div class="fc-avatar">
@@ -324,7 +325,8 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
         {% endif %}
 
       {% else %}
-        <section class="du-block du-block--single slide">
+        <!-- modo quadro único -->
+        <section class="du-block du-block--single slide fc-static-block">
           <article class="du-card">
             <header class="du-header">
               <h1 class="du-title">{{ page.title }}</h1>
@@ -353,7 +355,7 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
         </section>
 
         {% if page.show_profile_cta %}
-          <section class="du-block du-block--cta slide">
+          <section class="du-block du-block--cta slide fc-static-block">
             <article class="du-card">
               <div class="du-profile-row">
                 <div class="fc-avatar">
