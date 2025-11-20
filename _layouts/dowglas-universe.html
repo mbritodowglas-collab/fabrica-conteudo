@@ -103,13 +103,92 @@
       letter-spacing: 0.02em;
     }
 
-    /* FOOTER */
+    /* FOOTER TEXTO */
     .du-footer {
       margin-top: 2rem;
       padding-top: 1.25rem;
       border-top: 1px solid rgba(255,255,255,0.06);
       font-size: 0.98rem;
       opacity: 0.9;
+    }
+
+    /* BLOCO CTA PERFIL (estilo twitter) */
+    .du-block--cta {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    .du-cta-inner {
+      width: 100%;
+    }
+
+    .du-cta-text {
+      margin-top: 1rem;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    /* Reaproveita estilos do static: fc-avatar / fc-static-user */
+    .fc-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(0,0,0,0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .fc-avatar__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .fc-avatar__text {
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .fc-static-user {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .fc-static-user__name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .fc-static-user__handle {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .fc-verified-badge {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 2px solid #1da1f2;
+      box-sizing: border-box;
+      display: inline-block;
+    }
+
+    .du-profile-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
     }
   </style>
 </head>
@@ -118,6 +197,22 @@
 
   <!-- Botão de download em PNG -->
   <button id="download-universe" class="fc-download-fixed" type="button">↓ PNG</button>
+
+  {%- comment -%}
+    Prepara nome / iniciais / avatar para o quadro de perfil tipo Twitter.
+  {%- endcomment -%}
+  {%- assign nome = page.autor_nome | default: 'Dowglas Universe' -%}
+  {%- assign partes = nome | split: ' ' -%}
+  {%- assign p1 = partes[0] | slice: 0,1 -%}
+  {%- assign p2 = '' -%}
+  {%- if partes.size > 1 -%}
+    {%- assign p2 = partes[1] | slice: 0,1 -%}
+  {%- endif -%}
+  {%- assign iniciais = p1 | append: p2 -%}
+
+  {%- assign cta_profile_text = page.cta_profile_text | default: "
+Se esse universo fez sentido pra você, me segue aqui, deixa um comentário com o que mais falou contigo e curte esse post pra eu saber que fez sentido pra você.
+" -%}
 
   <main class="du-main">
     <article class="du-card">
@@ -133,7 +228,7 @@
       {% endif %}
 
       {% if page.blocos %}
-        <!-- MULTIQUADROS -->
+        <!-- MULTIQUADROS (blocos) -->
         <section class="du-content">
           {% for b in page.blocos %}
             <section class="du-block">
@@ -148,11 +243,45 @@
             </section>
           {% endfor %}
         </section>
-
       {% else %}
         <!-- TEXTÃO ÚNICO -->
         <section class="du-content">
           {{ content | markdownify }}
+        </section>
+      {% endif %}
+
+      {%- comment -%}
+        Quadro extra com perfil + CTA, opcional.
+        Ativa com: show_profile_cta: true no front matter.
+      {%- endcomment -%}
+      {% if page.show_profile_cta %}
+        <section class="du-block du-block--cta">
+          <div class="du-cta-inner">
+            <div class="du-profile-row">
+              <div class="fc-avatar">
+                {% if page.avatar %}
+                  <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+                {% else %}
+                  <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+                {% endif %}
+              </div>
+              <div class="fc-static-user">
+                <div class="fc-static-user__name">
+                  {{ nome }}
+                  {% if page.verificado %}
+                    <span class="fc-verified-badge" title="Verificado"></span>
+                  {% endif %}
+                </div>
+                {% if page.autor_handle %}
+                  <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="du-cta-text">
+              {{ cta_profile_text | markdownify }}
+            </div>
+          </div>
         </section>
       {% endif %}
 
@@ -192,7 +321,8 @@
           .replace(/ · Dowglas Universe/, '')
           .trim()
           .toLowerCase()
-          .replace(/[^\w]+/g, '-');
+          .replace(/[^\w]+/g, '-')
+          || 'dowglas-universe';
 
         const link = document.createElement('a');
         link.download = `${nome}.png`;
