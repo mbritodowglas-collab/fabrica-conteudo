@@ -22,6 +22,22 @@
       color: #E5E7EB;
     }
 
+    /* HEADER FIXO (novo) */
+    .fc-topbar.fc-topbar--du {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: #0F1217;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Afastando conteúdo do header */
+    .fc-main--carrossel {
+      padding-top: 4.5rem !important;
+    }
+
     /* CARD – só muda cor/fundo, não mexe em tamanho */
     .du-body .fc-slide.slide {
       background:
@@ -140,31 +156,26 @@
   </style>
 </head>
 
+
 <body class="fc-body fc-body--carrossel du-body">
 
-<header class="fc-topbar">
+<header class="fc-topbar fc-topbar--du">
   <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Dowglas Universe</a>
   <span class="fc-topbar__badge">DU · Carrossel multiquadros</span>
 </header>
 
-<!-- Botão de download -->
 <button id="download-carrossel" class="fc-download-fixed" type="button">
   ↓ PNG
 </button>
 
-{%- comment %}
-  Mesmo esquema de avatar/nome usado no "static",
-  só que com default para Dowglas Universe.
-{% endcomment -%}
-
-{%- assign nome = page.autor_nome | default: page.autor | default: 'Dowglas Universe' -%}
-{%- assign partes = nome | split: ' ' -%}
-{%- assign p1 = partes[0] | slice: 0,1 -%}
-{%- assign p2 = '' -%}
-{%- if partes.size > 1 -%}
-  {%- assign p2 = partes[1] | slice: 0,1 -%}
-{%- endif -%}
-{%- assign iniciais = p1 | append: p2 -%}
+{% assign nome = page.autor_nome | default: page.autor | default: 'Dowglas Universe' %}
+{% assign partes = nome | split: ' ' %}
+{% assign p1 = partes[0] | slice: 0,1 %}
+{% assign p2 = '' %}
+{% if partes.size > 1 %}
+  {% assign p2 = partes[1] | slice: 0,1 %}
+{% endif %}
+{% assign iniciais = p1 | append: p2 %}
 
 <main class="fc-main fc-main--carrossel">
 
@@ -185,17 +196,17 @@
     </p>
   </section>
 
+
   {% assign slides = page.slides | default: empty %}
   {% if slides and slides.size > 0 %}
   <section class="fc-slides">
 
     {% for s in slides %}
-    {%- assign usa_midia = s.midia | default: false -%}
+    {% assign usa_midia = s.midia | default: false %}
 
     <article class="fc-slide slide{% if usa_midia %} fc-slide--midia{% endif %}">
       <div class="fc-slide__inner">
 
-        <!-- HEADER PREMIUM: divisor + contador -->
         <header class="fc-slide__header">
           <div class="fc-slide-divider">
             <span class="fc-divider-line"></span>
@@ -209,24 +220,16 @@
         </header>
 
         {% if s.hook %}
-          <h2 class="fc-slide__hook">
-            {{ s.hook | newline_to_br }}
-          </h2>
+          <h2 class="fc-slide__hook">{{ s.hook | newline_to_br }}</h2>
         {% endif %}
 
         {% if s.texto %}
-          <p class="fc-slide__text">
-            {{ s.texto | newline_to_br }}
-          </p>
+          <p class="fc-slide__text">{{ s.texto | newline_to_br }}</p>
         {% endif %}
 
-        {%- comment %}
-          Bloco de perfil no último slide.
-        {% endcomment -%}
         {% if forloop.last %}
         <div class="fc-slide__profile" style="margin-top: 2.5rem; display: flex; justify-content: center;">
           <div class="fc-profile-card" style="display: flex; align-items: center; gap: 0.75rem;">
-
             <div class="fc-avatar">
               {% if page.avatar %}
                 <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
@@ -247,7 +250,6 @@
                 <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
               {% endif %}
             </div>
-
           </div>
         </div>
 
@@ -258,9 +260,7 @@
 
         {% if s.cta %}
           <footer class="fc-slide__footer">
-            <p class="fc-slide__cta">
-              {{ s.cta | newline_to_br }}
-            </p>
+            <p class="fc-slide__cta">{{ s.cta | newline_to_br }}</p>
           </footer>
         {% endif %}
 
@@ -274,7 +274,6 @@
       <p>Nenhum slide encontrado. Defina a lista <code>slides:</code> no front matter.</p>
     </section>
   {% endif %}
-
 </main>
 
 <footer class="fc-footer">
