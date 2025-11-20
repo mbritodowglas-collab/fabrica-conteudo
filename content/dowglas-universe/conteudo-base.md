@@ -3,20 +3,21 @@ layout: dowglas-universe
 title: "Modelo · Textão quadro único"
 perfil: "Dowglas Universe"
 tipo_post: "textao-unico"
-descricao_modelo: "Reflexão em um quadro só, com fundo padrão do Dowglas Universe."
+descricao_modelo: "Reflexão curta para quadro único do Dowglas Universe."
+limite_caracteres: 620   # tamanho seguro para caber inteiro no quadro 4:5
 ---
 
-O Dowglas Universe começa aqui — nesse espaço onde eu deixo de ser só o personal, só o professor, só qualquer rótulo que tentaram colar ao longo do caminho.
+O Dowglas Universe começa aqui — esse espaço onde eu deixo de ser só o personal ou o professor, e volto a ser inteiro de novo.
 
-Aqui eu conecto tudo que me move:
+Aqui eu conecto o que realmente me move:
 
-• filosofia que encontro em anime  
-• metáforas perdidas em filmes  
-• neurociência traduzida para a vida real  
+• filosofia que encontro nos animes  
+• metáforas perdidas nos filmes  
+• neurociência aplicada à vida real  
 • caos interno virando palavra organizada  
 
 Este não é um lugar “certinho”.  
 É um lugar vivo.  
-Um lugar onde a minha mente expande sem pedir permissão.
+Um lugar onde a mente expande sem pedir licença.
 
-Se algo disso ressoa aí dentro, então você já faz parte do meu universo.
+Se algo disso ressoa aí dentro, então você já habita meu universo.
