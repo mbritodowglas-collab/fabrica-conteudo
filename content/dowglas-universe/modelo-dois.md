@@ -6,9 +6,8 @@ avatar: "/assets/img/douglas-universe.webp"
 tipo_post: "textao-multiquadros"
 tagline: "Carrossel de reflexão para o Dowglas Universe."
 
-# Orientação pra IA: média segura por slide
+# Orientação pra IA: tamanho médio por slide
 limite_caracteres_por_slide: 450
----
 
 slides:
   - hook: "O começo do meu mini multiverso."
@@ -39,3 +38,4 @@ slides:
     texto: |
       Então talvez você também carregue um universo inteiro aí dentro.  
       E é aqui que esses universos se encontram.
+---
