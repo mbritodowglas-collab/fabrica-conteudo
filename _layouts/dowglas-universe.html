@@ -24,13 +24,27 @@
       background-image: url("{{ '/assets/img/dowglas-universe.jpg' | relative_url }}");
     }
 
+    .fc-download-fixed {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 99999;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
     .du-main {
       width: 100%;
       max-width: 1080px;
       padding: clamp(1.5rem, 4vw, 2.5rem);
       display: flex;
       justify-content: center;
-      align-items: flex-start;
     }
 
     .du-card {
@@ -54,27 +68,28 @@
       opacity: 0.85;
     }
 
+    /* TEXTÃO */
     .du-content {
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       line-height: 1.65;
       letter-spacing: 0.01em;
     }
 
     .du-content p {
-      margin: 0 0 0.9rem 0;
+      margin: 0 0 1rem 0;
     }
 
     .du-content ul {
-      margin: 0 0 0.9rem 0;
+      margin: 0 0 1rem 0;
       padding-left: 1.2rem;
     }
 
-    /* BLOCO → cada quadro do multiquadro */
+    /* MULTIQUADRO */
     .du-block {
-      min-height: 80vh;              /* ocupa quase a tela toda */
+      min-height: 100vh;
       display: flex;
-      align-items: center;           /* centraliza o texto no quadro */
-      margin-bottom: 2rem;
+      align-items: center;
+      padding: 2rem 0;
     }
 
     .du-block-inner {
@@ -82,11 +97,13 @@
     }
 
     .du-block-title {
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
       font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
+    /* FOOTER */
     .du-footer {
       margin-top: 2rem;
       padding-top: 1.25rem;
@@ -94,36 +111,29 @@
       font-size: 0.98rem;
       opacity: 0.9;
     }
-
-    .du-footer p {
-      margin: 0 0 0.5rem 0;
-    }
   </style>
 </head>
+
 <body class="du-body">
+
+  <!-- Botão de download em PNG -->
+  <button id="download-universe" class="fc-download-fixed" type="button">↓ PNG</button>
 
   <main class="du-main">
     <article class="du-card">
 
       {% if page.title %}
         <header style="margin-bottom: 1.5rem;">
-          <h1 class="du-title">
-            {{ page.title }}
-          </h1>
+          <h1 class="du-title">{{ page.title }}</h1>
 
           {% if page.subtitulo %}
-            <p class="du-subtitle">
-              {{ page.subtitulo }}
-            </p>
+            <p class="du-subtitle">{{ page.subtitulo }}</p>
           {% endif %}
         </header>
       {% endif %}
 
-      {% comment %}
-        Se tiver blocos: renderiza como MULTIQUADROS (um bloco por “tela”).
-        Se não tiver: textão único usando {{ content }} normal.
-      {% endcomment %}
       {% if page.blocos %}
+        <!-- MULTIQUADROS -->
         <section class="du-content">
           {% for b in page.blocos %}
             <section class="du-block">
@@ -138,7 +148,9 @@
             </section>
           {% endfor %}
         </section>
+
       {% else %}
+        <!-- TEXTÃO ÚNICO -->
         <section class="du-content">
           {{ content | markdownify }}
         </section>
@@ -147,21 +159,48 @@
       {% if page.cta or page.fechamento %}
         <footer class="du-footer">
           {% if page.fechamento %}
-            <p>
-              {{ page.fechamento | markdownify }}
-            </p>
+            <p>{{ page.fechamento | markdownify }}</p>
           {% endif %}
-
           {% if page.cta %}
-            <p>
-              {{ page.cta | markdownify }}
-            </p>
+            <p>{{ page.cta | markdownify }}</p>
           {% endif %}
         </footer>
       {% endif %}
 
     </article>
   </main>
+
+  <!-- HTML2Canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('download-universe');
+      const card = document.querySelector('.du-card');
+      if (!btn || !card) return;
+
+      btn.addEventListener('click', async () => {
+        card.scrollIntoView({ behavior: "auto", block: "center" });
+
+        const canvas = await html2canvas(card, {
+          scale: 2,
+          backgroundColor: null,
+          useCORS: true
+        });
+
+        const nome = document.title
+          .replace(/ · Dowglas Universe/, '')
+          .trim()
+          .toLowerCase()
+          .replace(/[^\w]+/g, '-');
+
+        const link = document.createElement('a');
+        link.download = `${nome}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    });
+  </script>
 
 </body>
 </html>
