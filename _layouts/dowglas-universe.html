@@ -20,23 +20,19 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #e5e5e5;
       background: #000;
-      overflow-x: hidden;
+      overflow-x: auto; /* pode rolar pro lado se a viewport for menor que 1080 */
     }
 
-    /* MAIN – alinhado com o static (fc-main) + nosso ajuste */
-    .du-main {
-      width: 100%;
-      margin: 0;
-      padding: 2rem 1rem;
+    /* MAIN, clonando a ideia do static */
+    body.du-body .fc-main--static {
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      padding: 2rem 1rem;
       box-sizing: border-box;
-      overflow-x: auto; /* em telas menores, rola pro lado */
     }
 
-    /* wrapper no mesmo espírito do fc-static-wrapper */
-    .du-slides {
+    body.du-body .fc-static-wrapper {
       display: flex;
       flex-direction: column;
       gap: 2rem;
@@ -44,27 +40,29 @@
     }
 
     /* ============================
-       QUADRO BASE (1080 x 1350)
+       QUADRO EXPORTADO (1080 x 1350)
        ============================ */
-    .du-block {
+    body.du-body .fc-static-card.fc-static-block {
       width: 1080px;
       height: 1350px;
-      padding: clamp(3rem, 8vh, 4rem) clamp(1.5rem, 4vw, 2.5rem) clamp(2.5rem, 6vh, 3.5rem);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
       box-sizing: border-box;
+
+      padding: 96px 96px 120px;
+      border-radius: 40px;
 
       position: relative;
       overflow: hidden;
 
-      /* fundo “espaço” em CSS puro */
+      /* fundo cósmico */
       background:
         radial-gradient(circle at top left, #111827 0, #020617 55%, #000 100%);
+      box-shadow:
+        0 40px 120px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(15,23,42,0.7);
     }
 
     /* camada de “órbitas” / textura leve */
-    .du-block::before {
+    body.du-body .fc-static-card.fc-static-block::before {
       content: "";
       position: absolute;
       inset: -20%;
@@ -78,7 +76,7 @@
     }
 
     /* marca d'água DOWGLAS UNIVERSE no rodapé */
-    .du-block::after {
+    body.du-body .fc-static-card.fc-static-block::after {
       content: "DOWGLAS UNIVERSE";
       position: absolute;
       bottom: 1.9rem;
@@ -92,27 +90,22 @@
       pointer-events: none;
     }
 
-    .du-card {
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: clamp(1.75rem, 4vw, 2.5rem);
-      border-radius: 1.25rem;
-      box-sizing: border-box;
+    /* conteúdo interno do quadro */
+    .du-inner {
       position: relative;
-      z-index: 1; /* acima do fundo/efeitos */
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
-      border: 1px solid rgba(148,163,184,0.22);
-      background:
-        radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(0,0,0,0.92));
-      box-shadow:
-        0 18px 45px rgba(0,0,0,0.85),
-        0 0 0 1px rgba(15,23,42,0.5);
-      backdrop-filter: blur(4px);
+    .du-header {
+      margin-bottom: 1.4rem;
     }
 
     .du-title {
-      font-size: clamp(1.7rem, 2.3rem, 2.6rem);
+      font-size: 2.3rem;
       line-height: 1.15;
       margin: 0 0 0.45rem 0;
       letter-spacing: 0.04em;
@@ -124,14 +117,11 @@
       opacity: 0.85;
     }
 
-    .du-header {
-      margin-bottom: 1.4rem;
-    }
-
     .du-content {
       font-size: 1.05rem;
       line-height: 1.65;
       letter-spacing: 0.01em;
+      flex: 1;
     }
 
     .du-content p { margin: 0 0 1rem 0; }
@@ -157,10 +147,6 @@
     }
 
     /* BLOCO CTA COM PERFIL */
-    .du-block--cta .du-card {
-      max-width: 640px;
-    }
-
     .du-profile-row {
       display: flex;
       align-items: center;
@@ -263,13 +249,12 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
 " -%}
 
   <main class="fc-main fc-main--static du-main">
-    <section class="fc-static-wrapper du-slides">
-
-      {% if page.blocos %}
+    {% if page.blocos %}
+      <!-- MULTIQUADROS (textão multiquadros) -->
+      <section class="fc-static-wrapper fc-static-wrapper--multi">
         {% for b in page.blocos %}
-          <!-- multi-quadro (aqui não uso o id, só a classe-padrão) -->
-          <section class="du-block du-block--content slide fc-static-block">
-            <article class="du-card">
+          <article class="fc-static-card fc-static-block">
+            <div class="du-inner">
               {% if forloop.first %}
                 <header class="du-header">
                   <h1 class="du-title">{{ page.title }}</h1>
@@ -289,13 +274,15 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
                   {{ b.texto | markdownify }}
                 {% endif %}
               </section>
-            </article>
-          </section>
+            </div>
+          </article>
         {% endfor %}
+      </section>
 
-        {% if page.show_profile_cta %}
-          <section class="du-block du-block--cta slide fc-static-block">
-            <article class="du-card">
+      {% if page.show_profile_cta %}
+        <section class="fc-static-wrapper">
+          <article class="fc-static-card fc-static-block">
+            <div class="du-inner">
               <div class="du-profile-row">
                 <div class="fc-avatar">
                   {% if page.avatar %}
@@ -320,16 +307,16 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
               <div class="du-cta-text">
                 {{ cta_profile_text | markdownify }}
               </div>
-            </article>
-          </section>
-        {% endif %}
+            </div>
+          </article>
+        </section>
+      {% endif %}
 
-      {% else %}
-        <!-- MODO QUADRO ÚNICO: é aqui que o JS usa o content "dowglas-universe" -->
-        <section
-          id="dowglas-universe"
-          class="du-block du-block--single slide fc-static-block">
-          <article class="du-card">
+    {% else %}
+      <!-- QUADRO ÚNICO -->
+      <section class="fc-static-wrapper">
+        <article id="dowglas-universe" class="fc-static-card fc-static-block">
+          <div class="du-inner">
             <header class="du-header">
               <h1 class="du-title">{{ page.title }}</h1>
               {% if page.tagline or page.subtitulo %}
@@ -353,12 +340,14 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
                 {% endif %}
               </div>
             {% endif %}
-          </article>
-        </section>
+          </div>
+        </article>
+      </section>
 
-        {% if page.show_profile_cta %}
-          <section class="du-block du-block--cta slide fc-static-block">
-            <article class="du-card">
+      {% if page.show_profile_cta %}
+        <section class="fc-static-wrapper">
+          <article class="fc-static-card fc-static-block">
+            <div class="du-inner">
               <div class="du-profile-row">
                 <div class="fc-avatar">
                   {% if page.avatar %}
@@ -383,11 +372,11 @@ com o que mais falou contigo e curte esse post pra eu saber que fez sentido.
               <div class="du-cta-text">
                 {{ cta_profile_text | markdownify }}
               </div>
-            </article>
-          </section>
-        {% endif %}
+            </div>
+          </article>
+        </section>
       {% endif %}
-    </section>
+    {% endif %}
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
