@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
+    /* Layout base do Dowglas Universe */
     .du-body {
       margin: 0;
       min-height: 100vh;
@@ -17,141 +18,148 @@
       justify-content: center;
       align-items: stretch;
       color: #e5e5e5;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url("{{ '/assets/img/dowglas-universe.jpg' | relative_url }}");
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     .du-main {
+      flex: 1 1 auto;
       width: 100%;
-      max-width: 1080px;
-      padding: clamp(1.5rem, 4vw, 2.5rem);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
     }
 
-    .du-card {
+    /* Multiquadros: cada slide ocupa a tela inteira (scrollando de um para o outro) */
+    .du-multiquadros {
       width: 100%;
+    }
+
+    .du-quadro {
+      min-height: 100vh;
+      padding: 6rem 1.5rem 5rem;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .du-quadro__content {
       max-width: 720px;
       margin: 0 auto;
-      padding: clamp(1.75rem, 4vw, 2.5rem);
-      border-radius: 1.25rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+      max-height: calc(100vh - 7rem);
+      overflow-y: auto; /* impede o texto de estourar pra baixo */
+    }
+
+    .du-tagline {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.7;
+      margin: 0 0 0.75rem;
+    }
+
+    .du-title,
+    .du-hook {
+      font-weight: 600;
+      margin: 0 0 1.5rem;
     }
 
     .du-title {
-      font-size: clamp(1.5rem, 2.1rem, 2.3rem);
-      line-height: 1.2;
-      margin: 0 0 0.75rem 0;
-      letter-spacing: 0.03em;
+      font-size: 1.5rem;
     }
 
-    .du-subtitle {
-      margin: 0;
-      font-size: 0.95rem;
-      opacity: 0.85;
+    .du-hook {
+      font-size: 1.35rem;
     }
 
-    .du-content {
-      font-size: 1.02rem;
-      line-height: 1.65;
-      letter-spacing: 0.01em;
+    .du-quadro__texto p {
+      margin: 0 0 0.9rem;
     }
 
-    .du-content p {
-      margin: 0 0 0.9rem 0;
+    .du-quadro__cta {
+      margin-top: 1.5rem;
+      font-weight: 500;
     }
 
-    .du-content ul {
-      margin: 0 0 0.9rem 0;
-      padding-left: 1.2rem;
+    .du-assinatura {
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      opacity: 0.75;
     }
 
-    .du-block {
-      margin-bottom: 1.75rem;
-    }
-
-    .du-block-title {
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem 0;
-      font-weight: 600;
-    }
-
-    .du-footer {
-      margin-top: 2rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.98rem;
-      opacity: 0.9;
-    }
-
-    .du-footer p {
-      margin: 0 0 0.5rem 0;
+    /* Só pra diferenciar mentalmente os tipos, se quiser afinar depois via CSS global */
+    .du-quadro--capa .du-hook {
+      font-size: 1.6rem;
     }
   </style>
 </head>
-<body class="du-body">
 
+<body
+  class="du-body"
+  style="
+    background-image: url('{{ '/assets/img/dowglas-universe.jpg' | relative_url }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  "
+>
   <main class="du-main">
-    <article class="du-card">
 
-      {% if page.title %}
-        <header style="margin-bottom: 1.5rem;">
-          <h1 class="du-title">
-            {{ page.title }}
-          </h1>
+    {%- if page.slides and page.slides.size > 0 -%}
+      <!-- MODO MULTIQUADROS -->
+      <div class="du-multiquadros">
+        {%- for slide in page.slides -%}
+          {%- assign tipo = slide.tipo | downcase | replace: ' ', '-' -%}
+          <section class="du-quadro du-quadro--{{ tipo }}" data-slide="{{ forloop.index }}">
+            <div class="du-quadro__content">
+              {%- if forloop.first and page.tagline -%}
+                <p class="du-tagline">{{ page.tagline }}</p>
+              {%- endif -%}
 
-          {% if page.subtitulo %}
-            <p class="du-subtitle">
-              {{ page.subtitulo }}
-            </p>
-          {% endif %}
-        </header>
-      {% endif %}
+              {%- if slide.hook -%}
+                <h2 class="du-hook">{{ slide.hook }}</h2>
+              {%- endif -%}
 
-      {% comment %}
-        Se o post tiver blocos (multiquadros), renderiza cada bloco separado.
-        Senão, renderiza o content inteiro como textão único.
-      {% endcomment %}
-      {% if page.blocos %}
-        <section class="du-content">
-          {% for b in page.blocos %}
-            <div class="du-block">
-              {% if b.titulo %}
-                <h2 class="du-block-title">{{ b.titulo }}</h2>
-              {% endif %}
-              {% if b.texto %}
-                {{ b.texto | markdownify }}
-              {% endif %}
+              {%- if slide.texto -%}
+                <div class="du-quadro__texto">
+                  {{ slide.texto | markdownify }}
+                </div>
+              {%- endif -%}
+
+              {%- if slide.cta -%}
+                <div class="du-quadro__cta">
+                  {{ slide.cta | markdownify }}
+                </div>
+              {%- endif -%}
+
+              {%- if forloop.last -%}
+                <p class="du-assinatura">Dowglas Universe.</p>
+              {%- endif -%}
             </div>
-          {% endfor %}
-        </section>
-      {% else %}
-        <section class="du-content">
-          {{ content | markdownify }}
-        </section>
-      {% endif %}
+          </section>
+        {%- endfor -%}
+      </div>
 
-      {% if page.cta or page.fechamento %}
-        <footer class="du-footer">
-          {% if page.fechamento %}
-            <p>
-              {{ page.fechamento | markdownify }}
-            </p>
-          {% endif %}
+    {%- else -%}
+      <!-- MODO TEXTÃO ÚNICO (post normal) -->
+      <section class="du-quadro du-quadro--single">
+        <div class="du-quadro__content">
+          {%- if page.tagline -%}
+            <p class="du-tagline">{{ page.tagline }}</p>
+          {%- endif -%}
 
-          {% if page.cta %}
-            <p>
-              {{ page.cta | markdownify }}
-            </p>
-          {% endif %}
-        </footer>
-      {% endif %}
+          {%- if page.title -%}
+            <h1 class="du-title">{{ page.title }}</h1>
+          {%- endif -%}
 
-    </article>
+          <article class="du-quadro__texto">
+            {{ content }}
+          </article>
+
+          <p class="du-assinatura">Dowglas Universe.</p>
+        </div>
+      </section>
+    {%- endif -%}
+
   </main>
-
 </body>
 </html>
