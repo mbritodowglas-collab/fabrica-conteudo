@@ -7,408 +7,151 @@
   <title>{{ page.title }} · Carrossel · Dowglas Universe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-
-  <style>
-    :root {
-      color-scheme: dark;
-    }
-
-    body.fc-body--carrossel.du-body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #e5e5e5;
-      background: #000;
-      overflow-x: auto;
-    }
-
-    .fc-main--carrossel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 2rem 1rem;
-      box-sizing: border-box;
-      width: 100%;
-      gap: 2rem;
-    }
-
-    .fc-slides {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-      width: 100%;
-    }
-
-    /* CARD 1080x1350 */
-    .fc-slide.slide {
-      width: 1080px;
-      height: 1350px;
-      box-sizing: border-box;
-      padding: 72px 72px 96px;
-      border-radius: 40px;
-      position: relative;
-      overflow: hidden;
-
-      background:
-        radial-gradient(circle at top left, #111827 0, #020617 55%, #000 100%);
-      box-shadow:
-        0 40px 120px rgba(0,0,0,0.9),
-        0 0 0 1px rgba(15,23,42,0.7);
-    }
-
-    .fc-slide.slide::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(56,189,248,0.18) 0, transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(129,140,248,0.17) 0, transparent 60%),
-        radial-gradient(circle at 50% 120%, rgba(15,23,42,0.9) 0, transparent 70%);
-      opacity: 0.75;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    .fc-slide.slide::after {
-      content: "DOWGLAS UNIVERSE";
-      position: absolute;
-      bottom: 1.9rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.82rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: rgba(148,163,184,0.35);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .fc-slide__inner {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .fc-slide__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.25rem;
-      font-size: 0.9rem;
-      opacity: 0.85;
-    }
-
-    .fc-slide-divider {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(148,163,184,0.8);
-    }
-
-    .fc-divider-line {
-      display: block;
-      width: 54px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(148,163,184,0.7), transparent);
-    }
-
-    .fc-slide-num {
-      font-variant-numeric: tabular-nums;
-      font-size: 0.85rem;
-      color: rgba(209,213,219,0.9);
-    }
-
-    .fc-slide__hook {
-      font-size: 1.9rem;
-      line-height: 1.2;
-      margin: 0 0 1rem 0;
-      letter-spacing: 0.02em;
-    }
-
-    .fc-slide__text {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin: 0;
-      white-space: pre-line;
-    }
-
-    .fc-slide__footer {
-      margin-top: 1.8rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(148,163,184,0.3);
-    }
-
-    .fc-slide__cta {
-      font-size: 0.98rem;
-      opacity: 0.9;
-      margin: 0;
-    }
-
-    .fc-slide__profile {
-      margin-top: auto;
-      display: flex;
-      justify-content: center;
-    }
-
-    .fc-profile-card {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .fc-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      overflow: hidden;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: radial-gradient(circle at 30% 20%, #f97316, #0f172a);
-    }
-
-    .fc-avatar__img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .fc-avatar__text {
-      font-weight: 600;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-    }
-
-    .fc-static-user {
-      display: inline-flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .fc-static-user__name {
-      font-size: 0.98rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .fc-static-user__handle {
-      font-size: 0.85rem;
-      opacity: 0.82;
-    }
-
-    .fc-verified-badge {
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      border: 2px solid #38bdf8;
-      box-sizing: border-box;
-    }
-
-    .fc-slide__engage {
-      margin-top: 1rem;
-      text-align: center;
-      opacity: 0.75;
-      font-size: 0.9rem;
-    }
-
-    .fc-download-fixed {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 9999;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      border: 0;
-      background: rgba(15,23,42,0.9);
-      color: #f9fafb;
-      font-size: 0.9rem;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-    }
-
-    footer.fc-footer {
-      margin: 2rem 0 1rem;
-      font-size: 0.8rem;
-      opacity: 0.5;
-      text-align: center;
-    }
-  </style>
 </head>
 
-<body class="fc-body fc-body--carrossel du-body">
+<body class="fc-body fc-body--carrossel">
 
-  <button id="download-carrossel" class="fc-download-fixed" type="button">
-    ↓ PNG
-  </button>
+<header class="fc-topbar">
+  <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Dowglas Universe</a>
+  <span class="fc-topbar__badge">DU · Carrossel multiquadros</span>
+</header>
 
-  {%- assign nome = page.autor_nome | default: page.autor | default: 'Dowglas Universe' -%}
-  {%- assign partes = nome | split: ' ' -%}
-  {%- assign p1 = partes[0] | slice: 0,1 -%}
-  {%- assign p2 = '' -%}
-  {%- if partes.size > 1 -%}
-    {%- assign p2 = partes[1] | slice: 0,1 -%}
-  {%- endif -%}
-  {%- assign iniciais = p1 | append: p2 -%}
+<!-- Botão de download -->
+<button id="download-carrossel" class="fc-download-fixed" type="button">
+  ↓ PNG
+</button>
 
-  {%- comment %}
-    Aceita tanto `slides:` (padrão carrossel) quanto `blocos:` (versão antiga do DU)
-  {% endcomment -%}
-  {% assign slides = page.slides | default: page.blocos | default: empty %}
+{%- comment %}
+  Mesmo esquema de avatar/nome usado no "static",
+  só que com default para Dowglas Universe.
+{% endcomment -%}
 
-  <main class="fc-main fc-main--carrossel">
+{%- assign nome = page.autor_nome | default: page.autor | default: 'Dowglas Universe' -%}
+{%- assign partes = nome | split: ' ' -%}
+{%- assign p1 = partes[0] | slice: 0,1 -%}
+{%- assign p2 = '' -%}
+{%- if partes.size > 1 -%}
+  {%- assign p2 = partes[1] | slice: 0,1 -%}
+{%- endif -%}
+{%- assign iniciais = p1 | append: p2 -%}
 
-    {% if slides and slides.size > 0 %}
-      <!-- MODO CARROSSEL / MULTIQUADROS -->
-      <section class="fc-slides">
-        {% for s in slides %}
-          {%- assign hook_val  = s.hook  | default: s.titulo  -%}
-          {%- assign texto_val = s.texto | default: s.conteudo | default: s.body -%}
+<main class="fc-main fc-main--carrossel">
 
-          <article class="fc-slide slide">
-            <div class="fc-slide__inner">
-              <header class="fc-slide__header">
-                <div class="fc-slide-divider">
-                  <span class="fc-divider-line"></span>
-                  <span class="fc-divider-icon">◇</span>
-                  <span class="fc-divider-line"></span>
-                </div>
-                <div class="fc-slide-num">
-                  {{ forloop.index }} / {{ slides.size }}
-                </div>
-              </header>
+  <section class="fc-hero">
+    <div class="fc-hero__tag">DOWGLAS UNIVERSE · MULTIQUADROS</div>
+    <h1 class="fc-hero__title">{{ page.title }}</h1>
 
-              {% if hook_val %}
-                <h2 class="fc-slide__hook">
-                  {{ hook_val | newline_to_br }}
-                </h2>
-              {% endif %}
-
-              {% if texto_val %}
-                <p class="fc-slide__text">
-                  {{ texto_val | newline_to_br }}
-                </p>
-              {% endif %}
-
-              {% if s.cta %}
-                <footer class="fc-slide__footer">
-                  <p class="fc-slide__cta">
-                    {{ s.cta | newline_to_br }}
-                  </p>
-                </footer>
-              {% endif %}
-
-              {% if forloop.last %}
-                <div class="fc-slide__profile">
-                  <div class="fc-profile-card">
-                    <div class="fc-avatar">
-                      {% if page.avatar %}
-                        <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
-                      {% else %}
-                        <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
-                      {% endif %}
-                    </div>
-
-                    <div class="fc-static-user">
-                      <div class="fc-static-user__name">
-                        {{ nome }}
-                        {% if page.verificado %}
-                          <span class="fc-verified-badge" title="Verificado"></span>
-                        {% endif %}
-                      </div>
-
-                      {% if page.autor_handle %}
-                        <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="fc-slide__engage">
-                  Se esse multiverso fez sentido pra você, salva o post e compartilha com alguém que vive no caos bonito também.
-                </div>
-              {% endif %}
-            </div>
-          </article>
-        {% endfor %}
-      </section>
-
-    {% else %}
-      <!-- MODO QUADRO ÚNICO: usa title + content -->
-      <section class="fc-slides">
-        <article class="fc-slide slide">
-          <div class="fc-slide__inner">
-            <header class="fc-slide__header">
-              <div class="fc-slide-divider">
-                <span class="fc-divider-line"></span>
-                <span class="fc-divider-icon">◇</span>
-                <span class="fc-divider-line"></span>
-              </div>
-              <div class="fc-slide-num">
-                1 / 1
-              </div>
-            </header>
-
-            <h2 class="fc-slide__hook">
-              {{ page.title }}
-            </h2>
-
-            <p class="fc-slide__text">
-              {{ content | markdownify }}
-            </p>
-
-            <div class="fc-slide__profile">
-              <div class="fc-profile-card">
-                <div class="fc-avatar">
-                  {% if page.avatar %}
-                    <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
-                  {% else %}
-                    <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
-                  {% endif %}
-                </div>
-
-                <div class="fc-static-user">
-                  <div class="fc-static-user__name">
-                    {{ nome }}
-                    {% if page.verificado %}
-                      <span class="fc-verified-badge" title="Verificado"></span>
-                    {% endif %}
-                  </div>
-
-                  {% if page.autor_handle %}
-                    <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-
-            <div class="fc-slide__engage">
-              Se esse multiverso bateu em algo aí dentro, você já habita o Dowglas Universe.
-            </div>
-          </div>
-        </article>
-      </section>
+    {% if page.tagline %}
+      <p class="fc-hero__subtitle">{{ page.tagline }}</p>
     {% endif %}
-  </main>
 
-  <footer class="fc-footer">
-    Dowglas Universe · Carrossel pronto para exportação.
-  </footer>
+    {% if page.autor %}
+      <p class="fc-hero__meta">Roteiro por {{ page.autor }}</p>
+    {% endif %}
 
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+    <p class="fc-hero__hint">
+      Cada bloco em <code>slides:</code> é um quadro 1080×1350 pronto pra exportar em PNG.
+    </p>
+  </section>
+
+  {% assign slides = page.slides | default: empty %}
+  {% if slides and slides.size > 0 %}
+  <section class="fc-slides">
+
+    {% for s in slides %}
+    {%- assign usa_midia = s.midia | default: false -%}
+
+    <article class="fc-slide slide{% if usa_midia %} fc-slide--midia{% endif %}">
+      <div class="fc-slide__inner">
+
+        <!-- HEADER PREMIUM: divisor + contador -->
+        <header class="fc-slide__header">
+          <div class="fc-slide-divider">
+            <span class="fc-divider-line"></span>
+            <span class="fc-divider-icon">◇</span>
+            <span class="fc-divider-line"></span>
+          </div>
+
+          <div class="fc-slide-num">
+            {{ forloop.index }} / {{ slides.size }}
+          </div>
+        </header>
+
+        {% if s.hook %}
+          <h2 class="fc-slide__hook">
+            {{ s.hook | newline_to_br }}
+          </h2>
+        {% endif %}
+
+        {% if s.texto %}
+          <p class="fc-slide__text">
+            {{ s.texto | newline_to_br }}
+          </p>
+        {% endif %}
+
+        {%- comment %}
+          Bloco de perfil no último slide.
+        {% endcomment -%}
+        {% if forloop.last %}
+        <div class="fc-slide__profile" style="margin-top: 2.5rem; display: flex; justify-content: center;">
+          <div class="fc-profile-card" style="display: flex; align-items: center; gap: 0.75rem;">
+
+            <div class="fc-avatar">
+              {% if page.avatar %}
+                <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
+              {% else %}
+                <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
+              {% endif %}
+            </div>
+
+            <div class="fc-static-user" style="text-align: left;">
+              <div class="fc-static-user__name">
+                {{ nome }}
+                {% if page.verificado %}
+                  <span class="fc-verified-badge" title="Verificado"></span>
+                {% endif %}
+              </div>
+
+              {% if page.autor_handle %}
+                <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="fc-slide__engage" style="margin-top: 1.5rem; text-align: center; opacity: 0.75; font-size: 0.9rem;">
+          Se esse multiverso fez sentido pra você, salva esse post e compartilha com quem vive o mesmo caos bonito.
+        </div>
+        {% endif %}
+
+        {% if s.cta %}
+          <footer class="fc-slide__footer">
+            <p class="fc-slide__cta">
+              {{ s.cta | newline_to_br }}
+            </p>
+          </footer>
+        {% endif %}
+
+      </div>
+    </article>
+    {% endfor %}
+
+  </section>
+  {% else %}
+    <section class="fc-empty">
+      <p>Nenhum slide encontrado. Defina a lista <code>slides:</code> no front matter.</p>
+    </section>
+  {% endif %}
+
+</main>
+
+<footer class="fc-footer">
+  Dowglas Universe · Carrossel pronto para exportação.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
 
 </body>
 </html>
