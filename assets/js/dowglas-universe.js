@@ -1,6 +1,6 @@
 // assets/js/dowglas-universe.js
 // Exporta cada quadro (.du-block) do Dowglas Universe como PNG separado
-// em formato 4:5 (1080x1350), SEM cortar o conteúdo: apenas encaixa com letterbox.
+// em formato 4:5 (1080x1350), SEM cortar o conteúdo: encaixa com letterbox.
 
 document.addEventListener('DOMContentLoaded', () => {
   // Botão global de download
@@ -30,14 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // slug a partir do título da aba
       const rawTitle = document.title || 'dowglas-universe';
-      const baseTitle = (
+      const baseTitle =
         rawTitle
           .replace(/·\s*Dowglas Universe/i, '')
           .trim()
           .toLowerCase()
           .replace(/[^\w]+/g, '-')
-          .replace(/^-+|-+$/g, '')
-      ) || 'dowglas-universe';
+          .replace(/^-+|-+$/g, '') || 'dowglas-universe';
 
       // padrão feed vertical IG
       const TARGET_W = 1080;
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         finalCanvas.height = TARGET_H;
         const ctx = finalCanvas.getContext('2d');
 
-        // fundo preto (combina com o espaço)
+        // fundo preto (combina com o espaço / borda)
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, TARGET_W, TARGET_H);
 
