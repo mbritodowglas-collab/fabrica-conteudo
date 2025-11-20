@@ -48,8 +48,20 @@
       overflow: hidden;
     }
 
-    /* ——— REMOVIDO O TEXTO DO FUNDO ——— */
-    /* Antes era .fc-slide.slide::after — removido a pedido */
+    .du-body .fc-slide.slide::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(88,104,166,0.28) 0, transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(196,211,255,0.22) 0, transparent 60%),
+        radial-gradient(circle at 50% 120%, rgba(10,12,20,0.95) 0, transparent 70%);
+      opacity: 0.85;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* (sem texto DOWGLAS UNIVERSE no fundo) */
 
     .du-body .fc-slide__inner {
       position: relative;
@@ -63,6 +75,11 @@
 
     .du-body .fc-slide-divider {
       color: rgba(196,211,255,0.7);
+      font-size: 0.7rem;
+    }
+
+    .du-body .fc-divider-icon {
+      font-size: 0.6rem;
     }
 
     .du-body .fc-divider-line {
@@ -76,23 +93,39 @@
 
     .du-body .fc-slide-num {
       color: rgba(196,211,255,0.85);
+      font-size: 0.85rem;
     }
 
-    /* Tipografia */
+    /* Tipografia – mais “diário de bordo”, menos “corporate deck” */
     .du-body .fc-slide__hook {
       color: #C4D3FF;
+      font-size: 1.7rem;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      text-transform: none;      /* se você não escrever em caps, ele fica mais suave */
+      text-align: left;
+      margin: 0 0 1.4rem 0;
     }
 
     .du-body .fc-slide__text {
       color: #E5E7EB;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin: 0;
+      max-width: 36rem;          /* deixa o bloco mais de “leitura”, menos muralzão */
+      white-space: pre-line;
     }
 
     .du-body .fc-slide__footer {
       border-top: 1px solid rgba(148,163,184,0.35);
+      margin-top: 1.6rem;
+      padding-top: 1rem;
     }
 
     .du-body .fc-slide__cta {
       color: #C4D3FF;
+      font-size: 0.98rem;
     }
 
     .du-body .fc-slide__engage {
@@ -130,7 +163,6 @@
   </style>
 </head>
 
-
 <body class="fc-body fc-body--carrossel du-body">
 
 <header class="fc-topbar fc-topbar--du">
@@ -154,7 +186,7 @@
 <main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
-    <div class="fc-hero__tag">DOWGLLAS UNIVERSE · MULTIQUADROS</div>
+    <div class="fc-hero__tag">DOWGLAS UNIVERSE · MULTIQUADROS</div>
     <h1 class="fc-hero__title">{{ page.title }}</h1>
 
     {% if page.tagline %}
