@@ -1,6 +1,6 @@
 // assets/js/dowglas-universe.js
 // Exporta cada quadro (.du-block) do Dowglas Universe como PNG separado
-// em formato 4:5 (1080x1350), RECORTANDO o slide – sem faixas laterais.
+// em formato 4:5 (1080x1350). Agora o recorte é ANCORADO NO TOPO.
 
 document.addEventListener('DOMContentLoaded', () => {
   // Botão global de download
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const slide = slides[i];
 
         // garante que o quadro atual está renderizado
-        slide.scrollIntoView({ behavior: 'auto', block: 'center' });
+        slide.scrollIntoView({ behavior: 'auto', block: 'start' });
         await new Promise((resolve) => setTimeout(resolve, 80));
 
         // captura "bruta" do slide (tela inteira)
@@ -61,22 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const fullH = fullCanvas.height;
         const fullRatio = fullW / fullH;
 
-        // Definimos a área de recorte dentro do canvas original,
-        // mantendo proporção 4:5.
+        // Área de recorte mantendo proporção 4:5
         let sx, sy, sw, sh;
 
         if (fullRatio > TARGET_RATIO) {
-          // mais "largo" que 4:5 → usamos altura inteira e cortamos nas laterais
+          // Tela mais "larga" que 4:5 → corta laterais, mas usa altura INTEIRA
           sh = fullH;
           sw = Math.round(fullH * TARGET_RATIO);
           sx = Math.round((fullW - sw) / 2);
-          sy = 0;
+          sy = 0; // ancora no topo
         } else {
-          // mais "alto" que 4:5 → usamos largura inteira e cortamos em cima/baixo
+          // Tela mais "alta" que 4:5 → usa largura inteira e corta embaixo
           sw = fullW;
           sh = Math.round(fullW / TARGET_RATIO);
           sx = 0;
-          sy = Math.round((fullH - sh) / 2);
+          sy = 0; // *** AQUI é a mudança: recorte começa no TOPO, não no meio ***
         }
 
         // canvas final 1080x1350
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // recorta e ajusta para 1080x1350
         ctx.drawImage(
           fullCanvas,
-          sx, sy, sw, sh,       // área recortada da captura
+          sx, sy, sw, sh,        // área recortada da captura
           0, 0, TARGET_W, TARGET_H // preenchendo todo o canvas final
         );
 
