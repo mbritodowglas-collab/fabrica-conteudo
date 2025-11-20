@@ -22,7 +22,7 @@
       color: #E5E7EB;
     }
 
-    /* HEADER FIXO (novo) */
+    /* HEADER FIXO */
     .fc-topbar.fc-topbar--du {
       position: fixed;
       top: 0;
@@ -33,7 +33,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Afastando conteúdo do header */
     .fc-main--carrossel {
       padding-top: 4.5rem !important;
     }
@@ -49,32 +48,8 @@
       overflow: hidden;
     }
 
-    .du-body .fc-slide.slide::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(88,104,166,0.28) 0, transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(196,211,255,0.22) 0, transparent 60%),
-        radial-gradient(circle at 50% 120%, rgba(10,12,20,0.95) 0, transparent 70%);
-      opacity: 0.85;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    .du-body .fc-slide.slide::after {
-      content: "DOWGLAS UNIVERSE";
-      position: absolute;
-      bottom: 1.9rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.82rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: rgba(196,211,255,0.35);
-      white-space: nowrap;
-      pointer-events: none;
-    }
+    /* ——— REMOVIDO O TEXTO DO FUNDO ——— */
+    /* Antes era .fc-slide.slide::after — removido a pedido */
 
     .du-body .fc-slide__inner {
       position: relative;
@@ -143,7 +118,6 @@
       border: 2px solid #C4D3FF;
     }
 
-    /* Botão download */
     .du-body .fc-download-fixed {
       background: rgba(10,14,26,0.96);
       color: #F9FAFB;
@@ -180,7 +154,7 @@
 <main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
-    <div class="fc-hero__tag">DOWGLAS UNIVERSE · MULTIQUADROS</div>
+    <div class="fc-hero__tag">DOWGLLAS UNIVERSE · MULTIQUADROS</div>
     <h1 class="fc-hero__title">{{ page.title }}</h1>
 
     {% if page.tagline %}
@@ -195,7 +169,6 @@
       Cada bloco em <code>slides:</code> é um quadro 1080×1350 pronto pra exportar em PNG.
     </p>
   </section>
-
 
   {% assign slides = page.slides | default: empty %}
   {% if slides and slides.size > 0 %}
