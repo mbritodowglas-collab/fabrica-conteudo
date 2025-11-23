@@ -78,15 +78,15 @@
         </header>
 
         {% if s.hook %}
-          <h2 class="fc-slide__hook">
-            {{ s.hook | newline_to_br }}
-          </h2>
+          <div class="fc-slide__hook">
+            {{ s.hook | markdownify }}
+          </div>
         {% endif %}
 
         {% if s.texto %}
-          <p class="fc-slide__text">
-            {{ s.texto | newline_to_br }}
-          </p>
+          <div class="fc-slide__text">
+            {{ s.texto | markdownify }}
+          </div>
         {% endif %}
 
         {%- comment %}
@@ -129,9 +129,9 @@
 
         {% if s.cta %}
           <footer class="fc-slide__footer">
-            <p class="fc-slide__cta">
-              {{ s.cta | newline_to_br }}
-            </p>
+            <div class="fc-slide__cta">
+              {{ s.cta | markdownify }}
+            </div>
           </footer>
         {% endif %}
 
