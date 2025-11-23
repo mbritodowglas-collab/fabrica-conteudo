@@ -2273,3 +2273,12 @@ background-color: #02040a;
   pointer-events: none;
   user-select: none;
 }
+
+.fc-slide__text ul {
+  margin: 0.5rem 0;
+  padding-left: 1.2rem;
+}
+
+.fc-slide__text li {
+  margin: 0.15rem 0;
+}
