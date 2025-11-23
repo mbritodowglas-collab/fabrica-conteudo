@@ -1,14 +1,12 @@
 ---
-layout: dowglas-universe
+layout: dowglas-universe-carrossel
 title: "Modelo · Textão Multiquadros"
 perfil: "Dowglas Universe"
 avatar: "/assets/img/douglas-universe.webp"
 tipo_post: "textao-multiquadros"
 tagline: "Carrossel de reflexão para o Dowglas Universe."
-
-# Orientação pra IA: tamanho médio por slide
-limite_caracteres_por_slide: 450
-
+show_profile_cta: true
+# Até 10 slides (limite do Instagram)
 slides:
   - hook: "O começo do meu mini multiverso."
     texto: |
@@ -38,4 +36,20 @@ slides:
     texto: |
       Então talvez você também carregue um universo inteiro aí dentro.  
       E é aqui que esses universos se encontram.
+
+  # Exemplos extras de placeholder – pode apagar/editar quando quiser
+  - hook: "Slide extra 6 (opcional)"
+    texto: "Apaga ou preenche quando precisar."
+
+  - hook: "Slide extra 7 (opcional)"
+    texto: "Apaga ou preenche quando precisar."
+
+  - hook: "Slide extra 8 (opcional)"
+    texto: "Apaga ou preenche quando precisar."
+
+  - hook: "Slide extra 9 (opcional)"
+    texto: "Apaga ou preenche quando precisar."
+
+  - hook: "Slide extra 10 (opcional)"
+    texto: "Limite máximo do Instagram."
 ---
