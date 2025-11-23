@@ -1,5 +1,5 @@
 ---
-layout: dowglas-universe-carrossel
+layout: dowglas-universe
 title: "Modelo · Textão Multiquadros"
 perfil: "Dowglas Universe"
 avatar: "/assets/img/douglas-universe.webp"
