@@ -9,7 +9,7 @@ verificado: true
 
 cards:
   - texto: |
-      É curioso ver como Monjaro e afins viraram
+      É curioso ver como Mounjaro e afins viraram
       o “santo graal” do emagrecimento
       pra quem quer perder uns quilos a qualquer custo.
 
@@ -61,4 +61,6 @@ cards:
 
       É o primeiro passo pra uma mudança real
       (e que não volta atrás).
+
+Gostou do conteúdo já comenta e compartilha.
 ---
