@@ -14,7 +14,7 @@ slides:
     hook: "Eu não sou contra."
     texto: |
       O problema não é o remédio.  
-      O problema é o *desespero*.
+      O problema é o **desespero**.
       
       Tem gente que toma como quem tenta tapar um buraco gigante com um band-aid.
       Não muda nada no comportamento, não aprende nada no processo…  
