@@ -1,112 +1,126 @@
-// assets/js/static.js
-// Download em PNG para o "Post estático" (estilo Twitter)
+---
+layout: none
+title: "Posts estáticos"
+---
 
-(function () {
-  console.log('[static] script static.js carregado.');
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Posts estáticos · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="fc-body">
 
-  // Botão de download (por id ou por data-attr)
-  const btn =
-    document.getElementById('download-static') ||
-    document.querySelector('[data-download="static"]');
+  <header class="fc-header">
+    <div class="fc-header__brand">
+      <div class="fc-badge">FC</div>
+      <div>
+        <h1>Posts estáticos</h1>
+        <p>Painel de cards únicos gerados a partir de arquivos .md em <code>content/static/</code>.</p>
+      </div>
+    </div>
+  </header>
 
-  if (!btn) {
-    console.warn('[static] Botão #download-static / [data-download="static"] não encontrado no DOM.');
-    return;
-  }
+  <main class="fc-main">
 
-  // Wrapper principal que contém o card estático
-  const wrapper =
-    document.querySelector('.fc-static-wrapper') ||
-    document.querySelector('[data-static-wrapper]') ||
-    document.querySelector('.fc-static');
+    <p style="margin: 0 0 10px;">
+      <a href="{{ '/' | relative_url }}" class="fc-link-back">← Voltar para a Fábrica</a>
+    </p>
 
-  if (!wrapper) {
-    console.warn('[static] Wrapper estático (.fc-static-wrapper / [data-static-wrapper] / .fc-static) não encontrado. Nada para capturar.');
-    return;
-  }
+    <!-- LISTA -->
+    <section class="fc-section">
+      <h2>Cards estáticos disponíveis</h2>
+      <p class="fc-section__subtitle">
+        Cada arquivo <code>.md</code> abaixo vira um card único, estilo tweet, pronto para exportar.
+      </p>
 
-  console.log('[static] wrapper encontrado:', wrapper);
-  console.log('[static] botão encontrado:', btn);
+      {% assign static_pages = site.pages | where:"type","static" %}
+      <ul class="fc-list">
+        {% if static_pages.size > 0 %}
+          {% for p in static_pages %}
+            <li>
+              <a class="fc-list__link" href="{{ p.url | relative_url }}">
+                <div class="fc-list__left">
+                  <div class="fc-list__thumb fc-list__thumb--static">
+                    <span>ST</span>
+                  </div>
+                  <div class="fc-list__text">
+                    <div class="fc-list__title">
+                      {{ p.title | default: p.name | replace: '.md','' }}
+                    </div>
+                    <div class="fc-list__meta">
+                      Post estático • {{ p.name | replace: '.md','' }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="fc-list__empty">
+            Nenhum post estático ainda. Suba um .md em <code>content/static/</code>.
+          </li>
+        {% endif %}
+      </ul>
+    </section>
 
-  btn.addEventListener('click', async () => {
-    console.log('[static] clique no botão detectado.');
-    // Pequeno alerta só pra confirmar que o evento está disparando
-    // (pode remover depois que estiver tudo ok)
-    alert('Gerando imagem do post estático…');
+    <!-- BOTÃO DO MODAL -->
+    <section class="fc-section">
+      <h2>Modelo de YAML para Posts Estáticos</h2>
+      <p class="fc-section__subtitle">
+        Clique abaixo para copiar o template oficial para criar novos posts estáticos.
+      </p>
 
-    try {
-      if (typeof html2canvas !== 'function') {
-        console.error('[static] html2canvas não está disponível. Confere se o script foi incluído ANTES de static.js.');
-        alert('Erro: html2canvas não carregou. Confere os scripts no layout.');
-        return;
-      }
+      <button type="button" class="fc-open-modal fc-btn fc-btn--primary">
+        Abrir modelo de YAML
+      </button>
+    </section>
 
-      // Garante que o bloco está visível e centralizado na tela
-      wrapper.scrollIntoView({ behavior: 'auto', block: 'center' });
+  </main>
 
-      console.log('[static] iniciando captura com html2canvas...');
+  <footer class="fc-footer">
+    Fábrica de Conteúdo · Posts estáticos.
+  </footer>
 
-      const canvas = await html2canvas(wrapper, {
-        scale: 2,      // mais nítido
-        useCORS: true  // ajuda com imagens/avatars externos
-        // backgroundColor: null // se quiser fundo transparente
-      });
+  <!-- MODAL -->
+  <div id="fc-modal" class="fc-modal" aria-hidden="true">
+    <div class="fc-modal__backdrop"></div>
 
-      console.log('[static] captura concluída:', canvas);
+    <div class="fc-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fc-modal-title">
+      <div class="fc-modal__header">
+        <h2 id="fc-modal-title">Modelo YAML – Post Estático</h2>
+      </div>
 
-      // Gera um slug básico para nome do arquivo
-      let slug = document.body.getAttribute('data-slug');
-      if (!slug) {
-        const rawTitle = document.title || 'post-estatico';
-        slug = rawTitle
-          .replace(/· Estático · Fábrica de Conteúdo/i, '')
-          .trim()
-          .toLowerCase()
-          .replace(/[^\w]+/g, '-');
-      }
+      <div class="fc-modal__body">
+        <textarea id="fc-modal-text" class="fc-modal__textarea" readonly>
+---
+layout: static
+type: static
+title: "TÍTULO DO POST"
+autor_nome: "Márcio Dowglas"
+autor_handle: "@mdpersonal"
+avatar: "/assets/img/avatar-md.jpg"
+verificado: true
+---
 
-      const filename = `${slug || 'post-estatico'}.png`;
+Seu texto aqui…
+        </textarea>
 
-      // Usa toBlob + URL.createObjectURL (mais confiável em vários browsers)
-      if (!canvas.toBlob) {
-        console.warn('[static] canvas.toBlob não disponível, usando fallback dataURL.');
+        <button id="fc-copy" type="button" class="fc-btn fc-btn--primary">
+          Copiar modelo
+        </button>
+      </div>
 
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = canvas.toDataURL('image/png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      <div class="fc-modal__footer">
+        <button id="fc-close" class="fc-btn fc-btn--ghost">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
 
-        console.log('[static] download iniciado (fallback dataURL):', filename);
-        alert('Download da imagem foi disparado (fallback). Verifica na pasta de downloads.');
-        return;
-      }
-
-      canvas.toBlob((blob) => {
-        if (!blob) {
-          console.error('[static] não consegui gerar o blob da imagem.');
-          alert('Erro: não consegui gerar o arquivo de imagem. Tenta recarregar a página e testar de novo.');
-          return;
-        }
-
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        URL.revokeObjectURL(url);
-
-        console.log('[static] download iniciado com blob:', filename);
-        alert('Download da imagem foi disparado. Verifica na pasta de downloads.');
-      }, 'image/png');
-    } catch (error) {
-      console.error('[static] erro ao gerar ou baixar imagem:', error);
-      alert('Rolou um erro ao gerar a imagem. Abre o console do navegador para ver o detalhe do erro.');
-    }
-  });
-})();
+  <script src="{{ '/assets/js/carrossel.js' | relative_url }}"></script>
+</body>
+</html>
