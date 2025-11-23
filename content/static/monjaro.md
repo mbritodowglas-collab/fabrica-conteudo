@@ -34,6 +34,7 @@ cards:
 
       Use como impulso — não como muleta.
       Impulso pra:
+
       • criar rotina  
       • melhorar a relação com a comida  
       • treinar com constância  
