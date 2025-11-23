@@ -62,5 +62,4 @@ cards:
       É o primeiro passo pra uma mudança real
       (e que não volta atrás).
 
-Gostou do conteúdo já comenta e compartilha.
 ---
