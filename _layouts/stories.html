@@ -1,0 +1,42 @@
+---
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} · Story · Fábrica de Conteúdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="fc-body fc-body--story">
+
+  <!-- Botão fixo para download futura (se quiser plugar html2canvas depois) -->
+  <button
+    id="download-story"
+    class="fc-download-fixed"
+    type="button">
+    ↓ PNG
+  </button>
+
+  <main class="fc-main fc-main--story">
+    <section class="fc-story-wrapper">
+
+      <article class="fc-story-card fc-story-block
+        {% if page.variant %} fc-story-card--{{ page.variant }}{% endif %}">
+        
+        <!-- Aqui é só fundo + texto -->
+        <div class="fc-story-inner">
+          {{ content | markdownify }}
+        </div>
+
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Se depois quiser, pluga um story.js aqui -->
+  <!-- <script src="{{ '/assets/js/story.js' | relative_url }}"></script> -->
+
+</body>
+</html>
