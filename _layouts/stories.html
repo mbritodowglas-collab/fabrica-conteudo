@@ -6,7 +6,6 @@
   <meta charset="utf-8">
   <title>{{ page.title }} · Stories · Fábrica de Conteúdo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 
@@ -17,7 +16,7 @@
   <span class="fc-topbar__badge">STO · Stories</span>
 </header>
 
-<!-- Botão de download -->
+<!-- Botão de download (igual ao carrossel, só muda o id) -->
 <button id="download-story" class="fc-download-fixed" type="button">
   ↓ PNG
 </button>
@@ -27,17 +26,35 @@
   {% assign slides = page.slides | default: empty %}
 
   {% if slides and slides.size > 0 %}
-  <!-- MULTI-STORIES -->
+  <!-- MULTI-STORIES (MESMA LÓGICA DO CARROSSEL) -->
   <section class="fc-story-list">
 
     {% for s in slides %}
-    <article
-      class="fc-story fc-story--frame
-             {% if s.variant %} fc-story--{{ s.variant }}{% elsif page.variant %} fc-story--{{ page.variant }}{% endif %}"
-      data-story-index="{{ forloop.index0 }}"
-    >
-      <div class="fc-story-inner">
-        {{ s.content | markdownify }}
+    <article class="fc-story-slide">
+      <div class="fc-story-frame">
+
+        <div class="fc-story-inner">
+
+          {% if s.hook %}
+            <h2 class="fc-story-hook">
+              {{ s.hook | newline_to_br }}
+            </h2>
+          {% endif %}
+
+          {% if s.texto %}
+            <p class="fc-story-text">
+              {{ s.texto | newline_to_br }}
+            </p>
+          {% endif %}
+
+          {% if s.cta %}
+            <p class="fc-story-cta">
+              {{ s.cta | newline_to_br }}
+            </p>
+          {% endif %}
+
+        </div>
+
       </div>
     </article>
     {% endfor %}
@@ -45,24 +62,22 @@
   </section>
 
   {% else %}
-  <!-- SINGLE STORY -->
+  <!-- FALLBACK: QUADRO ÚNICO USANDO O CONTEÚDO -->
   <section class="fc-story-list">
-    <article
-      class="fc-story fc-story--frame
-             {% if page.variant %} fc-story--{{ page.variant }}{% endif %}"
-      data-story-index="0"
-    >
-      <div class="fc-story-inner">
-        {{ content | markdownify }}
+    <article class="fc-story-slide">
+      <div class="fc-story-frame">
+        <div class="fc-story-inner">
+          {{ content | markdownify }}
+        </div>
       </div>
     </article>
   </section>
-
   {% endif %}
 
 </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="{{ '/assets/js/stories.js' | relative_url }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="{{ '/assets/js/stories.js' | relative_url }}"></script>
+
 </body>
 </html>
