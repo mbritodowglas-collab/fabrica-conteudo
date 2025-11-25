@@ -1,30 +1,34 @@
 ---
 layout: stories
-title: "Título do Story Multi-Card"
+title: "Mulher Forte"
+tagline: "Story em múltiplos cards"
 cards:
   - texto: |
-      **1 / X**
+      **1 / 4**
 
-      Primeiro bloco do conteúdo.
-      Pode usar markdown normalmente.
-
-  - texto: |
-      **2 / X**
-
-      Segundo card com o texto de apoio.
-      Continue a narrativa em blocos curtos.
+      Você não precisa estar 100% bem  
+      para começar a mudar sua vida.
 
   - texto: |
-      **3 / X**
+      **2 / 4**
 
-      Terceiro bloco.  
-      Use negrito, quebras de linha, listas, tudo funciona.
+      Às vezes, tudo que você tem é  
+      **força pra dar um passo.**
 
   - texto: |
-      **4 / X**
+      **3 / 4**
 
-      Último slide.  
-      Chamada pra ação, reflexão ou fechamento.
+      E é exatamente esse passo que  
+      vira a virada do jogo.
+
+  - texto: |
+      **4 / 4**
+
+      **Respira. Continua.  
+      A tua melhor versão tá vindo.**
 ---
 
-<!-- NADA AQUI EMBAIXO -->
+<!--  
+Se quiser um story *single*, apaga a lista “cards:”  
+e coloca o texto abaixo, direto no markdown.
+-->
