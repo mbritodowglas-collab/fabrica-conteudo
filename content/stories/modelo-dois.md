@@ -1,34 +1,28 @@
 ---
-title: "3 passos pra treinar mesmo com a rotina caótica"
-variant: pure-red
+layout: stories
+title: "Como recomeçar do zero sem se quebrar"
+autor: "Márcio Dowglas – Personal Trainer"
+tagline: "Story educacional para a Bella Prime"
+
 slides:
-  - variant: pure-red
-    content: |
-      ## 1️⃣ Aceita o caos do dia
+  - tipo: "HOOK"
+    hook: "Recomeçar do zero não é fracasso."
+    texto: "É estratégia de quem ainda não desistiu de si mesma."
+    midia: true
 
-      Nem todo dia é dia de performance.
-      Mas todo dia pode ser dia de **microvitória**.
+  - tipo: "CONTEÚDO"
+    hook: "O corpo não está te sabotando."
+    texto: "Ele só está reagindo a anos de estresse, sono ruim e alimentação caótica.\nTreino é uma forma de ensinar o corpo a confiar em você de novo."
+    midia: true
 
-      Respira. Recomeça. Um passo de cada vez.
+  - tipo: "CONTEÚDO"
+    hook: "Constância > intensidade perfeita."
+    texto: "Três treinos medianos na semana mudam mais sua vida do que um treino perfeito a cada quinze dias."
+    midia: true
 
-  - variant: pure-red
-    content: |
-      ## 2️⃣ Escolhe uma única coisa
-
-      • 5 minutos de movimento  
-      • 1 exercício simples  
-      • ou apenas respirar profundamente  
-
-      Simples funciona. Principalmente quando o mundo tá te engolindo.
-
-  - variant: pure-red
-    content: |
-      ## 3️⃣ Fecha o dia vencendo você mesma
-
-      Você não precisa treinar perfeito.
-      Precisa treinar **presente**.
-
-      Cada mini treininho te aproxima da mulher que você quer ser.
+  - tipo: "CTA"
+    hook: "Quer recomeçar sem se quebrar de novo?"
+    texto: "Eu montei a Bella Prime justamente pra mulheres que estão voltando pro jogo."
+    cta: "Arrasta pra cima / clique no link da bio."
+    midia: true
 ---
-
-<!-- Corpo vazio aqui embaixo mesmo -->
