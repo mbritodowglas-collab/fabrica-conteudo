@@ -1,34 +1,16 @@
 ---
 layout: stories
-title: "Mulher Forte"
-tagline: "Story em múltiplos cards"
-cards:
-  - texto: |
-      **1 / 4**
+title: "Ansiedade e Treino"
+autor: "Márcio Dowglas"
+autor_handle: "@marciodouglasfitness"
+tagline: "Story em sequência pra explicar como o treino ajuda a baixar o volume da mente."
+slides:
+  - hook: "Quando a ansiedade aperta,\nseu cérebro não tá contra você.\nEle tá tentando te proteger."
+    texto: "Só que às vezes ele exagera na proteção.\nE você trava antes mesmo de tentar treinar."
 
-      Você não precisa estar 100% bem  
-      para começar a mudar sua vida.
+  - hook: "É por isso que um story não muda sua vida.\nMas um treino simples, repetido,\nmuda seu cérebro."
+    texto: "Movimento lento, respiração mais funda,\nmenos cobrança, mais presença."
 
-  - texto: |
-      **2 / 4**
-
-      Às vezes, tudo que você tem é  
-      **força pra dar um passo.**
-
-  - texto: |
-      **3 / 4**
-
-      E é exatamente esse passo que  
-      vira a virada do jogo.
-
-  - texto: |
-      **4 / 4**
-
-      **Respira. Continua.  
-      A tua melhor versão tá vindo.**
+  - hook: "Não é sobre treinar perfeito.\nÉ sobre treinar apesar da bagunça."
+    texto: "Constância é o jeito que você ensina\nseu cérebro que você continua aqui\nmesmo nos dias difíceis."
 ---
-
-<!--  
-Se quiser um story *single*, apaga a lista “cards:”  
-e coloca o texto abaixo, direto no markdown.
--->
