@@ -1,50 +1,59 @@
 ---
 layout: carrossel
-title: "O problema não é o Monjaro. É o jeito que estão usando."
-autor: "Márcio Dowglas – Personal Trainer"
+title: "Como treinar quando tudo depende de você"
+autor_nome: "Márcio Dowglas"
+autor_handle: "@marciodowglasfitness"
+avatar: "/assets/img/avatar-md.jpg"
+verificado: true
 tagline: "Carrossel educacional Bella Prime"
 
 slides:
-
   - tipo: "HOOK"
-    hook: "O Monjaro virou o santo graal do emagrecimento…"
-    texto: "…mas muita gente está usando como se fosse correção mágica para anos de descuido. E é aí que tudo dá errado."
+    hook: "Treinar quando a casa, o trabalho e o mundo dependem de você parece impossível."
+    texto: |
+      Mas não é falta de disciplina.
+      É neurociência. É sobrecarga real.
 
   - tipo: "CONTEÚDO"
-    hook: "Eu não sou contra."
+    hook: "O que acontece no seu corpo quando você vive sobrecarregada?"
     texto: |
-      O problema não é o remédio.  
-      O problema é o **desespero**.
-      
-      Tem gente que toma como quem tenta tapar um buraco gigante com um band-aid.
-      Não muda nada no comportamento, não aprende nada no processo…  
-      e depois culpa o remédio pelo efeito sanfona.
+      Cortisol alto.
+      Fadiga mental.
+      Funções executivas saturadas.
+      Seu cérebro entra no modo “sobrevivência”.
+      Não é preguiça — é exaustão.
 
   - tipo: "CONTEÚDO"
-    hook: "Se for usar, que seja de forma inteligente."
+    hook: "Por que treinar ajuda mesmo quando você está no limite"
     texto: |
-      O remédio deveria ser **impulso**, não muleta.
-      
-      Impulso pra:
-      • melhorar a relação com a comida  
-      • criar disciplina de treino  
-      • estabilizar rotinas  
-      • ter energia pra fazer escolhas melhores
-
-      Porque, no fim das contas, nada substitui o básico:
-      comida de verdade e treino de verdade.
+      Treino regula o sistema nervoso:
+      • serotonina  
+      • dopamina  
+      • endorfinas  
+      • BDNF  
+      Isso reduz ansiedade e dá clareza mental.
 
   - tipo: "CONTEÚDO"
-    hook: "E por favor… nada de fazer isso sozinha."
+    hook: "Treino também reduz as dores da rotina"
     texto: |
-      Se você for usar, se cerca de especialistas.
-      Médico. Nutricionista.  
-      E um treino decente — não “qualquer coisa”.
+      Força leve a moderada alivia:
+      • lombalgia  
+      • dores tensionais  
+      • trapézio preso  
+      • dores de cabeça  
 
-      Fazer da própria cabeça é exatamente o caminho que faz o jarro quebrar de novo.
+  - tipo: "CONTEÚDO"
+    hook: "Quando tudo está caótico, o que funciona?"
+    texto: |
+      Treinos de 15–25 minutos.
+      Foco em força e cadeia posterior.
+      Exercícios simples.
+      Consistência > complexidade.
 
   - tipo: "CTA"
-    hook: "Quer ajuda pra não cair no efeito sanfona?"
-    texto: "Eu te ensino a construir o estilo de vida que o remédio sozinho nunca vai te dar."
-    cta: "Preencher avaliação gratuita"
+    hook: "Você não precisa do treino perfeito."
+    texto: |
+      Precisa do treino possível.
+      O resto, a consistência resolve.
+    cta: "Faça sua avaliação gratuita no Bella Prime."
 ---
