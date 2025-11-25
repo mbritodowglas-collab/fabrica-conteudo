@@ -21,19 +21,6 @@
   ↓ PNG
 </button>
 
-{%- comment %}
-  Mesmo esquema de avatar/nome usado no "static" e no carrossel.
-{% endcomment -%}
-
-{%- assign nome = page.autor_nome | default: page.autor | default: 'MD Personal' -%}
-{%- assign partes = nome | split: ' ' -%}
-{%- assign p1 = partes[0] | slice: 0,1 -%}
-{%- assign p2 = '' -%}
-{%- if partes.size > 1 -%}
-  {%- assign p2 = partes[1] | slice: 0,1 -%}
-{%- endif -%}
-{%- assign iniciais = p1 | append: p2 -%}
-
 <main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
@@ -86,43 +73,6 @@
           <p class="fc-slide__text">
             {{ s.texto | newline_to_br }}
           </p>
-        {% endif %}
-
-        {%- comment %}
-          🔥 INSERÇÃO DO BLOCO DE PERFIL NO ÚLTIMO SLIDE
-        {% endcomment -%}
-        {% if forloop.last %}
-        <div class="fc-slide__profile" style="margin-top: 2.5rem; display: flex; justify-content: center;">
-          <div class="fc-profile-card" style="display: flex; align-items: center; gap: 0.75rem;">
-
-            <div class="fc-avatar">
-              {% if page.avatar %}
-                <img src="{{ page.avatar | relative_url }}" alt="{{ nome }}" class="fc-avatar__img">
-              {% else %}
-                <span class="fc-avatar__text">{{ iniciais | upcase }}</span>
-              {% endif %}
-            </div>
-
-            <div class="fc-static-user" style="text-align: left;">
-              <div class="fc-static-user__name">
-                {{ nome }}
-                {% if page.verificado %}
-                  <span class="fc-verified-badge" title="Verificado"></span>
-                {% endif %}
-              </div>
-
-              {% if page.autor_handle %}
-                <div class="fc-static-user__handle">{{ page.autor_handle }}</div>
-              {% endif %}
-            </div>
-
-          </div>
-        </div>
-
-        <!-- CTA suave de engajamento -->
-        <div class="fc-slide__engage" style="margin-top: 1.5rem; text-align: center; opacity: 0.75; font-size: 0.9rem;">
-          Se esse story fez sentido pra você, salva e manda pra alguém que tá precisando.
-        </div>
         {% endif %}
 
         {% if s.cta %}
