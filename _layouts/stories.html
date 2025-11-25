@@ -9,10 +9,12 @@
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-
 <body class="fc-body fc-body--story">
 
-  <button id="download-story" class="fc-download-fixed" type="button">
+  <button
+    id="download-story"
+    class="fc-download-fixed"
+    type="button">
     ↓ PNG
   </button>
 
@@ -20,7 +22,6 @@
     <section class="fc-story-wrapper">
 
       <article class="fc-story-card fc-story-block{% if page.variant %} fc-story-card--{{ page.variant }}{% endif %}">
-        
         <div class="fc-story-inner">
           {{ content }}
         </div>
