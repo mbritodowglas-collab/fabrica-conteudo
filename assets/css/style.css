@@ -2633,6 +2633,116 @@ background-color: #02040a;
   font-size: 2rem;
   opacity: 0.8;
 }
+/* ====================================================== */
+/* STORIES · Overrides do carrossel para formato 9:16     */
+/* ====================================================== */
+
+/* Gatilho: só vale quando o body tiver fc-body--stories  */
+.fc-body--stories {
+  background: #000; /* mantém o clima dark da fábrica */
+}
+
+/* Main com um pouco mais de respiro */
+.fc-body--stories.fc-body--carrossel .fc-main--carrossel {
+  padding: 2rem;
+}
+
+/* Cada slide vira um STORY 1080×1920 */
+.fc-body--stories .fc-slide {
+  width: 1080px;
+  height: 1920px;
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+
+  margin: 0 auto 4rem auto;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+/* Fundo padrão MD (se quiser outro, troca aqui) */
+.fc-body--stories .fc-slide.slide {
+  background: radial-gradient(circle at top,
+    #b71c1c 0%,
+    #5a0000 35%,
+    #050505 100%);
+}
+
+/* Área interna respeitando safe zones de stories */
+.fc-body--stories .fc-slide__inner {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* TOP 160 / LADOS 96 / BOTTOM 200 → zona segura */
+  padding: 160px 96px 200px;
+  box-sizing: border-box;
+}
+
+/* Header (divisor + 1/4, 2/4...) um pouco mais alto */
+.fc-body--stories .fc-slide__header {
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+/* Contador do slide */
+.fc-body--stories .fc-slide-num {
+  font-size: 1.8rem;
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+/* HOOK · título do story (parte superior) */
+.fc-body--stories .fc-slide__hook {
+  width: 100%;
+  text-align: center;
+
+  font-size: 3.4rem;
+  font-weight: 900;
+  line-height: 1.25;
+
+  margin: 0 0 40px 0;
+}
+
+/* TEXTO · corpo do story (zona média) */
+.fc-body--stories .fc-slide__text {
+  width: 100%;
+  text-align: center;
+
+  font-size: 2.4rem;
+  line-height: 1.35;
+  font-weight: 500;
+  opacity: 0.9;
+
+  /* esse cara empurra o resto pra baixo → deixa no meio */
+  margin-bottom: auto;
+}
+
+/* CTA opcional (rodapé) */
+.fc-body--stories .fc-slide__footer {
+  width: 100%;
+  margin-top: 72px;
+}
+
+.fc-body--stories .fc-slide__cta {
+  text-align: center;
+  font-size: 2rem;
+  opacity: 0.85;
+}
+
+/* Só pra garantir que o hero não fique espremido no topo */
+.fc-body--stories .fc-hero {
+  max-width: 720px;
+  margin: 0 auto 3rem auto;
+}
 
 
 
