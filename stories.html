@@ -1,0 +1,43 @@
+---
+layout: default
+title: "Stories · Fábrica de Conteúdo"
+---
+
+<body class="fc-body fc-body--stories">
+
+<header class="fc-topbar">
+  <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
+  <span class="fc-topbar__badge">ST · Stories</span>
+</header>
+
+<main class="fc-main fc-main--stories">
+
+  <section class="fc-section fc-section--intro">
+    <h1 class="fc-page-title">Laboratório de Stories</h1>
+    <p class="fc-page-subtitle">
+      Escolha um modelo abaixo para abrir, editar o texto e exportar no formato 9:16.
+    </p>
+  </section>
+
+  <section class="fc-section fc-section--grid">
+    <ul class="fc-list fc-list--cards">
+      {% assign lista = site.stories | sort: 'title' %}
+      {% for st in lista %}
+        <li class="fc-list-item">
+          <a class="fc-card-link" href="{{ st.url | relative_url }}">
+            <div class="fc-card fc-card--story">
+              <h2 class="fc-card__title">{{ st.title }}</h2>
+              {% if st.tagline %}
+                <p class="fc-card__tagline">{{ st.tagline }}</p>
+              {% else %}
+                <p class="fc-card__tagline">Template de fundo para Stories.</p>
+              {% endif %}
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>
+</body>
