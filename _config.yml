@@ -31,5 +31,5 @@ defaults:
   - scope:
       path: "content/stories"
     values:
-      layout: story
-      type: story
+      layout: stories
+      type: stories
