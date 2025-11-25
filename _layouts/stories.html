@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 
-<body class="fc-body fc-body--stories">
+<body class="fc-body fc-body--carrossel">
 
 <header class="fc-topbar">
   <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
@@ -34,7 +34,7 @@
 {%- endif -%}
 {%- assign iniciais = p1 | append: p2 -%}
 
-<main class="fc-main fc-main--stories">
+<main class="fc-main fc-main--carrossel">
 
   <section class="fc-hero">
     <div class="fc-hero__tag">PIPELINE MD → PÁGINA → ARTE</div>
@@ -89,7 +89,7 @@
         {% endif %}
 
         {%- comment %}
-          🔥 BLOCO DE PERFIL NO ÚLTIMO SLIDE
+          🔥 INSERÇÃO DO BLOCO DE PERFIL NO ÚLTIMO SLIDE
         {% endcomment -%}
         {% if forloop.last %}
         <div class="fc-slide__profile" style="margin-top: 2.5rem; display: flex; justify-content: center;">
@@ -121,7 +121,7 @@
 
         <!-- CTA suave de engajamento -->
         <div class="fc-slide__engage" style="margin-top: 1.5rem; text-align: center; opacity: 0.75; font-size: 0.9rem;">
-          Se isso fez sentido pra você, manda esse story pra alguém que precisa ver isso hoje.
+          Se esse story fez sentido pra você, salva e manda pra alguém que tá precisando.
         </div>
         {% endif %}
 
