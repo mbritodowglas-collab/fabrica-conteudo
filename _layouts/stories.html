@@ -42,51 +42,49 @@
 
   {% assign slides = page.slides | default: empty %}
   {% if slides and slides.size > 0 %}
-  <section class="fc-slides">
+    <section class="fc-slides">
+      {% for s in slides %}
+      {%- assign usa_midia = s.midia | default: false -%}
 
-    {% for s in slides %}
-    {%- assign usa_midia = s.midia | default: false -%}
+      <article class="fc-slide slide{% if usa_midia %} fc-slide--midia{% endif %}">
+        <div class="fc-slide__inner">
 
-    <article class="fc-slide slide{% if usa_midia %} fc-slide--midia{% endif %}">
-      <div class="fc-slide__inner">
+          <header class="fc-slide__header">
+            <div class="fc-slide-divider">
+              <span class="fc-divider-line"></span>
+              <span class="fc-divider-icon">◇</span>
+              <span class="fc-divider-line"></span>
+            </div>
 
-        <header class="fc-slide__header">
-          <div class="fc-slide-divider">
-            <span class="fc-divider-line"></span>
-            <span class="fc-divider-icon">◇</span>
-            <span class="fc-divider-line"></span>
-          </div>
+            <div class="fc-slide-num">
+              {{ forloop.index }} / {{ slides.size }}
+            </div>
+          </header>
 
-          <div class="fc-slide-num">
-            {{ forloop.index }} / {{ slides.size }}
-          </div>
-        </header>
+          {% if s.hook %}
+            <h2 class="fc-slide__hook">
+              {{ s.hook | newline_to_br }}
+            </h2>
+          {% endif %}
 
-        {% if s.hook %}
-          <h2 class="fc-slide__hook">
-            {{ s.hook | newline_to_br }}
-          </h2>
-        {% endif %}
-
-        {% if s.texto %}
-          <p class="fc-slide__text">
-            {{ s.texto | newline_to_br }}
-          </p>
-        {% endif %}
-
-        {% if s.cta %}
-          <footer class="fc-slide__footer">
-            <p class="fc-slide__cta">
-              {{ s.cta | newline_to_br }}
+          {% if s.texto %}
+            <p class="fc-slide__text">
+              {{ s.texto | newline_to_br }}
             </p>
-          </footer>
-        {% endif %}
+          {% endif %}
 
-      </div>
-    </article>
-    {% endfor %}
+          {% if s.cta %}
+            <footer class="fc-slide__footer">
+              <p class="fc-slide__cta">
+                {{ s.cta | newline_to_br }}
+              </p>
+            </footer>
+          {% endif %}
 
-  </section>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
   {% else %}
     <section class="fc-empty">
       <p>Nenhum story encontrado. Defina a lista <code>slides:</code> no front matter.</p>
