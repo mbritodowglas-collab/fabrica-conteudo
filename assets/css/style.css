@@ -2282,13 +2282,17 @@ background-color: #02040a;
 .fc-slide__text li {
   margin: 0.15rem 0;
 }
+   /* ============================= */
+/* STORIES · MÓDULO 9:16         */
+/* ============================= */
 
-/* STORIES · Layout base 9:16 */
+/* Body do módulo Stories */
 .fc-body--story {
-  background: #050608;
-  color: #f8f8f8;
+  background: #000;   /* fundo geral da página */
+  color: #fff;
 }
 
+/* Área principal onde o "celular" aparece */
 .fc-main--story {
   min-height: 100vh;
   display: flex;
@@ -2298,124 +2302,24 @@ background-color: #02040a;
   box-sizing: border-box;
 }
 
-/* Área central onde vive o "celular" */
+/* Wrapper central (preview tipo tela de celular) */
 .fc-story-stage {
   width: 100%;
-  max-width: 420px; /* preview confortável em desktop */
+  max-width: 420px; /* largura parecida com um celular em pé */
   margin: 0 auto;
 }
 
-/* Moldura 9:16 (tela de story) */
+/* Moldura 9:16 que define o quadro de Story */
 .fc-story-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16; /* chave do negócio */
+  aspect-ratio: 9 / 16; /* 🔑 mantém proporção 1080×1920 */
   display: flex;
   align-items: stretch;
   justify-content: center;
 }
 
-/* Cartão do story (é o alvo do html2canvas) */
-.fc-story-card {
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at top, #ff1744 0, #b71c1c 40%, #050608 100%);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* Safe area interna pra não colar nas bordas do story */
-.fc-story-safe-area {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  padding: 24px;
-  box-sizing: border-box;
-}
-
-/* Texto padrão dentro do story */
-.fc-story-safe-area p,
-.fc-story-safe-area h1,
-.fc-story-safe-area h2,
-.fc-story-safe-area h3 {
-  margin: 0 0 12px;
-}
-
-.fc-story-safe-area p:last-child {
-  margin-bottom: 0;
-}
-
-/* Variantes opcionais por "page.variant" */
-
-/* Fundo vermelho MD clássico */
-.fc-story-card--vermelho {
-  background: radial-gradient(circle at top, #ff5252 0, #d32f2f 40%, #1a0000 100%);
-}
-
-/* Fundo escuro com detalhe dourado */
-.fc-story-card--dark-gold {
-  background:
-    radial-gradient(circle at top, rgba(212, 175, 55, 0.45) 0, transparent 55%),
-    radial-gradient(circle at bottom, #000 0, #050608 65%);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-}
-
-/* Fundo preto com detalhes vermelhos mais agressivo */
-.fc-story-card--dark-red {
-  background:
-    radial-gradient(circle at top, rgba(255, 23, 68, 0.45) 0, transparent 55%),
-    linear-gradient(135deg, #050608 0, #0b0203 50%, #200004 100%);
-}
-
-/* Thumb do painel stories (lista) */
-.fc-list__thumb--stories {
-  background: linear-gradient(135deg, #b71c1c, #ff1744);
-  color: #fff;
-}
-
-/* STORIES · Layout base 9:16 */
-.fc-body--story {
-  background: #000;
-  color: #fff;
-}
-
-.fc-main--story {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-/* Moldura 9:16 */
-.fc-story-stage {
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-.fc-story-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-}
-
-/* 🎨 GRADIENTE OFICIAL (Vermelho → Preto → Dourado) */
+/* Cartão do Story (alvo do html2canvas) */
 .fc-story-card {
   width: 100%;
   height: 100%;
@@ -2423,10 +2327,12 @@ background-color: #02040a;
   overflow: hidden;
   padding: 32px;
   box-sizing: border-box;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
+  /* 🎨 GRADIENTE PADRÃO – vermelho/preto com glow dourado */
   background:
     /* Glow dourado sutil no topo */
     radial-gradient(
@@ -2434,7 +2340,6 @@ background-color: #02040a;
       rgba(212, 175, 55, 0.35) 0%,
       rgba(212, 175, 55, 0.0) 40%
     ),
-
     /* Núcleo vermelho cinematográfico */
     radial-gradient(
       circle at center,
@@ -2442,71 +2347,17 @@ background-color: #02040a;
       rgba(120, 0, 10, 0.55) 35%,
       rgba(0, 0, 0, 0.85) 70%
     ),
-
     /* Base preta */
     #000000;
 
   box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 
-/* Safe area */
+/* Safe area interna – garante respiro do texto nas bordas */
 .fc-story-safe-area {
   width: 100%;
   height: 100%;
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-/* ============================= */
-/* STORIES · MÓDULO 9:16         */
-/* ============================= */
-
-.fc-body--stories {
-  background: #000;
-  color: #fff;
-}
-
-/* container geral do módulo stories */
-.fc-main--story {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-/* lista de stories (um abaixo do outro no preview) */
-.fc-story-list {
-  width: 100%;
-  max-width: 420px; /* preview tipo tela de celular */
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-/* cada QUADRO de story (é o "slide") */
-.fc-story {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 16;  /* 🔑 trava 9:16 */
-  border-radius: 24px;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-
-  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.7);
-  background: #000; /* fallback */
-}
-
-/* conteúdo interno do story */
-.fc-story-inner {
-  width: 100%;
-  padding: 32px 24px;
   box-sizing: border-box;
 
   display: flex;
@@ -2515,69 +2366,62 @@ background-color: #02040a;
   text-align: center;
 }
 
-.fc-story-inner h1,
-.fc-story-inner h2,
-.fc-story-inner h3,
-.fc-story-inner p {
+/* Tipografia interna padrão */
+.fc-story-safe-area h1,
+.fc-story-safe-area h2,
+.fc-story-safe-area h3,
+.fc-story-safe-area p {
   margin: 0 0 12px;
 }
 
-.fc-story-inner p:last-child {
+.fc-story-safe-area p:last-child {
   margin-bottom: 0;
 }
 
 /* ============================= */
-/* VARIANTES DE FUNDO            */
+/* VARIANTES OPCIONAIS DE FUNDO  */
 /* ============================= */
 
-/* base (caso não defina variant) */
-.fc-story--frame {
+/* Fundo vermelho MD mais chapado */
+.fc-story-card--vermelho {
   background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 40, 60, 0.70) 0%,
-      rgba(80, 0, 10, 0.85) 50%,
-      rgba(0, 0, 0, 0.95) 85%
-    ),
-    #000;
+    radial-gradient(circle at top, #ff5252 0, #d32f2f 40%, #1a0000 100%);
 }
 
-/* PURE RED – agressivo MD */
-.fc-story--pure-red {
+/* Fundo escuro com detalhe dourado nas bordas */
+.fc-story-card--dark-gold {
   background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 40, 60, 0.85) 0%,
-      rgba(180, 0, 20, 0.80) 30%,
-      rgba(50, 0, 10, 0.90) 60%,
-      rgba(0, 0, 0, 1) 90%
+    radial-gradient(circle at top,
+      rgba(212, 175, 55, 0.45) 0,
+      transparent 55%
+    ),
+    radial-gradient(circle at bottom,
+      #000 0,
+      #050608 65%
+    );
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+/* Fundo preto com glow vermelho mais agressivo */
+.fc-story-card--dark-red {
+  background:
+    radial-gradient(circle at top,
+      rgba(255, 23, 68, 0.45) 0,
+      transparent 55%
+    ),
+    linear-gradient(135deg,
+      #050608 0,
+      #0b0203 50%,
+      #200004 100%
     );
 }
 
-/* RED + GOLD – mais sofisticado */
-.fc-story--red-gold {
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(212, 175, 55, 0.45) 0%,
-      rgba(212, 175, 55, 0.0) 40%
-    ),
-    radial-gradient(
-      circle at center,
-      rgba(255, 40, 60, 0.8) 0%,
-      rgba(150, 0, 20, 0.8) 35%,
-      rgba(0, 0, 0, 0.95) 80%
-    ),
-    #000;
+/* Thumb do painel de lista de Stories (se usar na index de stories) */
+.fc-list__thumb--stories {
+  background: linear-gradient(135deg, #b71c1c, #ff1744);
+  color: #fff;
 }
 
-/* DARK RED – mais sombrio */
-.fc-story--dark-red {
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 20, 40, 0.60) 0%,
-      rgba(120, 0, 15, 0.85) 40%,
-      rgba(0, 0, 0, 1) 85%
-    );
-}
+
+
+
