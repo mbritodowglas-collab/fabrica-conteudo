@@ -1,14 +1,8 @@
 ---
-title: "Treino rápido pra baixar a ansiedade"
-variant: pure-red
+layout: stories
+title: "Ansiedade"
 ---
 
-**Quando a cabeça não desliga**, você não precisa de um treino perfeito.
-Você precisa de um **ponto de aterrissagem**.
-
-Use 5 a 10 minutos pra:
-
-- focar na respiração
-- usar movimentos simples
-- suar só o suficiente pra voltar pro corpo
-
+ANSIEDADE QUE APERTA O PEITO,  
+TRAVA A RESPIRAÇÃO  
+E BAGUNÇA TUDO?
