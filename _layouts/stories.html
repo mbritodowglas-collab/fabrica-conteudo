@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 
-<body class="fc-body fc-body--stories">
+<body class="fc-body fc-body--story">
 
 <header class="fc-topbar">
   <a class="fc-topbar__back" href="{{ '/' | relative_url }}">← Fábrica de Conteúdo</a>
@@ -25,54 +25,52 @@
 
   {% assign slides = page.slides | default: empty %}
 
-  {% if slides and slides.size > 0 %}
-  <!-- MULTI-STORIES (MESMA LÓGICA DO CARROSSEL) -->
-  <section class="fc-story-list">
+  <section class="fc-story-stage">
 
-    {% for s in slides %}
-    <article class="fc-story-slide">
-      <div class="fc-story-frame">
+    {% if slides and slides.size > 0 %}
+      {# MULTI-STORIES · cada item da lista "slides:" vira um card 9:16 #}
+      {% for s in slides %}
+      <div class="fc-story-frame" data-story-index="{{ forloop.index0 }}">
 
-        <div class="fc-story-inner">
+        <article class="fc-story-card{% if s.variant %} fc-story-card--{{ s.variant }}{% endif %}">
+          <div class="fc-story-safe-area">
 
-          {% if s.hook %}
-            <h2 class="fc-story-hook">
-              {{ s.hook | newline_to_br }}
-            </h2>
-          {% endif %}
+            {% if s.hook %}
+              <h2 class="fc-story-hook">
+                {{ s.hook | newline_to_br }}
+              </h2>
+            {% endif %}
 
-          {% if s.texto %}
-            <p class="fc-story-text">
-              {{ s.texto | newline_to_br }}
-            </p>
-          {% endif %}
+            {% if s.texto %}
+              <p class="fc-story-text">
+                {{ s.texto | newline_to_br }}
+              </p>
+            {% endif %}
 
-          {% if s.cta %}
-            <p class="fc-story-cta">
-              {{ s.cta | newline_to_br }}
-            </p>
-          {% endif %}
+            {% if s.cta %}
+              <p class="fc-story-cta">
+                {{ s.cta | newline_to_br }}
+              </p>
+            {% endif %}
 
-        </div>
+          </div>
+        </article>
 
       </div>
-    </article>
-    {% endfor %}
+      {% endfor %}
 
-  </section>
-
-  {% else %}
-  <!-- FALLBACK: QUADRO ÚNICO USANDO O CONTEÚDO -->
-  <section class="fc-story-list">
-    <article class="fc-story-slide">
-      <div class="fc-story-frame">
-        <div class="fc-story-inner">
-          {{ content | markdownify }}
-        </div>
+    {% else %}
+      {# FALLBACK · quadro único usando o conteúdo do .md #}
+      <div class="fc-story-frame" data-story-index="0">
+        <article class="fc-story-card">
+          <div class="fc-story-safe-area">
+            {{ content | markdownify }}
+          </div>
+        </article>
       </div>
-    </article>
+    {% endif %}
+
   </section>
-  {% endif %}
 
 </main>
 
