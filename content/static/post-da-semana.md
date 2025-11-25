@@ -1,7 +1,7 @@
 ---
 layout: static
 type: static
-title: "A verdade sobre treinar quando tudo depende de você"
+title: "A cobrança é absurda — e ninguém fala disso"
 autor_nome: "Márcio Dowglas"
 autor_handle: "@marciodowglasfitness"
 avatar: "/assets/img/avatar-md.jpg"
@@ -9,55 +9,62 @@ verificado: true
 
 cards:
   - texto: |
-      Engraçado como dizem
-      que “falta disciplina”.
+      As pessoas adoram falar:
+      “Ah, é só ter disciplina.”
 
-      Disciplina?
-      Você está cuidando de casa,
-      trabalho, filho, decisões,
-      dores que ninguém vê…
+      Fácil falar quando não é você
+      que acorda antes de todo mundo,
+      trabalha o dia inteiro,
+      resolve tudo na casa
+      e ainda precisa ter energia pra treinar.
 
-      E ainda acham que você é o problema.
-
-  - texto: |
-      Te explico o que realmente acontece:
-
-      Seu cérebro está exausto.
-      Cortisol alto.
-      Pré-frontal saturado.
-      Sistema nervoso no limite.
-
-      Isso não é preguiça.
-      Isso é sobrecarga.
+      Disciplina não falta. O que falta é um mundo que te respeite.
 
   - texto: |
-      E aí vem a parte mais irônica:
+      E quer saber o mais cruel?
 
-      Mesmo assim,
-      o treino é justamente
-      o que devolve o que a rotina tirou.
+      A mesma sociedade que exige
+      produtividade infinita,
+      corpo impecável
+      e equilíbrio emocional…
 
-      Clareza.
-      Energia.
-      Estabilidade.
-      Menos dor.
-      Menos ansiedade.
+      é a mesma que não te dá
+      meia hora de paz por dia.
 
-  - texto: |
-      Só que ninguém te contou
-      que não precisa ser perfeito.
-
-      Sessões curtas.
-      Exercícios simples.
-      Força básica.
-      15–25 minutos.
-
-      O possível transforma mais do que o ideal.
+      Depois chamam isso de “preguiça”.
 
   - texto: |
-      Se você quer treinar
-      sem culpa, sem surto e sem cobrança,
-      eu te ajudo a começar.
+      Vamos aos fatos:
 
-      Bella Prime → Avaliação gratuita na bio.
+      Seu sistema nervoso está sobrecarregado.
+      Seu pré-frontal está esgotado.
+      Seu cortisol está no talo.
+
+      Você não está “procrastinando”.
+      Você está tentando sobreviver.
+
+  - texto: |
+      E ainda assim,
+      o treino vira a primeira coisa a cair da rotina.
+
+      Justo o treino —
+      que é o único momento
+      onde você respira sem ser interrompida,
+      alivia a cabeça
+      e devolve ordem ao próprio corpo.
+
+      Não é ironia.  
+      É descaso coletivo com a saúde da mulher.
+
+  - texto: |
+      Se ninguém te dá espaço,
+      você cria o seu.
+
+      15–20 minutos por dia.
+      Treino simples.
+      Só o possível — o ideal vem depois.
+
+      Se quiser fazer isso com estratégia de verdade,
+      sem culpa e sem cobrança idiota,
+      faz a avaliação gratuita do Bella Prime.
 ---
