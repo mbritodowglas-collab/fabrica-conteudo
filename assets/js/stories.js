@@ -1,51 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.getElementById("download-story");
-  if (!btn) return;
+// assets/js/stories.js
+document.addEventListener('DOMContentLoaded', () => {
 
-  btn.addEventListener("click", async function () {
-    const cards = Array.from(document.querySelectorAll(".fc-story-card"));
-    if (!cards.length) return;
+  /* ===========================
+     DOWNLOAD DOS STORIES
+     =========================== */
+  const downloadBtn = document.getElementById('download-story');
+  const stories = Array.from(document.querySelectorAll('.fc-story'));
 
-    btn.disabled = true;
-    const originalText = btn.textContent;
-    btn.textContent = "Gerando PNG...";
+  if (downloadBtn && stories.length) {
+    downloadBtn.addEventListener('click', async () => {
+      // cria um slug a partir do título da página
+      const slug = (document.title || 'stories')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '') || 'stories';
 
-    const title = document.title || "story";
+      for (let i = 0; i < stories.length; i++) {
+        const story = stories[i];
 
-    for (let i = 0; i < cards.length; i++) {
-      const card = cards[i];
+        // garante que o quadro está no centro da tela
+        story.scrollIntoView({ behavior: 'instant', block: 'center' });
 
-      card.scrollIntoView({ behavior: "auto", block: "center" });
+        // captura o quadro em alta resolução
+        const canvas = await html2canvas(story, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: null
+        });
 
-      await new Promise(r => setTimeout(r, 150));
+        const link = document.createElement('a');
+        const num = String(i + 1).padStart(2, '0');
 
-      const canvas = await html2canvas(card, {
-        useCORS: true,
-        scale: 2
-      });
+        link.download = `${slug}-story-${num}.png`;
+        link.href = canvas.toDataURL('image/png');
 
-      const dataURL = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      const index = (i + 1).toString().padStart(2, "0");
-
-      link.href = dataURL;
-      link.download = `${slugify(title)}-story-${index}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    btn.textContent = originalText;
-    btn.disabled = false;
-  });
-
-  function slugify(str) {
-    return (str || "")
-      .toString()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    });
   }
+
 });
