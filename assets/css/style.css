@@ -2239,19 +2239,6 @@ main {
   padding-top: 0 !important; /* remove o espaçamento que empurra para cima */
 }
 
-background-image:
-  radial-gradient(circle at 50% 35%, rgba(255,255,255,0.08), transparent 70%),
-  url("data:image/svg+xml;utf8,
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1350'>
-      <circle cx='540' cy='675' r='420' stroke='rgba(255,255,255,0.05)' fill='none' stroke-width='1'/>
-      <circle cx='540' cy='675' r='250' stroke='rgba(255,255,255,0.05)' fill='none' stroke-width='1'/>
-      <circle cx='540' cy='380' r='8' fill='rgba(255,255,255,0.08)'/>
-      <circle cx='750' cy='860' r='6' fill='rgba(255,255,255,0.08)'/>
-    </svg>");
-background-size: cover;
-background-position: center;
-background-color: #02040a;
-
 .du-block {
   width: 1080px;
   height: 1350px;
