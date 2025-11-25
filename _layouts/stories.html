@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <title>{{ page.title }} · Story · Fábrica de Conteúdo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body class="fc-body fc-body--story">
 
+  <!-- Botão fixo para download (html2canvas entra depois) -->
   <button
     id="download-story"
     class="fc-download-fixed"
@@ -19,17 +19,26 @@
   </button>
 
   <main class="fc-main fc-main--story">
-    <section class="fc-story-wrapper">
+    <section class="fc-story-stage">
+      
+      <!-- Moldura 9:16 (tela do celular) -->
+      <div class="fc-story-frame">
 
-      <article class="fc-story-card fc-story-block{% if page.variant %} fc-story-card--{{ page.variant }}{% endif %}">
-        <div class="fc-story-inner">
-          {{ content }}
-        </div>
+        <article class="fc-story-card fc-story-block{% if page.variant %} fc-story-card--{{ page.variant }}{% endif %}">
+          
+          <!-- Safe area interna onde o texto entra -->
+          <div class="fc-story-safe-area">
+            {{ content }}
+          </div>
 
-      </article>
+        </article>
 
+      </div>
     </section>
   </main>
+
+  <!-- Futuro: story.js para capturar .fc-story-card com html2canvas -->
+  <!-- <script src="{{ '/assets/js/story.js' | relative_url }}"></script> -->
 
 </body>
 </html>
