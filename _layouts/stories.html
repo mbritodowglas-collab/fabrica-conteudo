@@ -9,37 +9,49 @@
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body class="fc-body fc-body--story">
+<body class="fc-body fc-body--stories">
 
   <header class="fc-topbar">
     <a class="fc-topbar__back" href="{{ '/stories.html' | relative_url }}">← Stories</a>
-    <span class="fc-topbar__badge">ST · Story</span>
+    <span class="fc-topbar__badge">ST · Stories</span>
   </header>
 
   <!-- Botão fixo (mesma lógica do carrossel/static) -->
   <button
-    id="download-story"
+    id="download-stories"
     class="fc-download-fixed"
     type="button">
     ↓ PNG
   </button>
 
-  <main class="fc-main fc-main--story">
+  <main class="fc-main fc-main--stories">
 
-    <!-- Aqui é o “slide único” do story -->
-    <section class="fc-section fc-section--story">
-      <article class="fc-story-card fc-story-block">
+    {% if page.cards %}
+      <!-- MODE MULTI-CARD -->
+      <section class="fc-section fc-section--stories">
+        {% for c in page.cards %}
+          <article class="fc-stories-card fc-stories-block">
+            <div class="fc-stories-inner">
+              {{ c.texto | markdownify }}
+            </div>
+          </article>
+        {% endfor %}
+      </section>
 
-        <div class="fc-story-inner">
-          {{ content | markdownify }}
-        </div>
-
-      </article>
-    </section>
+    {% else %}
+      <!-- MODE SINGLE -->
+      <section class="fc-section fc-section--stories">
+        <article class="fc-stories-card fc-stories-block">
+          <div class="fc-stories-inner">
+            {{ content | markdownify }}
+          </div>
+        </article>
+      </section>
+    {% endif %}
 
   </main>
 
-  <!-- se quiser, depois pluga o js tipo static.js aqui -->
-  <!-- <script src="{{ '/assets/js/story.js' | relative_url }}"></script> -->
+  <!-- futuro script de exportação -->
+  <!-- <script src="{{ '/assets/js/stories.js' | relative_url }}"></script> -->
 </body>
 </html>
