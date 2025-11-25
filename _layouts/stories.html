@@ -16,7 +16,6 @@
     <span class="fc-topbar__badge">ST · Stories</span>
   </header>
 
-  <!-- Botão fixo (mesma lógica do carrossel/static) -->
   <button
     id="download-stories"
     class="fc-download-fixed"
@@ -27,7 +26,7 @@
   <main class="fc-main fc-main--stories">
 
     {% if page.cards %}
-      <!-- MODE MULTI-CARD -->
+      <!-- MULTI-CARD -->
       <section class="fc-section fc-section--stories">
         {% for c in page.cards %}
           <article class="fc-stories-card fc-stories-block">
@@ -39,7 +38,7 @@
       </section>
 
     {% else %}
-      <!-- MODE SINGLE -->
+      <!-- SINGLE -->
       <section class="fc-section fc-section--stories">
         <article class="fc-stories-card fc-stories-block">
           <div class="fc-stories-inner">
@@ -51,7 +50,7 @@
 
   </main>
 
-  <!-- futuro script de exportação -->
+  <!-- quando criar o script, pluga aqui -->
   <!-- <script src="{{ '/assets/js/stories.js' | relative_url }}"></script> -->
 </body>
 </html>
