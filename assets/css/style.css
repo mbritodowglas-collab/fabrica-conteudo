@@ -2383,3 +2383,79 @@ background-color: #02040a;
   background: linear-gradient(135deg, #b71c1c, #ff1744);
   color: #fff;
 }
+
+/* STORIES · Layout base 9:16 */
+.fc-body--story {
+  background: #000;
+  color: #fff;
+}
+
+.fc-main--story {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Moldura 9:16 */
+.fc-story-stage {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.fc-story-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* 🎨 GRADIENTE OFICIAL (Vermelho → Preto → Dourado) */
+.fc-story-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 32px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    /* Glow dourado sutil no topo */
+    radial-gradient(
+      circle at top center,
+      rgba(212, 175, 55, 0.35) 0%,
+      rgba(212, 175, 55, 0.0) 40%
+    ),
+
+    /* Núcleo vermelho cinematográfico */
+    radial-gradient(
+      circle at center,
+      rgba(255, 30, 60, 0.55) 0%,
+      rgba(120, 0, 10, 0.55) 35%,
+      rgba(0, 0, 0, 0.85) 70%
+    ),
+
+    /* Base preta */
+    #000000;
+
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+/* Safe area */
+.fc-story-safe-area {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
