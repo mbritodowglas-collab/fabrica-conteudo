@@ -1,11 +1,3 @@
-title: "Fábrica de Conteúdo"
-description: "Pipeline de posts e carrosséis a partir de arquivos .md"
-timezone: America/Manaus
-
-markdown: kramdown
-highlighter: rouge
-
-# Diz pro Jekyll quais layouts usar pros .md
 defaults:
   # Carrosséis padrão
   - scope:
@@ -35,6 +27,9 @@ defaults:
       layout: dowglas-universe
       type: dowglas-universe
 
-exclude:
-  - README.md
-  - LICENSE
+  # STORIES — **NOVO**
+  - scope:
+      path: "content/stories"
+    values:
+      layout: story
+      type: story
