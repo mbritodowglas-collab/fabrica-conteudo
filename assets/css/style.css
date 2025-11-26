@@ -2412,3 +2412,155 @@ main {
   font-size: 0.78rem;
   color: rgba(148, 163, 184, 0.9);
 }
+
+/* ======================================================
+   HOME · FÁBRICA DE CONTEÚDO
+   Overrides específicos da página inicial
+   ====================================================== */
+
+/* Fundo e feeling geral da home */
+.fc-body--home {
+  background:
+    radial-gradient(circle at top, #19152b 0%, #050509 55%, #020206 100%);
+  color: #f5f5f7;
+}
+
+/* Header da home um pouco mais destacado */
+.fc-body--home .fc-header {
+  padding: 24px 18px 14px;
+}
+
+.fc-body--home .fc-header__brand h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fc-body--home .fc-header__brand p {
+  font-size: 0.9rem;
+}
+
+/* Main com respiro a mais */
+.fc-body--home .fc-main--home {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+/* Banner mais “hero” na home */
+.fc-body--home .fc-banner {
+  margin-bottom: 24px;
+  padding: 18px 18px 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(212, 175, 55, 0.65);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.4), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(83, 135, 255, 0.32), transparent 55%),
+    linear-gradient(135deg, #11111b, #05050a);
+  box-shadow:
+    0 24px 46px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.fc-body--home .fc-banner__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  font-size: 1.8rem;
+}
+
+.fc-body--home .fc-banner__text h2 {
+  font-size: 1.2rem;
+}
+
+.fc-body--home .fc-banner__text p {
+  font-size: 0.9rem;
+}
+
+/* Seção de escolha dos modos */
+.fc-body--home .fc-section {
+  margin-bottom: 22px;
+  padding: 18px 18px 16px;
+  border-radius: 20px;
+}
+
+/* GRID dos cards de modo */
+.fc-body--home .fc-choice-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* 2 colunas em telas maiores */
+@media (min-width: 768px) {
+  .fc-body--home .fc-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* CARD botão na home – leve ajuste de espaçamento */
+.fc-body--home .fc-card-button {
+  padding: 14px 14px;
+}
+
+/* Ícones redondinhos por modo */
+.fc-card-icon--carrossel {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #f5e3aa);
+}
+
+.fc-card-icon--static {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #c7ddff);
+}
+
+.fc-card-icon--media {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #fbcfe8);
+}
+
+.fc-card-icon--du {
+  background:
+    radial-gradient(circle at 0% 0%, #e0f2fe, #a855f7);
+}
+
+.fc-card-icon--stories {
+  background:
+    radial-gradient(circle at 0% 0%, #fee2e2, #f97373);
+}
+
+/* Título + descrição dos cards */
+.fc-body--home .fc-card-content h3 {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.fc-body--home .fc-card-content p {
+  font-size: 0.86rem;
+  margin-bottom: 4px;
+}
+
+/* CTA do card com um pouco mais de destaque */
+.fc-body--home .fc-card-cta {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  opacity: 0.9;
+}
+
+/* Hover mais “premium” na home */
+.fc-body--home .fc-card-button:hover {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(212, 175, 55, 0.25);
+}
+
+/* Seção do modal de prompts – pequeno ajuste */
+.fc-body--home .fc-section__subtitle {
+  margin-bottom: 12px;
+}
+
+.fc-body--home .fc-open-modal {
+  max-width: 320px;
+}
