@@ -2331,3 +2331,84 @@ main {
   font-size: 2rem;
   opacity: 0.85;
 }
+
+/* =====================================
+   HOME · FÁBRICA DE CONTEÚDO
+   ===================================== */
+
+/* fundo específico da home */
+.fc-body--home {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(245, 196, 81, 0.16), transparent 55%),
+    radial-gradient(circle at 90% 100%, rgba(248, 113, 113, 0.16), transparent 55%),
+    #050509;
+}
+
+/* main com largura um pouco maior na home */
+.fc-main--home {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+/* dá um respiro extra na primeira section da home */
+.fc-body--home .fc-banner {
+  margin-top: 10px;
+}
+
+/* =====================================
+   GRID DE ESCOLHA DOS MODOS
+   ===================================== */
+
+.fc-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* em telas maiores, abrir pra 3 colunas se quiser carregar mais cards */
+@media (min-width: 960px) {
+  .fc-choice-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* garante que o card-button se comporte bem dentro do grid */
+.fc-choice-grid .fc-card-button {
+  width: 100%;
+}
+
+/* =====================================
+   ÍCONES ESPECÍFICOS DOS MODOS
+   ===================================== */
+
+.fc-card-icon--media {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #fbcfe8);
+}
+
+.fc-card-icon--du {
+  background:
+    radial-gradient(circle at 20% 0%, #e0f2fe, #22d3ee 50%, #0f172a 100%);
+}
+
+.fc-card-icon--stories {
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff, #fed7aa);
+}
+
+/* só um ajuste fino na section com modelos de prompt na home */
+.fc-body--home .fc-section:last-of-type {
+  margin-top: 18px;
+}
+
+/* footer da home um pouco mais discreto e alinhado com a largura */
+.fc-body--home .fc-footer {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-top: 4px;
+  padding-bottom: 24px;
+  font-size: 0.78rem;
+  color: rgba(148, 163, 184, 0.9);
+}
