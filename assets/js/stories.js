@@ -1,29 +1,26 @@
 // assets/js/stories.js
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('[stories] script stories.js carregado');
+  console.log('[stories] stories.js carregado');
 
-  // Botão de download
-  const downloadBtn = document.getElementById('download-story');
+  // Botão de download (id do layout)
+  const downloadBtn = document.getElementById('download-stories');
   if (!downloadBtn) {
-    console.warn('[stories] Botão #download-story não encontrado.');
+    console.warn('[stories] Botão #download-stories não encontrado.');
     return;
   }
 
-  // Quadros de story: tenta primeiro .fc-story-frame, depois .fc-story
-  let frames = Array.from(document.querySelectorAll('.fc-story-frame'));
-  if (!frames.length) {
-    frames = Array.from(document.querySelectorAll('.fc-story'));
-  }
+  // Cada STORY é um .fc-slide (como no layout)
+  const frames = Array.from(document.querySelectorAll('.fc-slide'));
 
   if (!frames.length) {
-    console.warn('[stories] Nenhum quadro encontrado (.fc-story-frame ou .fc-story).');
+    console.warn('[stories] Nenhum .fc-slide encontrado na página.');
     return;
   }
 
   downloadBtn.addEventListener('click', async () => {
-    console.log('[stories] Clique no botão de download. Quadros encontrados:', frames.length);
+    console.log('[stories] Clique no botão. Quadros encontrados:', frames.length);
 
-    // gera slug a partir do título
+    // slug a partir do título da página
     const slug = (document.title || 'stories')
       .toLowerCase()
       .normalize('NFD')
@@ -31,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'stories';
 
-    // feedback visual no botão
     const originalLabel = downloadBtn.textContent;
     downloadBtn.disabled = true;
     downloadBtn.textContent = 'Gerando...';
@@ -40,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < frames.length; i++) {
         const frame = frames[i];
 
-        // garante que o quadro atual esteja visível
+        // garante que o quadro está visível
         frame.scrollIntoView({ behavior: 'auto', block: 'center' });
 
         // captura em alta resolução
@@ -66,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (err) {
       console.error('[stories] Erro ao gerar stories:', err);
-      alert('Rolou um erro ao gerar o stories. Abre o console pra ver o detalhe.');
+      alert('Rolou um erro ao gerar os stories. Abre o console pra ver o detalhe.');
     } finally {
       downloadBtn.disabled = false;
       downloadBtn.textContent = originalLabel;
