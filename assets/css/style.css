@@ -2240,15 +2240,14 @@ main {
 }
    
 /* ====================================================== */
-/* STORIES · Layout 9:16 baseado no carrossel             */
+/* STORIES · Overrides do carrossel para formato 9:16     */
 /* ====================================================== */
 
-/* Gatilho: página de Stories (mesmo HTML do carrossel) */
+/* gatilho: body da página de stories */
 .fc-body--carrossel.fc-body--stories {
   background: #000;
 }
 
-/* Main com respiro */
 .fc-main--carrossel.fc-main--stories {
   padding: 2rem;
 }
@@ -2261,7 +2260,6 @@ main {
   aspect-ratio: 9 / 16;
 
   margin: 0 auto 4rem auto;
-
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -2269,49 +2267,67 @@ main {
   border-radius: 32px;
   overflow: hidden;
 
-  /* Fundo padrão MD (vermelho + preto) */
   background: radial-gradient(circle at top,
     #b71c1c 0%,
     #5a0000 35%,
     #050505 100%);
-  box-shadow:
-    0 28px 60px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-/* Área interna respeitando safe zones de stories */
+/* Safe area interna */
 .fc-body--stories .fc-slide__inner {
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 
-  /* TOP / LADOS / BOTTOM → zona segura */
   padding: 160px 96px 200px;
-  box-sizing: border-box;
 }
 
-/* Header (divisor + 1/2, 2/2...) mais alto */
+/* Header */
 .fc-body--stories .fc-slide__header {
   width: 100%;
   margin-bottom: 48px;
 }
 
-/* Contador do slide */
 .fc-body--stories .fc-slide-num {
   font-size: 1.8rem;
   margin-top: 12px;
   opacity: 0.8;
 }
 
-/* HOOK · título do story (parte superior) */
+/* Hook (título) */
 .fc-body--stories .fc-slide__hook {
   width: 100%;
   text-align: center;
-
   font-size: 3.4rem;
   font-weight: 900;
-  line-h
+  line-height: 1.25;
+  margin: 0 0 40px 0;
+}
+
+/* Texto */
+.fc-body--stories .fc-slide__text {
+  width: 100%;
+  text-align: center;
+  font-size: 2.4rem;
+  line-height: 1.35;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: auto;
+}
+
+/* CTA */
+.fc-body--stories .fc-slide__footer {
+  width: 100%;
+  margin-top: 72px;
+}
+
+.fc-body--stories .fc-slide__cta {
+  text-align: center;
+  font-size: 2rem;
+  opacity: 0.85;
+}
