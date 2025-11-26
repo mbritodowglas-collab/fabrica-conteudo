@@ -7,6 +7,133 @@
   <title>{{ page.title }} · Stories · Fábrica de Conteúdo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- OVERRIDE ESPECÍFICO DOS STORIES -->
+  <style>
+    /* Gatilho: página de Stories usando o layout de carrossel */
+    body.fc-body--carrossel.fc-body--stories {
+      background: #000;
+    }
+
+    /* Main com respiro */
+    body.fc-body--carrossel.fc-body--stories .fc-main--carrossel.fc-main--stories {
+      padding: 2rem;
+    }
+
+    /* Cada slide vira um STORY 1080×1920 (9:16) */
+    body.fc-body--carrossel.fc-body--stories .fc-slides {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    body.fc-body--carrossel.fc-body--stories .fc-slide {
+      width: 1080px !important;
+      max-width: 100%;
+      aspect-ratio: 9 / 16 !important;
+
+      border-radius: 32px;
+      overflow: hidden;
+      margin: 0 auto;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      background:
+        radial-gradient(circle at top,
+          #b71c1c 0%,
+          #5a0000 35%,
+          #050505 100%);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+
+    /* Área interna com safe zone de stories */
+    body.fc-body--carrossel.fc-body--stories .fc-slide__inner {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      padding: 160px 96px 200px;
+    }
+
+    /* Header (divisor + contador) */
+    body.fc-body--carrossel.fc-body--stories .fc-slide__header {
+      width: 100%;
+      margin-bottom: 48px;
+    }
+
+    body.fc-body--carrossel.fc-body--stories .fc-slide-num {
+      font-size: 1.8rem;
+      margin-top: 12px;
+      opacity: 0.8;
+    }
+
+    /* HOOK – título do story (parte de cima) */
+    body.fc-body--carrossel.fc-body--stories .fc-slide__hook {
+      width: 100%;
+      text-align: center;
+      font-size: 3.4rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0 0 40px 0;
+    }
+
+    /* TEXTO – corpo no meio */
+    body.fc-body--carrossel.fc-body--stories .fc-slide__text {
+      width: 100%;
+      text-align: center;
+      font-size: 2.4rem;
+      line-height: 1.35;
+      font-weight: 500;
+      opacity: 0.9;
+      margin: 0;
+      margin-bottom: auto; /* empurra CTA pra baixo */
+    }
+
+    /* CTA lá embaixo (se tiver) */
+    body.fc-body--carrossel.fc-body--stories .fc-slide__footer {
+      width: 100%;
+      margin-top: 72px;
+    }
+
+    body.fc-body--carrossel.fc-body--stories .fc-slide__cta {
+      text-align: center;
+      font-size: 2rem;
+      opacity: 0.85;
+    }
+
+    /* Hero da página de stories */
+    body.fc-body--carrossel.fc-body--stories .fc-hero {
+      max-width: 720px;
+      margin: 0 auto 3rem auto;
+    }
+
+    /* Mobile: só reduz padding/fonte, mantém 9:16 */
+    @media (max-width: 768px) {
+      body.fc-body--carrossel.fc-body--stories .fc-slide__inner {
+        padding: 120px 32px 160px;
+      }
+      body.fc-body--carrossel.fc-body--stories .fc-slide__hook {
+        font-size: 2.4rem;
+      }
+      body.fc-body--carrossel.fc-body--stories .fc-slide__text {
+        font-size: 1.6rem;
+      }
+      body.fc-body--carrossel.fc-body--stories .fc-slide__cta {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 
 <body class="fc-body fc-body--carrossel fc-body--stories">
