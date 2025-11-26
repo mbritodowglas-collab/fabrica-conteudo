@@ -2238,38 +2238,7 @@ main {
   justify-content: center !important;
   padding-top: 0 !important; /* remove o espaçamento que empurra para cima */
 }
-
-.du-block {
-  width: 1080px;
-  height: 1350px;
-  position: relative;
-  margin: 0 auto;
-  padding: 180px 120px 220px; /* espaço para topo e rodapé */
-  box-sizing: border-box;
-}
-
-.du-watermark {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 42px;
-  letter-spacing: 0.28em;
-  opacity: 0.14;
-  color: #ffffff;
-  pointer-events: none;
-  user-select: none;
-}
-
-.fc-slide__text ul {
-  margin: 0.5rem 0;
-  padding-left: 1.2rem;
-}
-
-.fc-slide__text li {
-  margin: 0.15rem 0;
-}
-
+   
 /* ====================================================== */
 /* STORIES · Layout 9:16 baseado no carrossel             */
 /* ====================================================== */
