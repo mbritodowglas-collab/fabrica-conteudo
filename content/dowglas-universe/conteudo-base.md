@@ -1,32 +1,34 @@
 ---
 layout: dowglas-universe
-title: "Modelo · Textão quadro único"
+title: "Tao Te Ching · Capítulo 1"
 perfil: "Dowglas Universe"
-tipo_post: "textao-unico"
-descricao_modelo: "Reflexão curta para quadro único do Dowglas Universe."
-limite_caracteres: 620   # tamanho seguro para caber inteiro no quadro 4:5
+avatar: "/assets/img/douglas-universe.webp"
+tipo_post: "textao-multiquadros"
+tagline: "Reflexão taoista — versão Dowglas Universe."
+show_profile_cta: true
 
-# Se quiser usar o MESMO layout em versão multiquadros, dá pra ativar isso aqui:
-# blocos:
-#   - titulo: "Quadro 1"
-#     texto: |
-#       Texto do primeiro quadro...
-#   - titulo: "Quadro 2"
-#     texto: |
-#       Texto do segundo quadro...
+slides:
+  - hook: "TAO TE CHING · CAPÍTULO 1 — COMPLETO"
+    texto: |
+      **Poema (versão tradicional)**
+
+      O Caminho que pode ser dito  
+      não é o Caminho eterno.  
+      O nome que pode ser nomeado  
+      não é o nome eterno.  
+
+      Sem nome é a origem do céu e da terra.  
+      Com nome é a mãe das dez mil coisas.  
+
+      Quem está livre do desejo vê a essência.  
+      Quem vive no desejo vê apenas as formas.  
+
+      Esses dois — desejo e não-desejo —  
+      têm a mesma origem, mas nomes diferentes.  
+
+      Chamamos isso de Mistério.  
+      O Mistério dos Mistérios  
+      é a porta para todas as maravilhas.
+
+      **Leia mais na legenda.**
 ---
-
-O Dowglas Universe começa aqui — esse espaço onde eu deixo de ser só o personal ou o professor, e volto a ser inteiro de novo.
-
-Aqui eu conecto o que realmente me move:
-
-• filosofia que encontro nos animes  
-• metáforas perdidas nos filmes  
-• neurociência aplicada à vida real  
-• caos interno virando palavra organizada  
-
-Este não é um lugar “certinho”.  
-É um lugar vivo.  
-Um lugar onde a mente expande sem pedir licença.
-
-Se algo disso ressoa aí dentro, então você já habita meu universo.
